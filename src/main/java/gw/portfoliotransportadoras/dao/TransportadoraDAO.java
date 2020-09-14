@@ -32,6 +32,22 @@ public class TransportadoraDAO {
 	return con;
     }
     
+    public static int inserir(Transportadora transportadora){
+        int status=0;
+        
+        try{
+		Connection con=getConnection();
+		PreparedStatement ps=con.prepareStatement("insert into portfolio.transportadora(nome) values(?)");
+		ps.setString(1, transportadora.getNome());
+                status=ps.executeUpdate();
+                
+        }catch(Exception e)
+        {
+            System.out.println(e);
+        }
+        return status;
+    }
+    
     public static List<Transportadora> getList(){
         List<Transportadora> transportadoraList= new ArrayList<Transportadora>();
         

@@ -39,7 +39,7 @@
             <c:forEach items="${list}" var="t">
                 <tr>
                     <td>${t.getNome()}</td>
-                    
+                        
                     <td>
                        
                     </td>
@@ -47,5 +47,7 @@
             </c:forEach>
             
         </table>
+        <br/><a href="adicionarTransportadoraForm.jsp">Adicionar nova Transportadora</a>
+        
     </body>
 </html>
