@@ -9,6 +9,6 @@
     if(i>0){ 
         response.sendRedirect("adicionartransportadora-sucesso.jsp");
     }else{
-        
+        response.sendRedirect("adicionartransportadora-erro.jsp");
     }
 %>

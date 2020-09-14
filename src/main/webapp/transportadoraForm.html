@@ -5,11 +5,115 @@
 <form action="adicionarTransportadora.jsp" method="post">
     <table>
         <tr>
+            <td>E-mail:</td>
+            <td>
+                <input type="text" name="email"/>
+            </td>
+        </tr>
+        
+        <tr>
             <td>Nome:</td>
             <td>
                 <input type="text" name="nome"/>
             </td>
         </tr>
+        
+        <tr>
+            <td>Empresa:</td>
+            <td>
+                <input type="text" name="empresa"/>
+            </td>
+        </tr>
+        
+        <tr>
+            <td>Telefone:</td>
+            <td>
+                <input type="text" name="telefone"/>
+            </td>
+        </tr>
+        
+        <tr>
+            <td>Celular:</td>
+            <td>
+                <input type="text" name="celular"/>
+            </td>
+        </tr>
+        
+        <tr>
+            <td>Whatsapp:</td>
+            <td>
+                <input type="text" name="whatsapp"/>
+            </td>
+        </tr>
+        
+        <tr>
+            <td>Modal:</td>
+            <td>
+                <select name="modal" style="width:155px">
+                    <option>Rodoviario</option>
+                    <option>Aquaviario</option>
+                    <option>Aereo</option>
+                </select>
+            </td>
+        </tr>
+        
+        <tr>
+            <td>Cep:</td>
+            <td>
+                <input type="text" name="cep"/>
+            </td>
+            <td>Estado:</td>
+            <td>
+                <select name="estado" style="width:40px">
+                    <option>AC</option>
+                </select>
+            </td>
+        </tr>
+        
+        <tr> 
+            <td>Cidade:</td>
+            <td>
+                <input type="text" name="cidade"/>
+            </td>
+        </tr>
+        
+        <tr> 
+            <td>Bairro:</td>
+            <td>
+                <input type="text" name="bairro"/>
+            </td>
+        </tr>
+        
+        <tr> 
+            <td>Rua / Avenida:</td>
+            <td>
+                <input type="text" name="ruaAvenida"/>
+            </td>
+        </tr>
+        
+        <tr> 
+            <td>Número:</td>
+            <td>
+                <input type="text" name="numero"/>
+            </td>
+        </tr>
+        
+        <tr> 
+            <td>Logo:</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="checkbox" id="aceitacaoTermosServico" name="aceitacaoTermosServico" value="true">
+                
+            </td>
+            <td>
+                <label for="aceitacaoTermosServico"> Eu aceito os termos de serviço</label><br>
+            </td>
+        </tr> 
+        
         <tr>
             <td colspan="2">
                 <input type="submit" value="Adicionar Transportadora"/>

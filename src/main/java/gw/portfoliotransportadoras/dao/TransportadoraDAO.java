@@ -37,8 +37,22 @@ public class TransportadoraDAO {
         
         try{
 		Connection con=getConnection();
-		PreparedStatement ps=con.prepareStatement("insert into portfolio.transportadora(nome) values(?)");
+		PreparedStatement ps
+                        =con.prepareStatement("insert into portfolio.transportadora(nome, email, telefone, celular, whatsapp, modal, cep, estado, cidade, bairro, ruaavenida, numero) values(?,?,?,?,?,?,?,?,?,?,?,?)");
+                
 		ps.setString(1, transportadora.getNome());
+                ps.setString(2, transportadora.getEmail());
+                ps.setString(3, transportadora.getTelefone());
+                ps.setString(4, transportadora.getCelular());
+                ps.setString(5, transportadora.getWhatsapp());
+                ps.setString(6, transportadora.getModal());
+                ps.setString(7, transportadora.getCep());
+                ps.setString(8, transportadora.getEstado());
+                ps.setString(9, transportadora.getCidade());
+                ps.setString(10, transportadora.getBairro());
+                ps.setString(11, transportadora.getRuaAvenida());
+                ps.setInt(12, transportadora.getNumero());
+                
                 status=ps.executeUpdate();
                 
         }catch(Exception e)
