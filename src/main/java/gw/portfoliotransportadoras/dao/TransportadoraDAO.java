@@ -78,6 +78,18 @@ public class TransportadoraDAO {
             {
                 transportadora=new Transportadora();
                 transportadora.setNome(rs.getString("nome"));
+                transportadora.setEmail(rs.getString("email"));
+                transportadora.setTelefone(rs.getString("telefone"));
+                transportadora.setCelular(rs.getString("celular"));
+                transportadora.setWhatsapp(rs.getString("whatsapp"));
+                transportadora.setModal(rs.getString("modal"));
+                transportadora.setCep(rs.getString("cep"));
+                transportadora.setEstado(rs.getString("estado"));
+                transportadora.setCidade(rs.getString("cidade"));
+                transportadora.setBairro(rs.getString("bairro"));
+                transportadora.setRuaAvenida(rs.getString("ruaavenida"));
+                transportadora.setNumero(rs.getInt("numero"));
+                transportadora.setEmpresa(rs.getString("empresa"));
                 transportadoraList.add(transportadora);
             }
             con.close();

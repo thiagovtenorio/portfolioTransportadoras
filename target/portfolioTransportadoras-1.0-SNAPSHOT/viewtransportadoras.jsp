@@ -26,23 +26,22 @@
         <table border="1" width="90%">
             
             <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Password</th>
-                <th>Email</th>
-                <th>Sex</th>
-                <th>Country</th>
-                <th>Edit</th>
-                <th>Delete</th>
+                <th>Nome</th>
+                <th>Telefone</th>
+                <th>Whatsapp</th>
+                <th>Cep</th>
+                <th> </th>
+                <th> </th>
+                <th> </th>
+                <th> </th>
             </tr>
             
             <c:forEach items="${list}" var="t">
                 <tr>
                     <td>${t.getNome()}</td>
-                        
-                    <td>
-                       
-                    </td>
+                    <td>${t.getTelefone()}</td>
+                    <td>${t.getWhatsapp()}</td>
+                    <td>${t.getCep()}</td>
                 </tr>
             </c:forEach>
             
