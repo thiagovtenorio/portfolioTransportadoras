@@ -23,7 +23,8 @@ public class Transportadora {
     private String bairro;
     private String ruaAvenida;
     private Integer numero;
-    
+    private String empresa;
+
     public String getNome(){
         return nome;
     }
@@ -118,5 +119,14 @@ public class Transportadora {
     public void setNumero(Integer numero) {
         this.numero = numero;
     }
+    
+    public String getEmpresa() {
+        return empresa;
+    }
+
+    public void setEmpresa(String empresa) {
+        this.empresa = empresa;
+    }
+    
  
 }
