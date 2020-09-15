@@ -1,3 +1,5 @@
 gw/portfoliotransportadoras/dao/TransportadoraDAO.class
+gw/portfoliotransportadoras/controller/TransportadoraBO.class
 gw/portfoliotransportadoras/modelo/Transportadora.class
 gw/portfoliotransportadoras/Main.class
+gw/portfoliotransportadoras/manager/TransportadoraManager.class

@@ -65,6 +65,54 @@ public class TransportadoraDAO {
         }
         return status;
     }
+    public static Transportadora getTransportadoraPorId(Integer id){
+        Transportadora transportadoraBanco=null;
+        try{
+            Connection con=getConnection();
+            PreparedStatement ps=con.prepareStatement("select * from portfolio.transportadora where id=?");
+	    ps.setInt(1,id);
+	    ResultSet rs=ps.executeQuery();
+            
+            Integer transportadoraId=null;
+            String nome=null;
+            String email=null;
+            String telefone=null;
+            String celular=null; 
+            String whatsapp=null; 
+            String modal=null;
+            String cep=null;
+            String estado=null;
+            String cidade=null;
+            String bairro=null;
+            String ruaAvenida=null;
+            Integer numero=null;
+            String empresa=null;
+            
+            while(rs.next()){
+               transportadoraId=rs.getInt("id");
+               nome=rs.getString("nome");
+               email=rs.getString("email");
+               telefone=rs.getString("telefone");
+               celular=rs.getString("celular");
+               whatsapp=rs.getString("whatsapp");
+               modal=rs.getString("modal");
+               cep=rs.getString("cep");
+               estado=rs.getString("estado");
+               cidade=rs.getString("cidade");
+               bairro=rs.getString("bairro");
+               ruaAvenida=rs.getString("ruaavenida");
+               numero=rs.getInt("numero");
+               empresa=rs.getString("empresa");
+               
+               transportadoraBanco=new Transportadora(transportadoraId, nome, email, telefone, celular, whatsapp, modal, cep, estado, cidade, bairro, ruaAvenida, numero, empresa);
+               
+            }
+            con.close();
+        }catch(Exception e){
+            System.out.println(e);
+        }
+        return transportadoraBanco;
+    }
     
     public static List<Transportadora> getList(){
         List<Transportadora> transportadoraList= new ArrayList<Transportadora>();
@@ -76,6 +124,7 @@ public class TransportadoraDAO {
             ResultSet rs=ps.executeQuery();
             
             Transportadora transportadora=null;
+            Integer id=null;
             String nome=null;
             String email=null;
             String telefone=null;
@@ -92,7 +141,7 @@ public class TransportadoraDAO {
             
             while(rs.next())
             {
-                
+                id=rs.getInt("id");
                 nome=(String)rs.getString("nome");
                 email=(String)rs.getString("email");
                 telefone=(String)rs.getString("telefone");
@@ -104,12 +153,10 @@ public class TransportadoraDAO {
                 cidade=(String)rs.getString("cidade");
                 bairro=(String)rs.getString("bairro");
                 ruaavenida=(String)rs.getString("ruaavenida");
-                if(rs.getString("numero") !=null){
-                    numero=Integer.parseInt((String)rs.getString("numero"));
-                }
+                numero=rs.getInt("numero");
                 empresa=(String)rs.getString("empresa");
                 
-                transportadora=new Transportadora(nome, email, telefone, celular, whatsapp, modal, 
+                transportadora=new Transportadora(id, nome, email, telefone, celular, whatsapp, modal, 
                         cep, estado, cidade, bairro, ruaavenida, numero, empresa);
                 
                 transportadoraList.add(transportadora);

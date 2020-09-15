@@ -43,6 +43,7 @@ public class TransportadoraBO extends HttpServlet {
 		
 	}
         public Transportadora carregarTransportadora(HttpServletRequest request, HttpServletResponse response){
+            Integer id=0;
             String email=(String)request.getParameter("email");
             String nome=(String)request.getParameter("nome");
             String empresa=(String)request.getParameter("empresa");
@@ -57,7 +58,7 @@ public class TransportadoraBO extends HttpServlet {
             String ruaAvenida=(String)request.getParameter("ruaAvenida");
             Integer numero=Integer.parseInt((String)request.getParameter("numero"));
             
-            Transportadora novaTransportadora=new Transportadora(nome,email,telefone,celular,whatsapp,
+            Transportadora novaTransportadora=new Transportadora(id, nome,email,telefone,celular,whatsapp,
                     modal,cep,estado,cidade,bairro,ruaAvenida,numero,empresa);
             return novaTransportadora;
         }

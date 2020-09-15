@@ -19,6 +19,7 @@
         <h1>Lista de Transportadoras</h1>
         
         <%
+            
             List<Transportadora> list=TransportadoraDAO.getList();
             request.setAttribute("list",list);
         %>
@@ -38,7 +39,9 @@
             
             <c:forEach items="${list}" var="t">
                 <tr>
-                    <td>${t.getNome()}</td>
+                    <td>
+                        <a href="alterartransportadoraform.jsp?id=${t.getId()}">${t.getNome()}</a>
+                    </td>
                     <td>${t.getTelefone()}</td>
                     <td>${t.getWhatsapp()}</td>
                     <td>${t.getCep()}</td>

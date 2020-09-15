@@ -11,6 +11,7 @@ package gw.portfoliotransportadoras.modelo;
  */
 public class Transportadora {
     
+    private Integer id;
     private String nome;
     private String email;
     private String telefone;
@@ -25,9 +26,11 @@ public class Transportadora {
     private Integer numero;
     private String empresa;
 
-    public Transportadora(String nome, String email, String telefone, String celular, String whatsapp, 
+    
+    public Transportadora(Integer id, String nome, String email, String telefone, String celular, String whatsapp, 
             String modal, String cep, String estado, String cidade, String bairro, String ruaAvenida, 
             Integer numero, String empresa) {
+        this.id=id;
         this.nome = nome;
         this.email = email;
         this.telefone = telefone;
@@ -42,7 +45,14 @@ public class Transportadora {
         this.numero = numero;
         this.empresa = empresa;
     }
-    
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     public String getNome(){
         return nome;
     }

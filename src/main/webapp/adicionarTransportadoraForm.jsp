@@ -15,6 +15,5 @@
     <body>
         <jsp:include page="transportadoraForm.html"></jsp:include>
         
-        
     </body>
 </html>
