@@ -74,6 +74,8 @@ public class TransportadoraBO extends HttpServlet {
             
             this.transportadoraManager.adicionarTransportadora(novaTransportadora);
             
+            voltarTelaPrincipal(request, response);
+            
         }
         
         public void alterarTransportadora(HttpServletRequest request, HttpServletResponse response){
@@ -83,8 +85,19 @@ public class TransportadoraBO extends HttpServlet {
             Transportadora transportadoraAtual=carregarTransportadora(request, response);
             
             this.transportadoraManager.alterarTransportadora(transportadoraAtual);
+            
+            voltarTelaPrincipal(request, response);
+            
         }
-        
+        public void voltarTelaPrincipal(HttpServletRequest request, HttpServletResponse response){
+            try{
+                RequestDispatcher rd=request.getRequestDispatcher("viewtransportadoras.jsp");
+                rd.forward(request, response);
+                
+            }catch(Exception e){
+              e.printStackTrace();
+            }
+        }
         
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)

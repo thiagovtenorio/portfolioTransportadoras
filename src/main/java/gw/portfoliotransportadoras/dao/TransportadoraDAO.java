@@ -40,6 +40,7 @@ public class TransportadoraDAO {
     
     public int alterar(Transportadora transportadora){
         int status=0;
+        System.err.println("atualizar transp id: "+transportadora.getId());
         try{
 		Connection con=getConnection();
 		PreparedStatement ps=con.prepareStatement("update portfolio.transportadora set nome=?,email=?,telefone=?,celular=?,whatsapp=?,modal=?,cep=?,estado=?,cidade=?,bairro=?,ruaavenida=?, numero=?, empresa=? where id=?");
@@ -55,7 +56,8 @@ public class TransportadoraDAO {
                 ps.setString(10,transportadora.getBairro());
                 ps.setString(11,transportadora.getRuaAvenida());
                 ps.setInt(12,transportadora.getNumero());
-                ps.setInt(13,transportadora.getId());
+                ps.setString(13,transportadora.getEmpresa());
+                ps.setInt(14,transportadora.getId());
                 
 		status=ps.executeUpdate();
 	}catch(Exception e){
