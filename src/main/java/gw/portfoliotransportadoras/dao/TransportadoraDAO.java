@@ -32,7 +32,7 @@ public class TransportadoraDAO {
 	return con;
     }
     
-    public static int inserir(Transportadora transportadora){
+    public int inserir(Transportadora transportadora){
         int status=0;
         
         try{
@@ -57,6 +57,8 @@ public class TransportadoraDAO {
                 
                 status=ps.executeUpdate();
                 
+                con.close();
+                
         }catch(Exception e)
         {
             System.out.println(e);
@@ -74,22 +76,42 @@ public class TransportadoraDAO {
             ResultSet rs=ps.executeQuery();
             
             Transportadora transportadora=null;
+            String nome=null;
+            String email=null;
+            String telefone=null;
+            String celular=null;
+            String whatsapp=null;
+            String modal=null;
+            String cep=null;
+            String estado=null;
+            String cidade=null;
+            String bairro=null;
+            String ruaavenida=null;
+            Integer numero=null;
+            String empresa=null;
+            
             while(rs.next())
             {
-                transportadora=new Transportadora();
-                transportadora.setNome(rs.getString("nome"));
-                transportadora.setEmail(rs.getString("email"));
-                transportadora.setTelefone(rs.getString("telefone"));
-                transportadora.setCelular(rs.getString("celular"));
-                transportadora.setWhatsapp(rs.getString("whatsapp"));
-                transportadora.setModal(rs.getString("modal"));
-                transportadora.setCep(rs.getString("cep"));
-                transportadora.setEstado(rs.getString("estado"));
-                transportadora.setCidade(rs.getString("cidade"));
-                transportadora.setBairro(rs.getString("bairro"));
-                transportadora.setRuaAvenida(rs.getString("ruaavenida"));
-                transportadora.setNumero(rs.getInt("numero"));
-                transportadora.setEmpresa(rs.getString("empresa"));
+                
+                nome=(String)rs.getString("nome");
+                email=(String)rs.getString("email");
+                telefone=(String)rs.getString("telefone");
+                celular=(String)rs.getString("celular");
+                whatsapp=(String)rs.getString("whatsapp");
+                modal=(String)rs.getString("modal");
+                cep=(String)rs.getString("cep");
+                estado=(String)rs.getString("estado");
+                cidade=(String)rs.getString("cidade");
+                bairro=(String)rs.getString("bairro");
+                ruaavenida=(String)rs.getString("ruaavenida");
+                if(rs.getString("numero") !=null){
+                    numero=Integer.parseInt((String)rs.getString("numero"));
+                }
+                empresa=(String)rs.getString("empresa");
+                
+                transportadora=new Transportadora(nome, email, telefone, celular, whatsapp, modal, 
+                        cep, estado, cidade, bairro, ruaavenida, numero, empresa);
+                
                 transportadoraList.add(transportadora);
             }
             con.close();

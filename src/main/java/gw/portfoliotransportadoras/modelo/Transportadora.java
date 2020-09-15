@@ -25,6 +25,24 @@ public class Transportadora {
     private Integer numero;
     private String empresa;
 
+    public Transportadora(String nome, String email, String telefone, String celular, String whatsapp, 
+            String modal, String cep, String estado, String cidade, String bairro, String ruaAvenida, 
+            Integer numero, String empresa) {
+        this.nome = nome;
+        this.email = email;
+        this.telefone = telefone;
+        this.celular = celular;
+        this.whatsapp = whatsapp;
+        this.modal = modal;
+        this.cep = cep;
+        this.estado = estado;
+        this.cidade = cidade;
+        this.bairro = bairro;
+        this.ruaAvenida = ruaAvenida;
+        this.numero = numero;
+        this.empresa = empresa;
+    }
+    
     public String getNome(){
         return nome;
     }
