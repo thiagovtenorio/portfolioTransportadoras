@@ -22,6 +22,8 @@ public class TransportadoraBO extends HttpServlet {
 		
                 if(action.equals("adicionar")){
                     adicionarTransportadora(request, response);
+                }else if(action.equals("alterar")){
+                    alterarTransportadora(request, response);
                 }
                 
 //		LoginBean bean=new LoginBean();
@@ -43,7 +45,8 @@ public class TransportadoraBO extends HttpServlet {
 		
 	}
         public Transportadora carregarTransportadora(HttpServletRequest request, HttpServletResponse response){
-            Integer id=0;
+            Integer id=Integer.parseInt(request.getParameter("transportadoraId"));
+            
             String email=(String)request.getParameter("email");
             String nome=(String)request.getParameter("nome");
             String empresa=(String)request.getParameter("empresa");
@@ -71,6 +74,15 @@ public class TransportadoraBO extends HttpServlet {
             
             this.transportadoraManager.adicionarTransportadora(novaTransportadora);
             
+        }
+        
+        public void alterarTransportadora(HttpServletRequest request, HttpServletResponse response){
+            
+            this.transportadoraManager=new TransportadoraManager();
+            
+            Transportadora transportadoraAtual=carregarTransportadora(request, response);
+            
+            this.transportadoraManager.alterarTransportadora(transportadoraAtual);
         }
         
         

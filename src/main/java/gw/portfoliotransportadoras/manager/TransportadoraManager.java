@@ -21,4 +21,7 @@ public class TransportadoraManager {
     public void adicionarTransportadora(Transportadora novaTransportadora){
         transportadoraDAO.inserir(novaTransportadora);
     }
+    public void alterarTransportadora(Transportadora transportadoraAtual){
+        transportadoraDAO.alterar(transportadoraAtual);
+    }
 }

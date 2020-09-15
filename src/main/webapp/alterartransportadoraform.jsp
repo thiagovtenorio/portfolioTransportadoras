@@ -29,6 +29,7 @@
             <input type="hidden" name="action" value="alterar" />
 
             <table>
+                <input type="hidden" name="transportadoraId" value="<%= transportadoraBanco.getId()%>" />
                 <tr>
                     <td>E-mail:</td>
                     <td>
