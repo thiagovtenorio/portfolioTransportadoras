@@ -24,4 +24,7 @@ public class TransportadoraManager {
     public void alterarTransportadora(Transportadora transportadoraAtual){
         transportadoraDAO.alterar(transportadoraAtual);
     }
+    public void excluirTransportadora(Transportadora transportadora){
+        transportadoraDAO.excluir(transportadora);
+    }
 }

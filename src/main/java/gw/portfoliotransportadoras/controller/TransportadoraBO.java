@@ -24,8 +24,10 @@ public class TransportadoraBO extends HttpServlet {
                     adicionarTransportadora(request, response);
                 }else if(action.equals("alterar")){
                     alterarTransportadora(request, response);
+                }else if(action.equals("excluir")){
+                    excluirTransportadora(request, response);
                 }
-                
+                        
 //		LoginBean bean=new LoginBean();
 //		bean.setName(name);
 //		bean.setPassword(password);
@@ -75,7 +77,6 @@ public class TransportadoraBO extends HttpServlet {
             this.transportadoraManager.adicionarTransportadora(novaTransportadora);
             
             voltarTelaPrincipal(request, response);
-            
         }
         
         public void alterarTransportadora(HttpServletRequest request, HttpServletResponse response){
@@ -87,8 +88,17 @@ public class TransportadoraBO extends HttpServlet {
             this.transportadoraManager.alterarTransportadora(transportadoraAtual);
             
             voltarTelaPrincipal(request, response);
-            
         }
+        public void excluirTransportadora(HttpServletRequest request, HttpServletResponse response){
+            this.transportadoraManager=new TransportadoraManager();
+            
+            Transportadora transportadoraEscolhida=carregarTransportadora(request, response);
+            
+            this.transportadoraManager.excluirTransportadora(transportadoraEscolhida);
+            
+            voltarTelaPrincipal(request, response);
+        }
+        
         public void voltarTelaPrincipal(HttpServletRequest request, HttpServletResponse response){
             try{
                 RequestDispatcher rd=request.getRequestDispatcher("viewtransportadoras.jsp");

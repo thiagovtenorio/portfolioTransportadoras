@@ -98,6 +98,19 @@ public class TransportadoraDAO {
         }
         return status;
     }
+    public int excluir(Transportadora transportadora){
+        int status=0;
+	try{
+		Connection con=getConnection();
+		PreparedStatement ps=con.prepareStatement("delete from portfolio.transportadora where id=?");
+		ps.setInt(1,transportadora.getId());
+		status=ps.executeUpdate();
+	}catch(Exception e){
+            System.out.println(e);
+        }
+        return status;
+    }
+    
     public static Transportadora getTransportadoraPorId(Integer id){
         Transportadora transportadoraBanco=null;
         try{

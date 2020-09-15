@@ -26,7 +26,7 @@
         
         <form action="TransportadoraBO" method="post">
     
-            <input type="hidden" name="action" value="alterar" />
+            <input id="action" type="hidden" name="action" value="alterar" />
 
             <table>
                 <input type="hidden" name="transportadoraId" value="<%= transportadoraBanco.getId()%>" />
@@ -138,11 +138,15 @@
                         <input type="submit" value="Atualizar"/>
                     </td>
                     <td colspan="2">
-                        <input type="submit" value="Deletar"/>
+                        <input type="submit" value="Deletar"onclick="changeActionExcluir()"/>
                     </td>
                 </tr>
             </table>
         </form>
-        
+         <script>
+             function changeActionExcluir(){
+                 document.getElementById("action").value="excluir";
+             }
+        </script>
     </body>
 </html>
