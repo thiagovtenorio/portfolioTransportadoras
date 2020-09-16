@@ -40,4 +40,7 @@ public class TransportadoraManager {
     public Transportadora getTransportadoraPorId(Integer id){
         return transportadoraDAO.getTransportadoraPorId(id);
     }
+    public List<String> listLocalizacaoUFs(){
+        return transportadoraDAO.listLocalizacaoUFs();
+    }
 }

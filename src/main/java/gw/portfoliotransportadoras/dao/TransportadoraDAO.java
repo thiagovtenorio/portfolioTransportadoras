@@ -13,6 +13,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -161,7 +162,7 @@ public class TransportadoraDAO {
         return transportadoraBanco;
     }
     
-
+    
     public List<Transportadora> pesquisarPorFiltro(FiltroTransportadora filtro){
        List<Transportadora> transportadoraList= new ArrayList<Transportadora>();
        
@@ -278,5 +279,63 @@ public class TransportadoraDAO {
         }
 	
         return transportadoraList;
+    }
+    
+    public List<String> listLocalizacaoUFs(){
+        List<String> listLocalizacaoUFs=new ArrayList<String>();
+        HashMap<String, String> siglaNomeCompleto=new HashMap<String,String>();
+        
+        siglaNomeCompleto.put("AC", "Acre");
+        siglaNomeCompleto.put("AL", "Alagoas");
+        siglaNomeCompleto.put("AP", "Amapá");
+        siglaNomeCompleto.put("AM", "Amazonas");
+        siglaNomeCompleto.put("BA", "Bahia");
+        siglaNomeCompleto.put("CE", "Ceará");
+        siglaNomeCompleto.put("DF", "Distrito Federal");
+        siglaNomeCompleto.put("ES", "Espírito Santo");
+        siglaNomeCompleto.put("GO", "Goiás");
+        siglaNomeCompleto.put("MA", "Maranhão");
+        siglaNomeCompleto.put("MT", "Mato Grosso");
+        siglaNomeCompleto.put("MS", "Mato Grosso do Sul");
+        siglaNomeCompleto.put("MG", "Minas Gerais");
+        siglaNomeCompleto.put("PA", "Pará");
+        siglaNomeCompleto.put("PB", "Paraíba");
+        siglaNomeCompleto.put("PR", "Paraná");
+        siglaNomeCompleto.put("PE", "Pernambuco");
+        siglaNomeCompleto.put("PI", "Piauí");
+        siglaNomeCompleto.put("RJ", "Rio de Janeiro");
+        siglaNomeCompleto.put("RN", "Rio Grande do Norte");
+        siglaNomeCompleto.put("RS", "Rio Grande do Sul");
+        siglaNomeCompleto.put("RO", "Rondônia");
+        siglaNomeCompleto.put("RR", "Roraima");
+        siglaNomeCompleto.put("SC", "Santa Catarina");
+        siglaNomeCompleto.put("SP", "São Paulo");
+        siglaNomeCompleto.put("SE", "Sergipe");
+        siglaNomeCompleto.put("TO", "Tocantins");
+        
+        try{
+            Connection con=getConnection();
+            PreparedStatement ps;
+            ps = con.prepareStatement("select estado, count(*) from portfolio.transportadora group by estado;");
+            ResultSet rs=ps.executeQuery();
+            
+            StringBuilder sb=new StringBuilder();
+            String nomeCompleto="";
+            
+            while(rs.next())
+            {
+               nomeCompleto=siglaNomeCompleto.get(rs.getString("estado"));
+               
+               sb.append(nomeCompleto);
+               sb.append("(");
+               sb.append(rs.getString("count"));
+               sb.append(")");
+               listLocalizacaoUFs.add(sb.toString());
+               sb=new StringBuilder();
+            }
+        }catch(Exception e){
+            
+        }
+        return listLocalizacaoUFs;
     }
 }

@@ -34,16 +34,40 @@
         <div class="row">
             
             <div class="container">
-                <h3 class="text-center">Lista de Transportadoras</h3>
+                
                 <hr>
                 <div class="container text-left">
                     <div class="container col-md-5">
                         <div class="card">
                             <div class="card-body">
+                                <h3 class="text-left">Transportadoras</h3>
+                                <br>
                                 <form id="action" action="pesquisar" method="post">
                                     <label>Nome:</label> 
                                     <fieldset class="form-group">
                                         <input type="text" value="<c:out value='${transportadora.nome}' />" class="form-control" name="nome">
+                                    </fieldset>
+                                    <fieldset class="form-group">
+                                        <label>Localizacao (UFs)
+                                        </label>
+                                        <table class="table table-bordered">
+                                            <tbody>
+                                                <c:forEach var="localizacaoUF" items="${listLocalizacaoUFs}">
+                                                    <tr>
+                                                        <td>
+                                                            <a href="list"> <c:out value="${localizacaoUF}" />
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                </c:forEach>
+                                            </tbody>
+                                        </table>
+                                    </fieldset>
+                                    <fieldset class="form-group">
+                                        <label>Localizacao (Municipios)</label> 
+                                    </fieldset>
+                                    <fieldset class="form-group">
+                                        <label>Modal</label> 
                                     </fieldset>
                                      <button type="submit" class="btn btn-primary">Procurar</button>
                                 </form>
@@ -55,6 +79,7 @@
                 </div>
 
                 <br>
+                
                 <table class="table table-bordered">
                     <thead>
                     </thead>

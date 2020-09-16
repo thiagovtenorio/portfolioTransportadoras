@@ -143,6 +143,10 @@ public class TransportadoraServlet extends HttpServlet{
         
         request.setAttribute("listTransportadora", listTransportadora);
         
+        List<String> listLocalizacaoUfs=transportadoraManager.listLocalizacaoUFs();
+        
+        request.setAttribute("listLocalizacaoUFs", listLocalizacaoUfs);
+        
         RequestDispatcher dispatcher = request.getRequestDispatcher("list-transportadora.jsp");
         
         dispatcher.forward(request, response);
