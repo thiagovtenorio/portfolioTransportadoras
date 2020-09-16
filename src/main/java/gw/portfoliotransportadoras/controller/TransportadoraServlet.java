@@ -53,6 +53,9 @@ public class TransportadoraServlet extends HttpServlet{
                 case "/alterar":
                     alterarTransportadora(request, response);
                     break;
+                case "/deletar": 
+                    deletarTransportadora(request, response);
+                    break;
                 default:
                     listTransportadora(request, response);
                     break;
@@ -92,6 +95,11 @@ public class TransportadoraServlet extends HttpServlet{
     public void alterarTransportadora(HttpServletRequest request, HttpServletResponse response)throws SQLException, IOException{
         Transportadora transportadoraAtual=carregarTransportadora(request, response);
         this.transportadoraManager.alterarTransportadora(transportadoraAtual);
+        response.sendRedirect("list");
+    }
+    public void deletarTransportadora(HttpServletRequest request, HttpServletResponse response)throws SQLException, IOException{
+        Transportadora transportadoraAtual=carregarTransportadora(request, response);
+        this.transportadoraManager.excluirTransportadora(transportadoraAtual);
         response.sendRedirect("list");
     }
     

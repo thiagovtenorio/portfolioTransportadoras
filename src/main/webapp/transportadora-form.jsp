@@ -33,7 +33,7 @@
          <div class="card">
              <div class="card-body">
                  <c:if test="${transportadora != null}">
-                     <form action="alterar" method="post">
+                     <form id="action" action="alterar" method="post">
                  </c:if>
                  <c:if test="${transportadora == null}">
                     <form action="inserir" method="post">
@@ -116,12 +116,17 @@
                  </fieldset>
                  <c:if test="${transportadora != null}">
                     <button type="submit" class="btn btn-success">Atualizar</button>
-                    <button type="submit" class="btn btn-danger">Deletar</button> 
+                    <button type="submit" class="btn btn-danger" onclick="changeActionDeletar()">Deletar</button> 
                  </c:if>
                 <c:if test="${transportadora == null}">
                     <button type="submit" class="btn btn-success">Cadastrar-se agora!</button>
                  </c:if> 
                 </form>
+                 <script>
+                    function changeActionDeletar(){
+                        document.getElementById("action").action="deletar";
+                    }
+                </script>
              </div>
          </div>
      </div>            
