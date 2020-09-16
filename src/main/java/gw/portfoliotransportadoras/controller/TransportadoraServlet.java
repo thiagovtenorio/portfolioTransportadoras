@@ -85,13 +85,15 @@ public class TransportadoraServlet extends HttpServlet{
                 modal, cep, estado, cidade, bairro, ruaAvenida, numero, empresa);
         return novaTransportadora;
     }
-    public void adicionarTransportadora(HttpServletRequest request, HttpServletResponse response){
+    public void adicionarTransportadora(HttpServletRequest request, HttpServletResponse response)throws SQLException, IOException{
         Transportadora novaTransportadora=carregarTransportadora(request, response);
         this.transportadoraManager.adicionarTransportadora(novaTransportadora);
+        response.sendRedirect("list");
     }
-    public void alterarTransportadora(HttpServletRequest request, HttpServletResponse response){
+    public void alterarTransportadora(HttpServletRequest request, HttpServletResponse response)throws SQLException, IOException{
         Transportadora transportadoraAtual=carregarTransportadora(request, response);
         this.transportadoraManager.alterarTransportadora(transportadoraAtual);
+        response.sendRedirect("list");
     }
     
     private void mostrarNovoForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
