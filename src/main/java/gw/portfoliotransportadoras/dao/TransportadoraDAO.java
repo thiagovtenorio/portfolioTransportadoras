@@ -5,6 +5,7 @@
  */
 package gw.portfoliotransportadoras.dao;
 
+import gw.portfoliotransportadoras.filtro.FiltroTransportadora;
 import gw.portfoliotransportadoras.modelo.Transportadora;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -160,7 +161,70 @@ public class TransportadoraDAO {
         return transportadoraBanco;
     }
     
-    public List<Transportadora> getList(){
+
+    public List<Transportadora> pesquisarPorFiltro(FiltroTransportadora filtro){
+       List<Transportadora> transportadoraList= new ArrayList<Transportadora>();
+       
+        try {
+            StringBuilder sb=new StringBuilder();
+            sb.append("SELECT * FROM portfolio.transportadora where nome like '");
+            sb.append(filtro.getNome());
+            sb.append("%'");
+            
+            Connection con=getConnection();
+            PreparedStatement ps;
+            ps = con.prepareStatement(sb.toString());
+            
+            ResultSet rs=ps.executeQuery();
+            
+            Transportadora transportadora=null;
+            Integer id=null;
+            String nome=null;
+            String email=null;
+            String telefone=null;
+            String celular=null;
+            String whatsapp=null;
+            String modal=null;
+            String cep=null;
+            String estado=null;
+            String cidade=null;
+            String bairro=null;
+            String ruaavenida=null;
+            Integer numero=null;
+            String empresa=null;
+            
+            while(rs.next())
+            {
+                id=rs.getInt("id");
+                nome=(String)rs.getString("nome");
+                email=(String)rs.getString("email");
+                telefone=(String)rs.getString("telefone");
+                celular=(String)rs.getString("celular");
+                whatsapp=(String)rs.getString("whatsapp");
+                modal=(String)rs.getString("modal");
+                cep=(String)rs.getString("cep");
+                estado=(String)rs.getString("estado");
+                cidade=(String)rs.getString("cidade");
+                bairro=(String)rs.getString("bairro");
+                ruaavenida=(String)rs.getString("ruaavenida");
+                numero=rs.getInt("numero");
+                empresa=(String)rs.getString("empresa");
+                
+                transportadora=new Transportadora(id, nome, email, telefone, celular, whatsapp, modal, 
+                        cep, estado, cidade, bairro, ruaavenida, numero, empresa);
+                
+                transportadoraList.add(transportadora);
+            }
+            con.close();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(TransportadoraDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return transportadoraList;
+    }
+    
+    public static List<Transportadora> getList(){
+
         List<Transportadora> transportadoraList= new ArrayList<Transportadora>();
         
         try {

@@ -16,13 +16,28 @@
         <%@page import="gw.portfoliotransportadoras.dao.TransportadoraDAO, gw.portfoliotransportadoras.modelo.Transportadora, java.util.*"%>
         <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
         
-        <h1>Lista de Transportadoras</h1>
+        <h1>Transportadoras</h1>
         
         <%
-            
             List<Transportadora> list=TransportadoraDAO.getList();
             request.setAttribute("list",list);
         %>
+        
+        <div>
+            <form action="TransportadoraBO" method="post">
+                
+                <label for="nome">Nome</label>
+                
+                <input id="action" type="hidden" name="action" value="pesquisar" />
+                
+                <input id="nome" type="text" name="filtro" />
+                
+                <input type="button" name="buscar" value="pesquisar" />
+                
+            </form>
+        </div>
+        
+        <br>
         
         <table border="1" width="90%">
             

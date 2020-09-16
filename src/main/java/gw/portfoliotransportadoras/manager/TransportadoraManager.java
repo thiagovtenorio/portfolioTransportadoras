@@ -6,6 +6,7 @@
 package gw.portfoliotransportadoras.manager;
 
 import gw.portfoliotransportadoras.dao.TransportadoraDAO;
+import gw.portfoliotransportadoras.filtro.FiltroTransportadora;
 import gw.portfoliotransportadoras.modelo.Transportadora;
 import java.util.List;
 
@@ -19,6 +20,11 @@ public class TransportadoraManager {
     public TransportadoraManager() {
         this.transportadoraDAO = new TransportadoraDAO();
     }
+    
+    public List<Transportadora> pesquisarPorFiltro(FiltroTransportadora filtro){
+        return transportadoraDAO.pesquisarPorFiltro(filtro);
+    }
+    
     public void adicionarTransportadora(Transportadora novaTransportadora){
         transportadoraDAO.inserir(novaTransportadora);
     }

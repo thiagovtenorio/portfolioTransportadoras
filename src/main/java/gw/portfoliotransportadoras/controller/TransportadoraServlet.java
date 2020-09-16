@@ -5,6 +5,7 @@
  */
 package gw.portfoliotransportadoras.controller;
 
+import gw.portfoliotransportadoras.filtro.FiltroTransportadora;
 import gw.portfoliotransportadoras.manager.TransportadoraManager;
 import gw.portfoliotransportadoras.modelo.Transportadora;
 import java.io.IOException;
@@ -69,16 +70,19 @@ public class TransportadoraServlet extends HttpServlet{
         }
     }
     public void pesquisarTransportadora(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException{
-        request.getParameter("nome");
+        String nome=request.getParameter("nome");
         
-        List<Transportadora> listTransportadora=new ArrayList<>();
+        FiltroTransportadora filtro=new FiltroTransportadora();
+        
+        filtro.setNome(nome);
+        
+        List<Transportadora> listTransportadora=this.transportadoraManager.pesquisarPorFiltro(filtro);
         
         RequestDispatcher dispatcher = request.getRequestDispatcher("list-transportadora.jsp");
         
         request.setAttribute("listTransportadora", listTransportadora);
         
         dispatcher.forward(request, response);
-        
     }
     public Transportadora carregarTransportadora(HttpServletRequest request, HttpServletResponse response) {
         Integer id=0;

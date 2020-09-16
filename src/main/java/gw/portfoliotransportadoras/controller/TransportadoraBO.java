@@ -1,9 +1,11 @@
 package gw.portfoliotransportadoras.controller;
 
+import gw.portfoliotransportadoras.filtro.FiltroTransportadora;
 import gw.portfoliotransportadoras.manager.TransportadoraManager;
 import gw.portfoliotransportadoras.modelo.Transportadora;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -18,6 +20,7 @@ public class TransportadoraBO extends HttpServlet {
 		response.setContentType("text/html");
 		PrintWriter out=response.getWriter();
 		
+                 
 		String action=request.getParameter("action");
 		
                 if(action.equals("adicionar")){
@@ -26,9 +29,28 @@ public class TransportadoraBO extends HttpServlet {
                     alterarTransportadora(request, response);
                 }else if(action.equals("excluir")){
                     excluirTransportadora(request, response);
+                }else if(action.equals("pesquisar")){
+                    pesquisarTransportadora(request, response);
                 }
 		
 	}
+        public void pesquisarTransportadora(HttpServletRequest request, HttpServletResponse response){
+            try{
+                
+                String nome=request.getParameter("nome");
+                
+                FiltroTransportadora filtro=new FiltroTransportadora();
+                filtro.setNome(nome);
+                
+                transportadoraManager=new TransportadoraManager();
+                
+                List<Transportadora> transportadoraList =transportadoraManager.pesquisarPorFiltro(filtro);
+                
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+        }
+        
         public Transportadora carregarTransportadora(HttpServletRequest request, HttpServletResponse response){
             Integer id=Integer.parseInt(request.getParameter("transportadoraId"));
             
