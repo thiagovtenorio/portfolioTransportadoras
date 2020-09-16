@@ -9,6 +9,7 @@ import gw.portfoliotransportadoras.manager.TransportadoraManager;
 import gw.portfoliotransportadoras.modelo.Transportadora;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -41,6 +42,9 @@ public class TransportadoraServlet extends HttpServlet{
         
         try {
             switch (action) {
+                case "/pesquisar":
+                    pesquisarTransportadora(request, response);
+                    break;
                 case "/novo":
                     mostrarNovoForm(request, response);
                     break;
@@ -63,6 +67,18 @@ public class TransportadoraServlet extends HttpServlet{
         }catch (SQLException ex) {
             throw new ServletException(ex);
         }
+    }
+    public void pesquisarTransportadora(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException{
+        request.getParameter("nome");
+        
+        List<Transportadora> listTransportadora=new ArrayList<>();
+        
+        RequestDispatcher dispatcher = request.getRequestDispatcher("list-transportadora.jsp");
+        
+        request.setAttribute("listTransportadora", listTransportadora);
+        
+        dispatcher.forward(request, response);
+        
     }
     public Transportadora carregarTransportadora(HttpServletRequest request, HttpServletResponse response) {
         Integer id=0;
@@ -113,7 +129,6 @@ public class TransportadoraServlet extends HttpServlet{
          Transportadora transportadoraExistente=transportadoraManager.getTransportadoraPorId(id);
          RequestDispatcher dispatcher = request.getRequestDispatcher("transportadora-form.jsp");
          
-         System.err.println("transportadoraExistente "+transportadoraExistente.getNome());
          request.setAttribute("transportadora", transportadoraExistente);
          dispatcher.forward(request, response);
     }

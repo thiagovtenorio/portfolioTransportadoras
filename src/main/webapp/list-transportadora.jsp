@@ -32,9 +32,24 @@
         <br>
         
         <div class="row">
+            
             <div class="container">
                 <h3 class="text-center">Lista de Transportadoras</h3>
                 <hr>
+                <div class="container text-left">
+                    <div class="container col-md-5">
+                        <div class="card">
+                            <div class="card-body">
+                                <form id="action" action="pesquisar" method="post">
+                                    <label>Nome:</label> 
+                                    <fieldset class="form-group">
+                                        <input type="text" value="<c:out value='${transportadora.nome}' />" class="form-control" name="nome">
+                                    </fieldset>
+                                     <button type="submit" class="btn btn-primary">Procurar</button>
+                                </form>
+                            </div>
+                        </div>
+                </div>
                 <div class="container text-right">
                     <a href="<%=request.getContextPath()%>/novo" class="btn btn-success">Cadastre sua transportadora</a>
                 </div>
@@ -60,7 +75,7 @@
                                 <td>
                                     <c:out value="${transportadora.empresa}" />
                                 </td>
-                                <td> &nbsp;&nbsp;&nbsp;&nbsp; <a href="delete?id=<c:out value='${transportadora.id}' />">Delete</a></td>
+                                <td> &nbsp;&nbsp;&nbsp;&nbsp;</td>
                             </tr>
                         </c:forEach>
                     </tbody>
