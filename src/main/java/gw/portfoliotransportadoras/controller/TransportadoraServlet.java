@@ -44,8 +44,14 @@ public class TransportadoraServlet extends HttpServlet{
                 case "/novo":
                     mostrarNovoForm(request, response);
                     break;
-                 case "/editar":
+                case "/inserir":
+                    adicionarTransportadora(request, response);
+                    break;    
+                case "/editar":
                     mostrarFormEdicao(request, response);
+                    break;
+                case "/alterar":
+                    alterarTransportadora(request, response);
                     break;
                 default:
                     listTransportadora(request, response);
@@ -54,6 +60,38 @@ public class TransportadoraServlet extends HttpServlet{
         }catch (SQLException ex) {
             throw new ServletException(ex);
         }
+    }
+    public Transportadora carregarTransportadora(HttpServletRequest request, HttpServletResponse response) {
+        Integer id=0;
+        System.err.println(" id carregado: "+request.getParameter("id"));
+        if(request.getParameter("id")!=null){
+            id = Integer.parseInt(request.getParameter("id"));
+        }
+        String email = (String) request.getParameter("email");
+        String nome = (String) request.getParameter("nome");
+        String empresa = (String) request.getParameter("empresa");
+        String telefone = (String) request.getParameter("telefone");
+        String celular = (String) request.getParameter("celular");
+        String whatsapp = (String) request.getParameter("whatsapp");
+        String modal = (String) request.getParameter("modal");
+        String cep = (String) request.getParameter("cep");
+        String estado = (String) request.getParameter("estado");
+        String cidade = (String) request.getParameter("cidade");
+        String bairro = (String) request.getParameter("bairro");
+        String ruaAvenida = (String) request.getParameter("ruaAvenida");
+        Integer numero = Integer.parseInt((String) request.getParameter("numero"));
+
+        Transportadora novaTransportadora = new Transportadora(id, nome, email, telefone, celular, whatsapp,
+                modal, cep, estado, cidade, bairro, ruaAvenida, numero, empresa);
+        return novaTransportadora;
+    }
+    public void adicionarTransportadora(HttpServletRequest request, HttpServletResponse response){
+        Transportadora novaTransportadora=carregarTransportadora(request, response);
+        this.transportadoraManager.adicionarTransportadora(novaTransportadora);
+    }
+    public void alterarTransportadora(HttpServletRequest request, HttpServletResponse response){
+        Transportadora transportadoraAtual=carregarTransportadora(request, response);
+        this.transportadoraManager.alterarTransportadora(transportadoraAtual);
     }
     
     private void mostrarNovoForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{

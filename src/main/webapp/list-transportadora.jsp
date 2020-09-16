@@ -42,19 +42,14 @@
                 <br>
                 <table class="table table-bordered">
                     <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Country</th>
-                            <th>Actions</th>
-                        </tr>
                     </thead>
                     <tbody>
                         <c:forEach var="transportadora" items="${listTransportadora}">
                             <tr>
                                 <td>
-                                    <c:out value="${transportadora.nome}" />
+                                    <a href="editar?id=<c:out value='${transportadora.id}' />">
+                                        <c:out value="${transportadora.nome}" />
+                                    </a>
                                 </td>
                                 <td>
                                     <c:out value="${transportadora.telefone}" />
@@ -65,7 +60,7 @@
                                 <td>
                                     <c:out value="${transportadora.empresa}" />
                                 </td>
-                                <td><a href="editar?id=<c:out value='${transportadora.id}' />">Edit</a> &nbsp;&nbsp;&nbsp;&nbsp; <a href="delete?id=<c:out value='${transportadora.id}' />">Delete</a></td>
+                                <td> &nbsp;&nbsp;&nbsp;&nbsp; <a href="delete?id=<c:out value='${transportadora.id}' />">Delete</a></td>
                             </tr>
                         </c:forEach>
                     </tbody>

@@ -42,7 +42,7 @@
                  <caption>
                      <h2>
                          <c:if test="${transportadora != null}">
-                             Alterar Transportadora
+                             Atualizar / Deletar Transportadora
                          </c:if>
                          <c:if test="${transportadora == null}">
                              Cadastrar Transportadora
@@ -54,23 +54,23 @@
                  </c:if>
                  <fieldset class="form-group">
                     <label>E-mail:</label> 
-                    <input type="text" value="<c:out value='${transportadora.email}' />" class="form-control" name="name" required="required">
+                    <input type="text" value="<c:out value='${transportadora.email}' />" class="form-control" name="email" required="required">
                  </fieldset>
                  <fieldset class="form-group">
                     <label>Nome:</label> 
-                    <input type="text" value="<c:out value='${transportadora.nome}' />" class="form-control" name="name" required="required">
+                    <input type="text" value="<c:out value='${transportadora.nome}' />" class="form-control" name="nome" required="required">
                  </fieldset>
                  <fieldset class="form-group">
                     <label>Empresa:</label> 
-                    <input type="text" value="<c:out value='${transportadora.empresa}' />" class="form-control" name="name" required="required">
+                    <input type="text" value="<c:out value='${transportadora.empresa}' />" class="form-control" name="empresa" required="required">
                  </fieldset>
                  <fieldset class="form-group">
                     <label>Telefone:</label> 
-                    <input type="text" value="<c:out value='${transportadora.telefone}' />" class="form-control" name="name" required="required">
+                    <input type="text" value="<c:out value='${transportadora.telefone}' />" class="form-control" name="telefone" required="required">
                  </fieldset>
                  <fieldset class="form-group">
                     <label>Whatsapp:</label> 
-                    <input type="text" value="<c:out value='${transportadora.whatsapp}' />" class="form-control" name="name" required="required">
+                    <input type="text" value="<c:out value='${transportadora.whatsapp}' />" class="form-control" name="whatsapp" required="required">
                  </fieldset>
                  <fieldset class="form-group">
                     <label>Modal:</label> 
@@ -82,7 +82,7 @@
                  </fieldset>
                  <fieldset class="form-group"> 
                      <label>Cep</label>
-                     <input type="text" value="<c:out value='${transportadora.cep}' />" class="form-control" style="width:155px" name="name" required="required">
+                     <input type="text" value="<c:out value='${transportadora.cep}' />" class="form-control" style="width:155px" name="cep" required="required">
                  </fieldset>
                 <fieldset class="form-group">
                     <label>Estado</label>
@@ -92,19 +92,19 @@
                 </fieldset>
                 <fieldset class="form-group">
                     <label>Cidade:</label> 
-                    <input type="text" value="<c:out value='${transportadora.cidade}' />" class="form-control" name="name" required="required">
+                    <input type="text" value="<c:out value='${transportadora.cidade}' />" class="form-control" name="cidade" required="required">
                  </fieldset>
                  <fieldset class="form-group">
                     <label>Bairro:</label> 
-                    <input type="text" value="<c:out value='${transportadora.bairro}' />" class="form-control" name="name" required="required">
+                    <input type="text" value="<c:out value='${transportadora.bairro}' />" class="form-control" name="bairro" required="required">
                  </fieldset>
                  <fieldset class="form-group">
                     <label>Rua / Avenida:</label> 
-                    <input type="text" value="<c:out value='${transportadora.ruaAvenida}' />" class="form-control" name="name" required="required">
+                    <input type="text" value="<c:out value='${transportadora.ruaAvenida}' />" class="form-control" name="ruaavenida" required="required">
                  </fieldset>
                  <fieldset class="form-group">
                     <label>Numero:</label> 
-                    <input type="text" value="<c:out value='${transportadora.numero}' />" class="form-control" name="name" required="required">
+                    <input type="text" value="<c:out value='${transportadora.numero}' />" class="form-control" name="numero" required="required">
                  </fieldset>
                  <fieldset class="form-group">
                      <label>Logo:</label>
@@ -114,7 +114,13 @@
                     <input type="checkbox" id="aceitacaoTermosServico" name="aceitacaoTermosServico" value="true">
                     <label for="aceitacaoTermosServico"> Eu aceito os termos de serviço</label><br>
                  </fieldset>
-                <button type="submit" class="btn btn-success">Cadastrar-se agora!</button>
+                 <c:if test="${transportadora != null}">
+                    <button type="submit" class="btn btn-success">Atualizar</button>
+                    <button type="submit" class="btn btn-danger">Deletar</button> 
+                 </c:if>
+                <c:if test="${transportadora == null}">
+                    <button type="submit" class="btn btn-success">Cadastrar-se agora!</button>
+                 </c:if> 
                 </form>
              </div>
          </div>
