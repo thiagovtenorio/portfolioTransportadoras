@@ -44,6 +44,9 @@ public class TransportadoraServlet extends HttpServlet{
                 case "/novo":
                     mostrarNovoForm(request, response);
                     break;
+                 case "/editar":
+                    mostrarFormEdicao(request, response);
+                    break;
                 default:
                     listTransportadora(request, response);
                     break;
@@ -52,10 +55,22 @@ public class TransportadoraServlet extends HttpServlet{
             throw new ServletException(ex);
         }
     }
+    
     private void mostrarNovoForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         RequestDispatcher dispatcher = request.getRequestDispatcher("transportadora-form.jsp");
         dispatcher.forward(request, response);
     }
+    private void mostrarFormEdicao(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException{
+         int id = Integer.parseInt(request.getParameter("id"));
+         
+         Transportadora transportadoraExistente=transportadoraManager.getTransportadoraPorId(id);
+         RequestDispatcher dispatcher = request.getRequestDispatcher("transportadora-form.jsp");
+         
+         System.err.println("transportadoraExistente "+transportadoraExistente.getNome());
+         request.setAttribute("transportadora", transportadoraExistente);
+         dispatcher.forward(request, response);
+    }
+    
     private void listTransportadora(HttpServletRequest request, HttpServletResponse response)
     throws SQLException, IOException, ServletException {
         List<Transportadora> listTransportadora = transportadoraManager.getList();
@@ -63,6 +78,7 @@ public class TransportadoraServlet extends HttpServlet{
         request.setAttribute("listTransportadora", listTransportadora);
         
         RequestDispatcher dispatcher = request.getRequestDispatcher("list-transportadora.jsp");
+        
         dispatcher.forward(request, response);
         
     }

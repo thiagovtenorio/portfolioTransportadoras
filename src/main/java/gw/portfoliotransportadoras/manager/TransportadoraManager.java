@@ -31,4 +31,7 @@ public class TransportadoraManager {
     public List<Transportadora> getList(){
         return transportadoraDAO.getList();
     }
+    public Transportadora getTransportadoraPorId(Integer id){
+        return transportadoraDAO.getTransportadoraPorId(id);
+    }
 }

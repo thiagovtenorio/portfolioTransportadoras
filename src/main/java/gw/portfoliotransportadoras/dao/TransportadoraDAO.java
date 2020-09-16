@@ -111,7 +111,7 @@ public class TransportadoraDAO {
         return status;
     }
     
-    public static Transportadora getTransportadoraPorId(Integer id){
+    public Transportadora getTransportadoraPorId(Integer id){
         Transportadora transportadoraBanco=null;
         try{
             Connection con=getConnection();
