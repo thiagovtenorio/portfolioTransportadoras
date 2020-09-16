@@ -27,23 +27,6 @@ public class TransportadoraBO extends HttpServlet {
                 }else if(action.equals("excluir")){
                     excluirTransportadora(request, response);
                 }
-                        
-//		LoginBean bean=new LoginBean();
-//		bean.setName(name);
-//		bean.setPassword(password);
-//		request.setAttribute("bean",bean);
-//		
-//		boolean status=bean.validate();
-//		
-//		if(status){
-//			RequestDispatcher rd=request.getRequestDispatcher("login-success.jsp");
-//			rd.forward(request, response);
-//		}
-//		else{
-//			RequestDispatcher rd=request.getRequestDispatcher("login-error.jsp");
-//			rd.forward(request, response);
-//		}
-		
 		
 	}
         public Transportadora carregarTransportadora(HttpServletRequest request, HttpServletResponse response){

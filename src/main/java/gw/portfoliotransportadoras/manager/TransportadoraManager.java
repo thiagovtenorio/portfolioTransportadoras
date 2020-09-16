@@ -7,6 +7,7 @@ package gw.portfoliotransportadoras.manager;
 
 import gw.portfoliotransportadoras.dao.TransportadoraDAO;
 import gw.portfoliotransportadoras.modelo.Transportadora;
+import java.util.List;
 
 /**
  *
@@ -26,5 +27,8 @@ public class TransportadoraManager {
     }
     public void excluirTransportadora(Transportadora transportadora){
         transportadoraDAO.excluir(transportadora);
+    }
+    public List<Transportadora> getList(){
+        return transportadoraDAO.getList();
     }
 }

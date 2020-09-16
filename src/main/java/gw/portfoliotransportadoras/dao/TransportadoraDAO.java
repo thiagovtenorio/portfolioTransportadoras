@@ -160,7 +160,7 @@ public class TransportadoraDAO {
         return transportadoraBanco;
     }
     
-    public static List<Transportadora> getList(){
+    public List<Transportadora> getList(){
         List<Transportadora> transportadoraList= new ArrayList<Transportadora>();
         
         try {
