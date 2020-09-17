@@ -68,7 +68,11 @@
                                                 </c:forEach>
                                             </tbody>
                                         </table>
-                                        <input id="inputEstado" type="text" value="<c:out value='${transportadora.estado}' />" class="form-control" name="estado">
+                                        <div style="width:150px">
+                                            <input id="inputEstado" type="hidden" value="<c:out value='${transportadora.estado}' />" class="form-control" name="estado">
+                                        </div>
+                                            
+                                    
                                     </fieldset>
                                     <fieldset class="form-group">
                                         <label>Localizacao (Municípios)
@@ -78,6 +82,7 @@
                                     <fieldset class="form-group">
                                         <label>Modal</label> 
                                         <select name="modal" value="<c:out value='${transportadora.modal}' />" class="form-control" style="width:155px">
+                                            <option></option>
                                             <option>Rodoviario</option>
                                             <option>Aquaviario</option>
                                             <option>Aereo</option>

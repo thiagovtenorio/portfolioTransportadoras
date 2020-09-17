@@ -188,6 +188,7 @@ public class TransportadoraDAO {
                 sb.append(filtro.getModal());
                 sb.append("'");
             }
+            System.err.println("query de consulta "+sb.toString());
             
             Connection con=getConnection();
             PreparedStatement ps;
