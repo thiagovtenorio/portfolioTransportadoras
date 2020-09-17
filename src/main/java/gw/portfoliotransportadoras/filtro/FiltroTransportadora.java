@@ -11,6 +11,7 @@ package gw.portfoliotransportadoras.filtro;
  */
 public class FiltroTransportadora {
     private String nome;
+    private String estado;
 
     public String getNome() {
         return nome;
@@ -19,4 +20,13 @@ public class FiltroTransportadora {
     public void setNome(String nome) {
         this.nome = nome;
     }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+    
 }

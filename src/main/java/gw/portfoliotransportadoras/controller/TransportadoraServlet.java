@@ -70,11 +70,14 @@ public class TransportadoraServlet extends HttpServlet{
         }
     }
     public void pesquisarTransportadora(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException{
-        String nome=request.getParameter("nome");
         
+        String nome=request.getParameter("nome");
+        String estado=request.getParameter("estado");
+
         FiltroTransportadora filtro=new FiltroTransportadora();
         
         filtro.setNome(nome);
+        filtro.setEstado(estado);
         
         List<Transportadora> listTransportadora=this.transportadoraManager.pesquisarPorFiltro(filtro);
         
@@ -143,13 +146,8 @@ public class TransportadoraServlet extends HttpServlet{
         
         request.setAttribute("listTransportadora", listTransportadora);
         
-        List<String> listLocalizacaoUfs=transportadoraManager.listLocalizacaoUFs();
-        
-        request.setAttribute("listLocalizacaoUFs", listLocalizacaoUfs);
-        
         RequestDispatcher dispatcher = request.getRequestDispatcher("list-transportadora.jsp");
         
         dispatcher.forward(request, response);
-        
     }
 }

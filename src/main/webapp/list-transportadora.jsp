@@ -50,18 +50,7 @@
                                     <fieldset class="form-group">
                                         <label>Localizacao (UFs)
                                         </label>
-                                        <table class="table table-bordered">
-                                            <tbody>
-                                                <c:forEach var="localizacaoUF" items="${listLocalizacaoUFs}">
-                                                    <tr>
-                                                        <td>
-                                                            <a href="list"> <c:out value="${localizacaoUF}" />
-                                                            </a>
-                                                        </td>
-                                                    </tr>
-                                                </c:forEach>
-                                            </tbody>
-                                        </table>
+                                        <input type="text" value="<c:out value='${transportadora.estado}' />" class="form-control" name="estado">
                                     </fieldset>
                                     <fieldset class="form-group">
                                         <label>Localizacao (Municipios)</label> 

@@ -172,6 +172,12 @@ public class TransportadoraDAO {
             sb.append(filtro.getNome());
             sb.append("%'");
             
+            if(filtro.getEstado()!=null){
+                sb.append("and estado='");
+                sb.append(filtro.getEstado());
+                sb.append("'");
+            }
+            
             Connection con=getConnection();
             PreparedStatement ps;
             ps = con.prepareStatement(sb.toString());
