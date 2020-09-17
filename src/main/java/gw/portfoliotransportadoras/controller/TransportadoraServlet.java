@@ -65,7 +65,7 @@ public class TransportadoraServlet extends HttpServlet{
                     deletarTransportadora(request, response);
                     break;
                 default:
-                    listTransportadora(request, response);
+                    pesquisarTransportadora(request, response);
                     break;
             }
         }catch (SQLException ex) {

@@ -175,17 +175,17 @@ public class TransportadoraDAO {
             sb.append(filtro.getNome());
             sb.append("%'");
             
-            if(filtro.getEstado().length() > 0){
+            if(filtro.getEstado()!=null && filtro.getEstado().length() > 0){
                 sb.append("and estado='");
                 sb.append(filtro.getEstado());
                 sb.append("'");
             }
-            if(filtro.getCidade().length() > 0){
+            if(filtro.getCidade()!=null && filtro.getCidade().length() > 0){
                 sb.append(" and cidade='");
                 sb.append(filtro.getCidade());
                 sb.append("'");
             }
-            if(filtro.getModal().length() > 0){
+            if(filtro.getModal()!=null && filtro.getModal().length() > 0){
                 sb.append(" and modal='");
                 sb.append(filtro.getModal());
                 sb.append("'");
