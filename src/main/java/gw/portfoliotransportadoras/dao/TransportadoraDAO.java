@@ -6,6 +6,7 @@
 package gw.portfoliotransportadoras.dao;
 
 import gw.portfoliotransportadoras.filtro.FiltroTransportadora;
+import gw.portfoliotransportadoras.modelo.LocalizacaoMunicipio;
 import gw.portfoliotransportadoras.modelo.LocalizacaoUF;
 import gw.portfoliotransportadoras.modelo.Transportadora;
 import java.sql.Connection;
@@ -363,5 +364,28 @@ public class TransportadoraDAO {
             
         }
         return listLocalizacaoUFs;
+    }
+    public List<LocalizacaoMunicipio> listLocalizacaoMunicipio(){
+        List<LocalizacaoMunicipio> listLocalizacaoMunicipio=new ArrayList<LocalizacaoMunicipio>();
+        try{
+            Connection con=getConnection();
+            PreparedStatement ps;
+            ps = con.prepareStatement("select cidade, count(*) from portfolio.transportadora group by cidade;");
+            ResultSet rs=ps.executeQuery();
+            
+            LocalizacaoMunicipio localizacaoMunicipio=new LocalizacaoMunicipio();
+            
+            while(rs.next())
+            {
+                localizacaoMunicipio.setNome(rs.getString("cidade"));
+                localizacaoMunicipio.setQtdCadastros(rs.getInt("count"));
+                listLocalizacaoMunicipio.add(localizacaoMunicipio);
+                localizacaoMunicipio=new LocalizacaoMunicipio();
+            }
+            
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+        return listLocalizacaoMunicipio;
     }
 }

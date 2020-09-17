@@ -46,6 +46,9 @@
                                     function escolherEstado(estado){
                                         document.getElementById("inputEstado").value=estado;
                                     }
+                                    function escolherCidade(cidade){
+                                        document.getElementById("inputCidade").value=cidade;
+                                    }
                                 </script>
                                 <form id="action" action="pesquisar" method="post">
                                     <label>Nome:</label> 
@@ -77,7 +80,20 @@
                                     <fieldset class="form-group">
                                         <label>Localizacao (Municípios)
                                         </label>
-                                        <input type="text" value="<c:out value='${transportadora.cidade}' />" class="form-control" name="cidade">
+                                        <table class="table table-bordered">
+                                            <tbody>
+                                                <c:forEach var="localizacao" items="${listLocalizacaoMunicipio}">
+                                                    <tr>
+                                                        <td>
+                                                            <a href="#" onclick="escolherCidade('${localizacao.nome}')">
+                                                               <c:out value="${localizacao.nome} (${localizacao.qtdCadastros})" />
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                </c:forEach>
+                                            </tbody>
+                                        </table>
+                                        <input id="inputCidade" type="text" value="<c:out value='${transportadora.cidade}' />" class="form-control" name="cidade">
                                     </fieldset>
                                     <fieldset class="form-group">
                                         <label>Modal</label> 
