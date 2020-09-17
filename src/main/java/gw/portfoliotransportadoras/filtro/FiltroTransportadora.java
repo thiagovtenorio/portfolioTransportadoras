@@ -13,6 +13,7 @@ public class FiltroTransportadora {
     private String nome;
     private String estado;
     private String cidade;
+    private String modal;
     
     public String getNome() {
         return nome;
@@ -36,6 +37,14 @@ public class FiltroTransportadora {
 
     public void setCidade(String cidade) {
         this.cidade = cidade;
+    }
+
+    public String getModal() {
+        return modal;
+    }
+
+    public void setModal(String modal) {
+        this.modal = modal;
     }
     
 }

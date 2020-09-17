@@ -59,6 +59,11 @@
                                     </fieldset>
                                     <fieldset class="form-group">
                                         <label>Modal</label> 
+                                        <select name="modal" value="<c:out value='${transportadora.modal}' />" class="form-control" style="width:155px">
+                                            <option>Rodoviario</option>
+                                            <option>Aquaviario</option>
+                                            <option>Aereo</option>
+                                        </select>
                                     </fieldset>
                                      <button type="submit" class="btn btn-primary">Procurar</button>
                                 </form>

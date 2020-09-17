@@ -74,12 +74,14 @@ public class TransportadoraServlet extends HttpServlet{
         String nome=request.getParameter("nome");
         String estado=request.getParameter("estado");
         String cidade=request.getParameter("cidade");
+        String modal=request.getParameter("modal");
 
         FiltroTransportadora filtro=new FiltroTransportadora();
         
         filtro.setNome(nome);
         filtro.setEstado(estado);
         filtro.setCidade(cidade);
+        filtro.setModal(modal);
         
         List<Transportadora> listTransportadora=this.transportadoraManager.pesquisarPorFiltro(filtro);
         

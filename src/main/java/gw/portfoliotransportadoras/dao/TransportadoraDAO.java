@@ -182,6 +182,11 @@ public class TransportadoraDAO {
                 sb.append(filtro.getCidade());
                 sb.append("'");
             }
+            if(filtro.getModal().length() > 0){
+                sb.append(" and modal='");
+                sb.append(filtro.getModal());
+                sb.append("'");
+            }
             
             Connection con=getConnection();
             PreparedStatement ps;
