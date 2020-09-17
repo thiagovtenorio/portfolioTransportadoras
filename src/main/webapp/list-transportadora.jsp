@@ -35,11 +35,10 @@
             
             <div class="container">
                 
-                <hr>
-                <div class="container text-left">
-                    <div class="container col-md-5">
-                        <div class="card">
-                            <div class="card-body">
+                
+                <div class="row">
+                    <div class="col-sm">
+                        <div class="card-body">
                                 <h3 class="text-left">Transportadoras</h3>
                                 <br>
                                 <script>
@@ -119,39 +118,42 @@
                                      <button type="submit" class="btn btn-primary">Procurar</button>
                                 </form>
                             </div>
-                        </div>
+                    </div>
+                    <div class="col-sm">
+                            <br>
+                            <div class="container text-right">
+                                <a href="<%=request.getContextPath()%>/novo" class="btn btn-success">Cadastre sua transportadora</a>
+                            </div>
+                            <br><br>
+                            <table class="table table-bordered">
+                                <thead>
+                                </thead>
+                                <tbody>
+                                    <c:forEach var="transportadora" items="${listTransportadora}">
+                                        <tr>
+                                            <td>
+                                                <a href="editar?id=<c:out value='${transportadora.id}' />">
+                                                    <c:out value="${transportadora.nome}" />
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <c:out value="${transportadora.telefone}" />
+                                            </td>
+                                            <td>
+                                                <c:out value="${transportadora.whatsapp}" />
+                                            </td>
+                                            <td>
+                                                <c:out value="${transportadora.empresa}" />
+                                            </td>
+                                            <td> 
+                                                <c:out value="${transportadora.email}" />
+                                            </td>
+                                        </tr>
+                                    </c:forEach>
+                                </tbody>
+                        </table>
+                    </div>
                 </div>
-                <div class="container text-right">
-                    <a href="<%=request.getContextPath()%>/novo" class="btn btn-success">Cadastre sua transportadora</a>
-                </div>
-
-                <br>
-                
-                <table class="table table-bordered">
-                    <thead>
-                    </thead>
-                    <tbody>
-                        <c:forEach var="transportadora" items="${listTransportadora}">
-                            <tr>
-                                <td>
-                                    <a href="editar?id=<c:out value='${transportadora.id}' />">
-                                        <c:out value="${transportadora.nome}" />
-                                    </a>
-                                </td>
-                                <td>
-                                    <c:out value="${transportadora.telefone}" />
-                                </td>
-                                <td>
-                                    <c:out value="${transportadora.whatsapp}" />
-                                </td>
-                                <td>
-                                    <c:out value="${transportadora.empresa}" />
-                                </td>
-                                <td> &nbsp;&nbsp;&nbsp;&nbsp;</td>
-                            </tr>
-                        </c:forEach>
-                    </tbody>
-                </table>
             </div>
         </div>
     </body>
