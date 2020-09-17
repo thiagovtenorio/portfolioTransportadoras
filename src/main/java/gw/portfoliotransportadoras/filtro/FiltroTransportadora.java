@@ -12,7 +12,8 @@ package gw.portfoliotransportadoras.filtro;
 public class FiltroTransportadora {
     private String nome;
     private String estado;
-
+    private String cidade;
+    
     public String getNome() {
         return nome;
     }
@@ -27,6 +28,14 @@ public class FiltroTransportadora {
 
     public void setEstado(String estado) {
         this.estado = estado;
+    }
+
+    public String getCidade() {
+        return cidade;
+    }
+
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
     }
     
 }

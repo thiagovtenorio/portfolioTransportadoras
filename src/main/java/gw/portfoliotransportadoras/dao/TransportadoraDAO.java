@@ -172,9 +172,14 @@ public class TransportadoraDAO {
             sb.append(filtro.getNome());
             sb.append("%'");
             
-            if(filtro.getEstado()!=null){
+            if(filtro.getEstado().length() > 0){
                 sb.append("and estado='");
                 sb.append(filtro.getEstado());
+                sb.append("'");
+            }
+            if(filtro.getCidade().length() > 0){
+                sb.append(" and cidade='");
+                sb.append(filtro.getCidade());
                 sb.append("'");
             }
             

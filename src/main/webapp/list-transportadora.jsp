@@ -53,7 +53,9 @@
                                         <input type="text" value="<c:out value='${transportadora.estado}' />" class="form-control" name="estado">
                                     </fieldset>
                                     <fieldset class="form-group">
-                                        <label>Localizacao (Municipios)</label> 
+                                        <label>Localizacao (Municípios)
+                                        </label>
+                                        <input type="text" value="<c:out value='${transportadora.cidade}' />" class="form-control" name="cidade">
                                     </fieldset>
                                     <fieldset class="form-group">
                                         <label>Modal</label> 
