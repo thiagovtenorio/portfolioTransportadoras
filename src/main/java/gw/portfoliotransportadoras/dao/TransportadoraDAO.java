@@ -6,6 +6,7 @@
 package gw.portfoliotransportadoras.dao;
 
 import gw.portfoliotransportadoras.filtro.FiltroTransportadora;
+import gw.portfoliotransportadoras.modelo.LocalizacaoUF;
 import gw.portfoliotransportadoras.modelo.Transportadora;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -297,8 +298,10 @@ public class TransportadoraDAO {
         return transportadoraList;
     }
     
-    public List<String> listLocalizacaoUFs(){
-        List<String> listLocalizacaoUFs=new ArrayList<String>();
+    public List<LocalizacaoUF> listLocalizacaoUFs(){
+        
+        List<LocalizacaoUF> listLocalizacaoUFs=new ArrayList<LocalizacaoUF>();
+        
         HashMap<String, String> siglaNomeCompleto=new HashMap<String,String>();
         
         siglaNomeCompleto.put("AC", "Acre");
@@ -336,18 +339,24 @@ public class TransportadoraDAO {
             ResultSet rs=ps.executeQuery();
             
             StringBuilder sb=new StringBuilder();
+            String sigla="";
             String nomeCompleto="";
+            
+            
+            LocalizacaoUF localizacaoUF=new LocalizacaoUF();
             
             while(rs.next())
             {
-               nomeCompleto=siglaNomeCompleto.get(rs.getString("estado"));
+               sigla=rs.getString("estado"); 
+               nomeCompleto=siglaNomeCompleto.get(sigla);
+               localizacaoUF=new LocalizacaoUF();
                
-               sb.append(nomeCompleto);
-               sb.append("(");
-               sb.append(rs.getString("count"));
-               sb.append(")");
-               listLocalizacaoUFs.add(sb.toString());
-               sb=new StringBuilder();
+               localizacaoUF.setSigla(sigla);
+               localizacaoUF.setNomeCompleto(nomeCompleto);
+               localizacaoUF.setQtdCadastros(rs.getInt("count"));
+               
+               
+               listLocalizacaoUFs.add(localizacaoUF);
             }
         }catch(Exception e){
             

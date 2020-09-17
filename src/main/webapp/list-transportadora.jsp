@@ -42,6 +42,11 @@
                             <div class="card-body">
                                 <h3 class="text-left">Transportadoras</h3>
                                 <br>
+                                <script>
+                                    function escolherEstado(estado){
+                                        document.getElementById("inputEstado").value=estado;
+                                    }
+                                </script>
                                 <form id="action" action="pesquisar" method="post">
                                     <label>Nome:</label> 
                                     <fieldset class="form-group">
@@ -50,7 +55,20 @@
                                     <fieldset class="form-group">
                                         <label>Localizacao (UFs)
                                         </label>
-                                        <input type="text" value="<c:out value='${transportadora.estado}' />" class="form-control" name="estado">
+                                        <table class="table table-bordered">
+                                            <tbody>
+                                                <c:forEach var="localizacaoUF" items="${listLocalizacaoUFs}">
+                                                    <tr>
+                                                        <td>
+                                                            <a href="#" onclick="escolherEstado('${localizacaoUF.sigla}')">
+                                                               <c:out value="${localizacaoUF.nomeCompleto} (${localizacaoUF.qtdCadastros})" />
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                </c:forEach>
+                                            </tbody>
+                                        </table>
+                                        <input id="inputEstado" type="text" value="<c:out value='${transportadora.estado}' />" class="form-control" name="estado">
                                     </fieldset>
                                     <fieldset class="form-group">
                                         <label>Localizacao (Municípios)

@@ -7,6 +7,7 @@ package gw.portfoliotransportadoras.manager;
 
 import gw.portfoliotransportadoras.dao.TransportadoraDAO;
 import gw.portfoliotransportadoras.filtro.FiltroTransportadora;
+import gw.portfoliotransportadoras.modelo.LocalizacaoUF;
 import gw.portfoliotransportadoras.modelo.Transportadora;
 import java.util.List;
 
@@ -40,7 +41,7 @@ public class TransportadoraManager {
     public Transportadora getTransportadoraPorId(Integer id){
         return transportadoraDAO.getTransportadoraPorId(id);
     }
-    public List<String> listLocalizacaoUFs(){
+    public List<LocalizacaoUF> listLocalizacaoUFs(){
         return transportadoraDAO.listLocalizacaoUFs();
     }
 }
