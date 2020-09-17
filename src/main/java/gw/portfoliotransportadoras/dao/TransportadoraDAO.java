@@ -8,6 +8,7 @@ package gw.portfoliotransportadoras.dao;
 import gw.portfoliotransportadoras.filtro.FiltroTransportadora;
 import gw.portfoliotransportadoras.modelo.LocalizacaoMunicipio;
 import gw.portfoliotransportadoras.modelo.LocalizacaoUF;
+import gw.portfoliotransportadoras.modelo.ModalQtd;
 import gw.portfoliotransportadoras.modelo.Transportadora;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -365,6 +366,30 @@ public class TransportadoraDAO {
         }
         return listLocalizacaoUFs;
     }
+    public List<ModalQtd> listModalQtd(){
+        List<ModalQtd> listModalQtd=new ArrayList<ModalQtd>();
+        
+        try{
+            Connection con=getConnection();
+            PreparedStatement ps;
+            ps = con.prepareStatement("select modal, count(*) from portfolio.transportadora group by modal;");
+            ResultSet rs=ps.executeQuery();
+            
+            ModalQtd modalQtd=new ModalQtd();
+            
+            while(rs.next())
+            {
+                modalQtd.setDescricao(rs.getString("modal"));
+                modalQtd.setQtdCadastros(rs.getInt("count"));
+                listModalQtd.add(modalQtd);
+                modalQtd=new ModalQtd();
+            }
+        }catch(Exception e){
+            
+        }
+        return listModalQtd;
+    }
+    
     public List<LocalizacaoMunicipio> listLocalizacaoMunicipio(){
         List<LocalizacaoMunicipio> listLocalizacaoMunicipio=new ArrayList<LocalizacaoMunicipio>();
         try{

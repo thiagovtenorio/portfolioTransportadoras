@@ -9,6 +9,7 @@ import gw.portfoliotransportadoras.filtro.FiltroTransportadora;
 import gw.portfoliotransportadoras.manager.TransportadoraManager;
 import gw.portfoliotransportadoras.modelo.LocalizacaoMunicipio;
 import gw.portfoliotransportadoras.modelo.LocalizacaoUF;
+import gw.portfoliotransportadoras.modelo.ModalQtd;
 import gw.portfoliotransportadoras.modelo.Transportadora;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -88,11 +89,14 @@ public class TransportadoraServlet extends HttpServlet{
         List<Transportadora> listTransportadora=this.transportadoraManager.pesquisarPorFiltro(filtro);
         List<LocalizacaoUF> listLocalizacaoUfs=transportadoraManager.listLocalizacaoUFs();
         List<LocalizacaoMunicipio> listLocalizacaoMunicipio=transportadoraManager.listLocalizacaoMunicipio();
+        List<ModalQtd> listModalQtd=transportadoraManager.listModalQtd();
         
         RequestDispatcher dispatcher = request.getRequestDispatcher("list-transportadora.jsp");
         
         request.setAttribute("listLocalizacaoUFs", listLocalizacaoUfs);
         request.setAttribute("listLocalizacaoMunicipio", listLocalizacaoMunicipio);
+        request.setAttribute("listModalQtd", listModalQtd);
+        
         request.setAttribute("listTransportadora", listTransportadora);
         
         dispatcher.forward(request, response);

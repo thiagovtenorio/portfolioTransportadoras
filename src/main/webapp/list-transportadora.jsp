@@ -49,6 +49,9 @@
                                     function escolherCidade(cidade){
                                         document.getElementById("inputCidade").value=cidade;
                                     }
+                                    function escolherModal(modal){
+                                        document.getElementById("inputModal").value=modal;
+                                    }
                                 </script>
                                 <form id="action" action="pesquisar" method="post">
                                     <label>Nome:</label> 
@@ -93,16 +96,25 @@
                                                 </c:forEach>
                                             </tbody>
                                         </table>
-                                        <input id="inputCidade" type="text" value="<c:out value='${transportadora.cidade}' />" class="form-control" name="cidade">
+                                        <input id="inputCidade" type="hidden" value="<c:out value='${transportadora.cidade}' />" class="form-control" name="cidade">
                                     </fieldset>
                                     <fieldset class="form-group">
-                                        <label>Modal</label> 
-                                        <select name="modal" value="<c:out value='${transportadora.modal}' />" class="form-control" style="width:155px">
-                                            <option></option>
-                                            <option>Rodoviario</option>
-                                            <option>Aquaviario</option>
-                                            <option>Aereo</option>
-                                        </select>
+                                        <label>Modal</label>
+                                        <table class="table table-bordered">
+                                            <tbody>
+                                                <c:forEach var="modalQtd" items="${listModalQtd}">
+                                                    <tr>
+                                                        <td>
+                                                            <a href="#" onclick="escolherModal('${modalQtd.descricao}')">
+                                                               <c:out value="${modalQtd.descricao} (${modalQtd.qtdCadastros})" />
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                </c:forEach>
+                                            </tbody>
+                                        </table>
+                                        <input id="inputModal" type="hidden" name="modal" value="<c:out value='${transportadora.modal}' />" class="form-control" style="width:155px"/>
+                                        
                                     </fieldset>
                                      <button type="submit" class="btn btn-primary">Procurar</button>
                                 </form>

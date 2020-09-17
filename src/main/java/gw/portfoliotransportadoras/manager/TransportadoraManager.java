@@ -9,6 +9,7 @@ import gw.portfoliotransportadoras.dao.TransportadoraDAO;
 import gw.portfoliotransportadoras.filtro.FiltroTransportadora;
 import gw.portfoliotransportadoras.modelo.LocalizacaoMunicipio;
 import gw.portfoliotransportadoras.modelo.LocalizacaoUF;
+import gw.portfoliotransportadoras.modelo.ModalQtd;
 import gw.portfoliotransportadoras.modelo.Transportadora;
 import java.util.List;
 
@@ -47,5 +48,8 @@ public class TransportadoraManager {
     }
     public List<LocalizacaoMunicipio> listLocalizacaoMunicipio(){
         return transportadoraDAO.listLocalizacaoMunicipio();
+    }
+    public List<ModalQtd> listModalQtd(){
+        return transportadoraDAO.listModalQtd();
     }
 }
