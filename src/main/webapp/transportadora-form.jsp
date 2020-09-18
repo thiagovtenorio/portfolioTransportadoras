@@ -87,6 +87,7 @@
                 <fieldset class="form-group">
                     <label>Estado</label>
                      <select name="estado" value="<c:out value='${transportadora.estado}' />" class="form-control" style="width:155px">
+                        <option value="<c:out value='${transportadora.estado}' />" selected><c:out value='${transportadora.estado}' /></option> 
                         <option>AC</option>
                         <option>AL</option>
                         <option>AP</option>
