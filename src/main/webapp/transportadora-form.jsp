@@ -75,6 +75,7 @@
                  <fieldset class="form-group">
                     <label>Modal:</label> 
                     <select name="modal" value="<c:out value='${transportadora.modal}' />" class="form-control" style="width:155px">
+                        <option value="<c:out value='${transportadora.modal}' />" selected><c:out value='${transportadora.modal}' /></option>
                         <option>Rodoviario</option>
                         <option>Aquaviario</option>
                         <option>Aereo</option>
