@@ -11,6 +11,7 @@ import gw.portfoliotransportadoras.modelo.LocalizacaoMunicipio;
 import gw.portfoliotransportadoras.modelo.LocalizacaoUF;
 import gw.portfoliotransportadoras.modelo.ModalQtd;
 import gw.portfoliotransportadoras.modelo.Transportadora;
+import gw.portfoliotransportadoras.service.ViaCEP;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -52,6 +53,9 @@ public class TransportadoraServlet extends HttpServlet{
                 case "/novo":
                     mostrarNovoForm(request, response);
                     break;
+                case "/procurarCep": 
+                    procurarCep(request,response);
+                    break;
                 case "/inserir":
                     adicionarTransportadora(request, response);
                     break;    
@@ -72,6 +76,25 @@ public class TransportadoraServlet extends HttpServlet{
             throw new ServletException(ex);
         }
     }
+    public void procurarCep(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException
+    {
+        try{
+            String cep=request.getParameter("cep");
+
+            ViaCEP viacep=new ViaCEP();
+            viacep.buscar(cep);
+            
+            System.err.println("cidade "+viacep.getLocalidade());
+            
+            response.setContentType("text/plain");
+            response.getWriter().write(viacep.getLocalidade());
+        
+        
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+    
     public void pesquisarTransportadora(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException{
         
         String nome=request.getParameter("nome");

@@ -12,6 +12,9 @@
 <html>
      <head>
         <title>A Web Page</title>
+        <script src="https://code.jquery.com/jquery-1.10.2.js"
+            type="text/javascript"></script>
+        <script src="js/app-ajax.js" type="text/javascript"></script>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
      </head>
      
@@ -83,11 +86,11 @@
                  </fieldset>
                  <fieldset class="form-group"> 
                      <label>Cep</label>
-                     <input type="text" value="<c:out value='${transportadora.cep}' />" class="form-control" style="width:155px" name="cep" required="required">
+                     <input id="inputCep" type="text" onblur="procurarPorCep()" value="<c:out value='${transportadora.cep}' />" class="form-control" style="width:155px" name="cep" required="required">
                  </fieldset>
                 <fieldset class="form-group">
                     <label>Estado</label>
-                     <select name="estado" value="<c:out value='${transportadora.estado}' />" class="form-control" style="width:155px">
+                     <select id="selectEstado" name="estado" value="<c:out value='${transportadora.estado}' />" class="form-control" style="width:155px">
                         <option value="<c:out value='${transportadora.estado}' />" selected><c:out value='${transportadora.estado}' /></option> 
                         <option>AC</option>
                         <option>AL</option>
@@ -121,15 +124,15 @@
                 </fieldset>
                 <fieldset class="form-group">
                     <label>Cidade:</label> 
-                    <input type="text" value="<c:out value='${transportadora.cidade}' />" class="form-control" name="cidade" required="required">
+                    <input id="inputCidade" type="text" value="<c:out value='${transportadora.cidade}' />" class="form-control" name="cidade" required="required">
                  </fieldset>
                  <fieldset class="form-group">
                     <label>Bairro:</label> 
-                    <input type="text" value="<c:out value='${transportadora.bairro}' />" class="form-control" name="bairro" required="required">
+                    <input id="inputBairro" type="text" value="<c:out value='${transportadora.bairro}' />" class="form-control" name="bairro" required="required">
                  </fieldset>
                  <fieldset class="form-group">
                     <label>Rua / Avenida:</label> 
-                    <input type="text" value="<c:out value='${transportadora.ruaAvenida}' />" class="form-control" name="ruaavenida" required="required">
+                    <input id="inputRua" type="text" value="<c:out value='${transportadora.ruaAvenida}' />" class="form-control" name="ruaavenida" required="required">
                  </fieldset>
                  <fieldset class="form-group">
                     <label>Numero:</label> 
@@ -152,6 +155,19 @@
                  </c:if> 
                 </form>
                  <script>
+                    function procurarPorCep(){
+                        $.ajax({
+                            url : 'CepServlet',
+                            data : {
+                                    inputCep : $('#inputCep').val()
+                            },
+                            success : function(responseText) {
+
+                                    document.getElementById("inputCidade").value=responseText;
+                            }
+                        });
+                    }
+                     
                     function changeActionDeletar(){
                         document.getElementById("action").action="deletar";
                     }
