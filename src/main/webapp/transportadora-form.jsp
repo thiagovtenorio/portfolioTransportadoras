@@ -162,8 +162,11 @@
                                     inputCep : $('#inputCep').val()
                             },
                             success : function(responseText) {
-
-                                    document.getElementById("inputCidade").value=responseText;
+                                    var jsonObj = jQuery.parseJSON(responseText); 
+                                    document.getElementById("selectEstado").value=jsonObj.uf;
+                                    document.getElementById("inputCidade").value=jsonObj.localidade;
+                                    document.getElementById("inputBairro").value=jsonObj.bairro;
+                                    document.getElementById("inputRua").value=jsonObj.logradouro;
                             }
                         });
                     }

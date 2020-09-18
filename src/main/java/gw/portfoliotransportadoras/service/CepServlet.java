@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.json.JSONObject;
 
 
 /**
@@ -24,10 +25,17 @@ public class CepServlet extends HttpServlet{
         try{
             ViaCEP viacep=new ViaCEP();
             viacep.buscar(cep);
-            System.err.println("cidade "+viacep.getLocalidade());
+            
+            JSONObject jsonObj = new JSONObject();
+            jsonObj.put("uf", viacep.getUf());
+            jsonObj.put("localidade", viacep.getLocalidade());
+            jsonObj.put("bairro", viacep.getBairro());
+            jsonObj.put("logradouro", viacep.getLogradouro());
             
             response.setContentType("text/plain");
-            response.getWriter().write(viacep.getLocalidade());
+            System.err.println("jsonObj "+jsonObj.toString());
+            response.getWriter().write(jsonObj.toString());
+            
         }catch(Exception e){
             
         }
