@@ -36,10 +36,10 @@
          <div class="card">
              <div class="card-body">
                  <c:if test="${transportadora != null}">
-                     <form id="action" action="alterar" method="post">
+                     <form id="action" action="alterar" method="post" enctype = "multipart/form-data"> 
                  </c:if>
                  <c:if test="${transportadora == null}">
-                    <form action="inserir" method="post">
+                    <form action="inserir" method="post" enctype = "multipart/form-data">
                  </c:if>
                  
                  <caption>
@@ -140,8 +140,11 @@
                  </fieldset>
                  <fieldset class="form-group">
                      <label>Logo:</label>
-                     <input type="file" id="logo" value="Escolher logo" />
-                 </fieldset> 
+                     <input accept="image/*" type="file" id="logo" name="image" value="Escolher logo" onchange="loadFile(event)" />
+                 </fieldset>
+                 <fieldset class="form-group">
+                      <img id="output" width="200">
+                 </fieldset>
                  <fieldset class="form-group">
                     <input type="checkbox" id="aceitacaoTermosServico" name="aceitacaoTermosServico" value="true">
                     <label for="aceitacaoTermosServico"> Eu aceito os termos de serviço</label><br>
@@ -155,6 +158,10 @@
                  </c:if> 
                 </form>
                  <script>
+                    var loadFile = function(event) {
+                        var image = document.getElementById('output');
+                        image.src = URL.createObjectURL(event.target.files[0]);
+                    };
                     function procurarPorCep(){
                         $.ajax({
                             url : 'CepServlet',
