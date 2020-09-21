@@ -22,6 +22,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.json.JSONObject;
 
 /**
  *
@@ -53,9 +54,6 @@ public class TransportadoraServlet extends HttpServlet{
                 case "/novo":
                     mostrarNovoForm(request, response);
                     break;
-                case "/procurarCep": 
-                    procurarCep(request,response);
-                    break;
                 case "/inserir":
                     adicionarTransportadora(request, response);
                     break;    
@@ -76,25 +74,6 @@ public class TransportadoraServlet extends HttpServlet{
             throw new ServletException(ex);
         }
     }
-    public void procurarCep(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException
-    {
-        try{
-            String cep=request.getParameter("cep");
-
-            ViaCEP viacep=new ViaCEP();
-            viacep.buscar(cep);
-            
-            System.err.println("cidade "+viacep.getLocalidade());
-            
-            response.setContentType("text/plain");
-            response.getWriter().write(viacep.getLocalidade());
-        
-        
-        }catch(Exception e){
-            e.printStackTrace();
-        }
-    }
-    
     public void pesquisarTransportadora(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException{
         
         String nome=request.getParameter("nome");
@@ -141,16 +120,34 @@ public class TransportadoraServlet extends HttpServlet{
         String cidade = (String) request.getParameter("cidade");
         String bairro = (String) request.getParameter("bairro");
         String ruaAvenida = (String) request.getParameter("ruaavenida");
-        Integer numero = Integer.parseInt((String) request.getParameter("numero"));
-
+        
+        Integer numero=0;
+        if(request.getParameter("numero")!=null){
+            numero = Integer.parseInt((String) request.getParameter("numero"));
+        }
         Transportadora novaTransportadora = new Transportadora(id, nome, email, telefone, celular, whatsapp,
                 modal, cep, estado, cidade, bairro, ruaAvenida, numero, empresa);
         return novaTransportadora;
     }
-    public void adicionarTransportadora(HttpServletRequest request, HttpServletResponse response)throws SQLException, IOException{
+    public boolean validarCampos(Transportadora transportadora, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+        
+        if(transportadora.getEmpresa().length() < 4){
+            request.setAttribute("msg-campo-empresa", "O nome da empresa deve conter pelo menos 4 caracteres");
+            return false;
+        }
+        return true;
+    }
+    
+    public void adicionarTransportadora(HttpServletRequest request, HttpServletResponse response)throws SQLException, IOException, ServletException{
         Transportadora novaTransportadora=carregarTransportadora(request, response);
-        this.transportadoraManager.adicionarTransportadora(novaTransportadora);
-        response.sendRedirect("list");
+        System.err.println("nome "+novaTransportadora.getNome());
+        System.err.println("empresa "+novaTransportadora.getEmpresa());
+        
+        if(validarCampos(novaTransportadora, request, response))
+        {
+            this.transportadoraManager.adicionarTransportadora(novaTransportadora);
+            response.sendRedirect("list");
+        }
     }
     public void alterarTransportadora(HttpServletRequest request, HttpServletResponse response)throws SQLException, IOException{
         Transportadora transportadoraAtual=carregarTransportadora(request, response);

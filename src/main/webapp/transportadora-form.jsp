@@ -36,10 +36,10 @@
          <div class="card">
              <div class="card-body">
                  <c:if test="${transportadora != null}">
-                     <form id="action" action="alterar" method="post" enctype = "multipart/form-data"> 
+                     <form id="action" action="alterar" method="post" onsubmit="return validarCampos()"> 
                  </c:if>
                  <c:if test="${transportadora == null}">
-                    <form action="inserir" method="post" enctype = "multipart/form-data">
+                    <form action="inserir" method="post" onsubmit="return validarCampos()">
                  </c:if>
                  
                  <caption>
@@ -55,9 +55,10 @@
                  <c:if test="${transportadora != null}">
                     <input type="hidden" name="id" value="<c:out value='${transportadora.id}' />" />
                  </c:if>
+                 
                  <fieldset class="form-group">
                     <label>E-mail:</label> 
-                    <input type="text" value="<c:out value='${transportadora.email}' />" class="form-control" name="email" required="required">
+                    <input id="inputEmail" type="text" value="<c:out value='${transportadora.email}' />" class="form-control" name="email" required="required">
                  </fieldset>
                  <fieldset class="form-group">
                     <label>Nome:</label> 
@@ -65,7 +66,7 @@
                  </fieldset>
                  <fieldset class="form-group">
                     <label>Empresa:</label> 
-                    <input type="text" value="<c:out value='${transportadora.empresa}' />" class="form-control" name="empresa" required="required">
+                    <input id="inputEmpresa" type="text" value="<c:out value='${transportadora.empresa}' />" class="form-control" name="empresa" required="required">
                  </fieldset>
                  <fieldset class="form-group">
                     <label>Telefone:</label> 
@@ -73,11 +74,11 @@
                  </fieldset>
                  <fieldset class="form-group">
                     <label>Whatsapp:</label> 
-                    <input type="text" value="<c:out value='${transportadora.whatsapp}' />" class="form-control" name="whatsapp" required="required">
+                    <input type="text" value="<c:out value='${transportadora.whatsapp}' />" class="form-control" name="whatsapp" >
                  </fieldset>
                  <fieldset class="form-group">
                     <label>Modal:</label> 
-                    <select name="modal" value="<c:out value='${transportadora.modal}' />" class="form-control" style="width:155px">
+                    <select name="modal" value="<c:out value='${transportadora.modal}' />" class="form-control" style="width:155px" required="required">
                         <option value="<c:out value='${transportadora.modal}' />" selected><c:out value='${transportadora.modal}' /></option>
                         <option>Rodoviario</option>
                         <option>Aquaviario</option>
@@ -86,11 +87,11 @@
                  </fieldset>
                  <fieldset class="form-group"> 
                      <label>Cep</label>
-                     <input id="inputCep" type="text" onblur="procurarPorCep()" value="<c:out value='${transportadora.cep}' />" class="form-control" style="width:155px" name="cep" required="required">
+                     <input id="inputCep" type="text" onblur="procurarPorCep()" value="<c:out value='${transportadora.cep}' />" class="form-control" style="width:155px" name="cep">
                  </fieldset>
                 <fieldset class="form-group">
                     <label>Estado</label>
-                     <select id="selectEstado" name="estado" value="<c:out value='${transportadora.estado}' />" class="form-control" style="width:155px">
+                     <select id="selectEstado" name="estado" value="<c:out value='${transportadora.estado}' />" class="form-control" style="width:155px" required="required">
                         <option value="<c:out value='${transportadora.estado}' />" selected><c:out value='${transportadora.estado}' /></option> 
                         <option>AC</option>
                         <option>AL</option>
@@ -154,7 +155,7 @@
                     <button type="submit" class="btn btn-danger" onclick="changeActionDeletar()">Deletar</button> 
                  </c:if>
                 <c:if test="${transportadora == null}">
-                    <button type="submit" class="btn btn-success">Cadastrar-se agora!</button>
+                    <button type="submit" class="btn btn-success" >Cadastrar-se agora!</button>
                  </c:if> 
                 </form>
                  <script>
@@ -162,6 +163,14 @@
                         var image = document.getElementById('output');
                         image.src = URL.createObjectURL(event.target.files[0]);
                     };
+                    
+                    function validarCampos(){
+                        if($('#inputEmpresa').val().length < 4){
+                            alert("O nome da empresa deve conter pelo menos 4 caracteres");
+                            return false;
+                        }
+                    }
+                    
                     function procurarPorCep(){
                         $.ajax({
                             url : 'CepServlet',
