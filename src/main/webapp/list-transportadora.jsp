@@ -13,6 +13,7 @@
     <head>
         <title>A Web Page</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        
     </head>
     
     <body>
@@ -22,12 +23,38 @@
                 <div>
                     <a href="https://www.javaguides.net" class="navbar-brand"> Transportadoras App</a>
                 </div>
-                <ul class="navbar-nav">
-                    <li>
-                        <a href="<%=request.getContextPath()%>/list" class="nav-link">Transportadoras</a>
-                    </li>
-                </ul>
+                <div class="navbar-nav">
+                    <a href="<%=request.getContextPath()%>/list" class="nav-link">Transportadoras</a>
+                </div>
             </nav>
+            <style>
+                ul#filtros li {
+                    display:inline;
+                  }
+                ul {
+                    list-style-type: none;
+                    padding: 0;
+                    margin: 0;
+                    
+                  }
+                /* Add a light grey background color on hover */
+                ul li:hover {
+                  background-color: #eee;
+                }
+                /* Style the list items */
+                ul li {
+                  border: 1px solid #ddd;
+                  margin-top: -1px; /* Prevent double borders */
+                  background-color: #f6f6f6;
+                  padding: 12px;
+                  text-decoration: none;
+                  font-size: 18px;
+                  color: black;
+                  display: block;
+                  position: relative;
+                }
+
+            </style>
         </header>
         <br>
         
@@ -41,18 +68,37 @@
                         <div class="card-body">
                                 <h3 class="text-left">Transportadoras</h3>
                                 <br>
+                                
                                 <script>
+                                    
                                     function escolherEstado(estado){
+                                        document.getElementById("filtroEstado").hidden=false;
                                         document.getElementById("inputEstado").value=estado;
+                                        document.getElementById("filtroEstado").innerHTML=estado;
                                     }
                                     function escolherCidade(cidade){
+                                        document.getElementById("filtroCidade").hidden=false;
                                         document.getElementById("inputCidade").value=cidade;
+                                        document.getElementById("filtroCidade").innerHTML=cidade;
                                     }
                                     function escolherModal(modal){
+                                        document.getElementById("filtroModal").hidden=false;
                                         document.getElementById("inputModal").value=modal;
+                                        document.getElementById("filtroModal").innerHTML=modal;
                                     }
                                 </script>
                                 <form id="action" action="pesquisar" method="post">
+                                    <fieldset class="form-group">
+                                        <ul id="filtros"> 
+                                            <li id="filtroEstado" hidden="true">
+                                            </li>
+                                            <li id="filtroCidade" hidden="true">
+                                            </li>
+                                            <li id="filtroModal" hidden="true">
+                                            </li>
+                                        </ul>
+                                    </fieldset>
+                                        
                                     <label>Nome:</label> 
                                     <fieldset class="form-group">
                                         <input type="text" value="<c:out value='${transportadora.nome}' />" class="form-control" name="nome">
@@ -76,8 +122,6 @@
                                         <div style="width:150px">
                                             <input id="inputEstado" type="hidden" value="<c:out value='${transportadora.estado}' />" class="form-control" name="estado">
                                         </div>
-                                            
-                                    
                                     </fieldset>
                                     <fieldset class="form-group">
                                         <label>Localizacao (Municípios)
