@@ -89,6 +89,9 @@
                                 </script>
                                 <form id="action" action="pesquisar" method="post">
                                     <fieldset class="form-group">
+                                        <c:out value='${qtdResultados}'/> resultados
+                                    </fieldset>
+                                    <fieldset class="form-group">
                                         <ul id="filtros"> 
                                             <li id="filtroEstado" hidden="true">
                                             </li>

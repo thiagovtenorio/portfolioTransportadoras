@@ -390,6 +390,22 @@ public class TransportadoraDAO {
         return listModalQtd;
     }
     
+    public Integer getQtdResultados(){
+        Integer qtdResultados=0;
+        try{
+            Connection con=getConnection();
+            PreparedStatement ps;
+            ps = con.prepareStatement("select count(*) from portfolio.transportadora;");
+            ResultSet rs=ps.executeQuery();
+            while(rs.next())
+            {
+                qtdResultados=rs.getInt("count");
+            }
+        }catch(Exception e){
+        }
+        return qtdResultados;
+    }
+    
     public List<LocalizacaoMunicipio> listLocalizacaoMunicipio(){
         List<LocalizacaoMunicipio> listLocalizacaoMunicipio=new ArrayList<LocalizacaoMunicipio>();
         try{

@@ -49,6 +49,10 @@ public class TransportadoraManager {
     public List<LocalizacaoMunicipio> listLocalizacaoMunicipio(){
         return transportadoraDAO.listLocalizacaoMunicipio();
     }
+    public Integer getQtdResultados(){
+        return transportadoraDAO.getQtdResultados();
+    }
+    
     public List<ModalQtd> listModalQtd(){
         return transportadoraDAO.listModalQtd();
     }

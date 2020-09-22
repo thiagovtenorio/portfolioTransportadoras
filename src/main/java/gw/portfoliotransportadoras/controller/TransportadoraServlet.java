@@ -88,6 +88,7 @@ public class TransportadoraServlet extends HttpServlet{
         filtro.setCidade(cidade);
         filtro.setModal(modal);
         
+        Integer qtdResultados=this.transportadoraManager.getQtdResultados();
         List<Transportadora> listTransportadora=this.transportadoraManager.pesquisarPorFiltro(filtro);
         List<LocalizacaoUF> listLocalizacaoUfs=transportadoraManager.listLocalizacaoUFs();
         List<LocalizacaoMunicipio> listLocalizacaoMunicipio=transportadoraManager.listLocalizacaoMunicipio();
@@ -95,10 +96,10 @@ public class TransportadoraServlet extends HttpServlet{
         
         RequestDispatcher dispatcher = request.getRequestDispatcher("list-transportadora.jsp");
         
+        request.setAttribute("qtdResultados", qtdResultados);
         request.setAttribute("listLocalizacaoUFs", listLocalizacaoUfs);
         request.setAttribute("listLocalizacaoMunicipio", listLocalizacaoMunicipio);
         request.setAttribute("listModalQtd", listModalQtd);
-        
         request.setAttribute("listTransportadora", listTransportadora);
         
         dispatcher.forward(request, response);
