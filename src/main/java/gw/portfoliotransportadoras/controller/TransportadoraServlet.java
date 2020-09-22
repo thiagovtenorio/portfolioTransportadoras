@@ -168,8 +168,19 @@ public class TransportadoraServlet extends HttpServlet{
     }
     public void alterarTransportadora(HttpServletRequest request, HttpServletResponse response)throws SQLException, IOException{
         Transportadora transportadoraAtual=carregarTransportadora(request, response);
-        this.transportadoraManager.alterarTransportadora(transportadoraAtual);
-        response.sendRedirect("list");
+        
+        try{
+            if(isCampoEmailValido(transportadoraAtual.getEmail()))
+            {
+                this.transportadoraManager.alterarTransportadora(transportadoraAtual);
+                response.sendRedirect("list");
+            }else{
+                PrintWriter pw = response.getWriter();
+                pw.println("E-mail inválido!");
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
     }
     public void deletarTransportadora(HttpServletRequest request, HttpServletResponse response)throws SQLException, IOException{
         Transportadora transportadoraAtual=carregarTransportadora(request, response);
