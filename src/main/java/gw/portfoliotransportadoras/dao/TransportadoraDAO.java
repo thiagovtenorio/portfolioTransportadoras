@@ -43,11 +43,11 @@ public class TransportadoraDAO {
      * @param transportadora
      * @return a*/
     
-    public int alterar(Transportadora transportadora){
-        int status=0;
-        System.err.println("atualizar transp id: "+transportadora.getId());
+    public void alterar(Transportadora transportadora) throws SQLException{
+        
+        Connection con=null;
         try{
-		Connection con=getConnection();
+		con=getConnection();
 		PreparedStatement ps=con.prepareStatement("update portfolio.transportadora set nome=?,email=?,telefone=?,celular=?,whatsapp=?,modal=?,cep=?,estado=?,cidade=?,bairro=?,ruaavenida=?, numero=?, empresa=? where id=?");
 		ps.setString(1,transportadora.getNome());
                 ps.setString(2,transportadora.getEmail());
@@ -64,17 +64,17 @@ public class TransportadoraDAO {
                 ps.setString(13,transportadora.getEmpresa());
                 ps.setInt(14,transportadora.getId());
                 
-		status=ps.executeUpdate();
+		ps.executeUpdate();
 	}catch(Exception e){
-            System.out.println(e);
+            e.printStackTrace();
+        }finally{
+            con.close();
         }
-        return status;
     }
-    public int inserir(Transportadora transportadora){
-        int status=0;
-        
+    public void inserir(Transportadora transportadora) throws SQLException{
+        Connection con=null;
         try{
-		Connection con=getConnection();
+		con=getConnection();
 		PreparedStatement ps
                         =con.prepareStatement("insert into portfolio.transportadora(nome, email, empresa, telefone, celular, whatsapp, modal, cep, estado, cidade, bairro, ruaavenida, numero) values(?,?,?,?,?,?,?,?,?,?,?,?,?)");
                 
@@ -92,34 +92,36 @@ public class TransportadoraDAO {
                 ps.setString(12, transportadora.getRuaAvenida());
                 ps.setInt(13, transportadora.getNumero());
                 
-                
-                status=ps.executeUpdate();
-                
-                con.close();
+                ps.executeUpdate();
                 
         }catch(Exception e)
         {
-            System.out.println(e);
+            e.printStackTrace();
+        }finally{
+            con.close();
         }
-        return status;
+        
     }
-    public int excluir(Transportadora transportadora){
+    public void excluir(Transportadora transportadora) throws SQLException{
         int status=0;
+        Connection con=null;
 	try{
-		Connection con=getConnection();
+		con=getConnection();
 		PreparedStatement ps=con.prepareStatement("delete from portfolio.transportadora where id=?");
 		ps.setInt(1,transportadora.getId());
-		status=ps.executeUpdate();
+		ps.executeUpdate();
 	}catch(Exception e){
-            System.out.println(e);
+            e.printStackTrace();
+        }finally{
+            con.close();
         }
-        return status;
     }
     
-    public Transportadora getTransportadoraPorId(Integer id){
+    public Transportadora getTransportadoraPorId(Integer id) throws SQLException{
         Transportadora transportadoraBanco=null;
+        Connection con=null;
         try{
-            Connection con=getConnection();
+            con=getConnection();
             PreparedStatement ps=con.prepareStatement("select * from portfolio.transportadora where id=?");
 	    ps.setInt(1,id);
 	    ResultSet rs=ps.executeQuery();
@@ -158,17 +160,20 @@ public class TransportadoraDAO {
                transportadoraBanco=new Transportadora(transportadoraId, nome, email, telefone, celular, whatsapp, modal, cep, estado, cidade, bairro, ruaAvenida, numero, empresa);
                
             }
-            con.close();
+            
         }catch(Exception e){
-            System.out.println(e);
+            e.printStackTrace();
+        }finally{
+            con.close();
         }
+        
         return transportadoraBanco;
     }
     
     
-    public List<Transportadora> pesquisarPorFiltro(FiltroTransportadora filtro){
+    public List<Transportadora> pesquisarPorFiltro(FiltroTransportadora filtro) throws SQLException{
        List<Transportadora> transportadoraList= new ArrayList<Transportadora>();
-       
+       Connection con=null;
         try {
             StringBuilder sb=new StringBuilder();
             sb.append("SELECT * FROM portfolio.transportadora where nome like '");
@@ -190,9 +195,8 @@ public class TransportadoraDAO {
                 sb.append(filtro.getModal());
                 sb.append("'");
             }
-            System.err.println("query de consulta "+sb.toString());
             
-            Connection con=getConnection();
+            con=getConnection();
             PreparedStatement ps;
             ps = con.prepareStatement(sb.toString());
             
@@ -236,10 +240,11 @@ public class TransportadoraDAO {
                 
                 transportadoraList.add(transportadora);
             }
-            con.close();
             
         } catch (SQLException ex) {
             Logger.getLogger(TransportadoraDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }finally {
+            con.close();
         }
         return transportadoraList;
     }

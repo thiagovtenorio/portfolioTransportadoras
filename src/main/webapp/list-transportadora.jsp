@@ -122,7 +122,6 @@
                                     <fieldset class="form-group">
                                         <ul id="filtros"> 
                                             <li id="filtroEstado" hidden="true">
-                                                
                                             </li>
                                             <li id="filtroCidade" hidden="true">
                                             </li>
@@ -205,7 +204,15 @@
                                 <thead>
                                 </thead>
                                 <tbody>
+                                    <tr>
+                                      <th>E-mail</th>
+                                      <th>Telefone</th>
+                                      <th>Whatsapp</th>
+                                      <th>Empresa</th>
+                                      <th>Email</th>
+                                    </tr>
                                     <c:forEach var="transportadora" items="${listTransportadora}">
+                                        
                                         <tr>
                                             <td>
                                                 <a href="editar?id=<c:out value='${transportadora.id}' />">

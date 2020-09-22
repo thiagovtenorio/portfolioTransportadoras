@@ -11,6 +11,7 @@ import gw.portfoliotransportadoras.modelo.LocalizacaoMunicipio;
 import gw.portfoliotransportadoras.modelo.LocalizacaoUF;
 import gw.portfoliotransportadoras.modelo.ModalQtd;
 import gw.portfoliotransportadoras.modelo.Transportadora;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -25,23 +26,44 @@ public class TransportadoraManager {
     }
     
     public List<Transportadora> pesquisarPorFiltro(FiltroTransportadora filtro){
-        return transportadoraDAO.pesquisarPorFiltro(filtro);
+        List<Transportadora> listTransportadora=new ArrayList<Transportadora>();
+        try{
+            listTransportadora=transportadoraDAO.pesquisarPorFiltro(filtro);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return listTransportadora;
     }
     
     public void adicionarTransportadora(Transportadora novaTransportadora){
-        transportadoraDAO.inserir(novaTransportadora);
+        try{
+            transportadoraDAO.inserir(novaTransportadora);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
     }
     public void alterarTransportadora(Transportadora transportadoraAtual){
-        transportadoraDAO.alterar(transportadoraAtual);
+        try{
+            transportadoraDAO.alterar(transportadoraAtual);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
     }
     public void excluirTransportadora(Transportadora transportadora){
-        transportadoraDAO.excluir(transportadora);
-    }
-    public List<Transportadora> getList(){
-        return transportadoraDAO.getList();
+        try{
+            transportadoraDAO.excluir(transportadora);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
     }
     public Transportadora getTransportadoraPorId(Integer id){
-        return transportadoraDAO.getTransportadoraPorId(id);
+        Transportadora transportadora=null;
+        try{
+            transportadora=transportadoraDAO.getTransportadoraPorId(id);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return transportadora;
     }
     public List<LocalizacaoUF> listLocalizacaoUFs(){
         return transportadoraDAO.listLocalizacaoUFs();

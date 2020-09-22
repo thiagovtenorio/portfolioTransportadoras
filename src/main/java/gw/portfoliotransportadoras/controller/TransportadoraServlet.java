@@ -141,8 +141,6 @@ public class TransportadoraServlet extends HttpServlet{
     
     public void adicionarTransportadora(HttpServletRequest request, HttpServletResponse response)throws SQLException, IOException, ServletException{
         Transportadora novaTransportadora=carregarTransportadora(request, response);
-        System.err.println("nome "+novaTransportadora.getNome());
-        System.err.println("empresa "+novaTransportadora.getEmpresa());
         
         if(validarCampos(novaTransportadora, request, response))
         {
@@ -173,16 +171,5 @@ public class TransportadoraServlet extends HttpServlet{
          
          request.setAttribute("transportadora", transportadoraExistente);
          dispatcher.forward(request, response);
-    }
-    
-    private void listTransportadora(HttpServletRequest request, HttpServletResponse response)
-    throws SQLException, IOException, ServletException {
-        List<Transportadora> listTransportadora = transportadoraManager.getList();
-        
-        request.setAttribute("listTransportadora", listTransportadora);
-        
-        RequestDispatcher dispatcher = request.getRequestDispatcher("list-transportadora.jsp");
-        
-        dispatcher.forward(request, response);
     }
 }
