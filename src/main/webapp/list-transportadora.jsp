@@ -205,7 +205,7 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                      <th>E-mail</th>
+                                      <th>Nome</th>
                                       <th>Telefone</th>
                                       <th>Whatsapp</th>
                                       <th>Empresa</th>

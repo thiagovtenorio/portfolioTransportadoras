@@ -13,6 +13,7 @@ import gw.portfoliotransportadoras.modelo.ModalQtd;
 import gw.portfoliotransportadoras.modelo.Transportadora;
 import gw.portfoliotransportadoras.service.ViaCEP;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +24,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.json.JSONObject;
+
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
 
 /**
  *
@@ -130,23 +134,37 @@ public class TransportadoraServlet extends HttpServlet{
                 modal, cep, estado, cidade, bairro, ruaAvenida, numero, empresa);
         return novaTransportadora;
     }
-    public boolean validarCampos(Transportadora transportadora, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+    public boolean isCampoEmailValido(String email) throws ServletException, IOException, AddressException{
         
-        if(transportadora.getEmpresa().length() < 4){
-            request.setAttribute("msg-campo-empresa", "O nome da empresa deve conter pelo menos 4 caracteres");
-            return false;
+        boolean result = true;
+        
+        try{
+            InternetAddress emailAddr = new InternetAddress(email);
+            emailAddr.validate();
+        }catch(AddressException ex){
+            
+            result = false;
         }
-        return true;
+        return result;
     }
     
     public void adicionarTransportadora(HttpServletRequest request, HttpServletResponse response)throws SQLException, IOException, ServletException{
         Transportadora novaTransportadora=carregarTransportadora(request, response);
         
-        if(validarCampos(novaTransportadora, request, response))
-        {
-            this.transportadoraManager.adicionarTransportadora(novaTransportadora);
-            response.sendRedirect("list");
+        try{
+            if(isCampoEmailValido(novaTransportadora.getEmail()))
+            {
+                this.transportadoraManager.adicionarTransportadora(novaTransportadora);
+                response.sendRedirect("list");
+            }else{
+                PrintWriter pw = response.getWriter();
+                pw.println("E-mail inválido!");
+            }
+        }catch(Exception e){
+            e.printStackTrace();
         }
+        
+        
     }
     public void alterarTransportadora(HttpServletRequest request, HttpServletResponse response)throws SQLException, IOException{
         Transportadora transportadoraAtual=carregarTransportadora(request, response);
