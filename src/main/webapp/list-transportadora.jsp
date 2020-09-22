@@ -28,14 +28,10 @@
                 </div>
             </nav>
             <style>
-                ul#filtros li {
-                    display:inline;
-                  }
                 ul {
                     list-style-type: none;
                     padding: 0;
                     margin: 0;
-                    
                   }
                 /* Add a light grey background color on hover */
                 ul li:hover {
@@ -52,8 +48,11 @@
                   color: black;
                   display: block;
                   position: relative;
+                  width:150px;
                 }
-
+                
+                .close:hover {background: #bbb;}
+                
             </style>
         </header>
         <br>
@@ -74,18 +73,47 @@
                                     function escolherEstado(estado){
                                         document.getElementById("filtroEstado").hidden=false;
                                         document.getElementById("inputEstado").value=estado;
-                                        document.getElementById("filtroEstado").innerHTML=estado;
+                                        document.getElementById("filtroEstado").innerHTML=estado+'<span id="closeFiltroEstado" class="close"> x</span>';
+                                        
+                                        document.getElementById("closeFiltroEstado")
+                                                .addEventListener("click", function() 
+                                                {
+                                                    document.getElementById("inputEstado").value='';
+                                                    document.getElementById("filtroEstado").hidden=true;
+                                                    document.getElementById("filtroEstado").innerHTML='';
+                                                });
                                     }
                                     function escolherCidade(cidade){
                                         document.getElementById("filtroCidade").hidden=false;
                                         document.getElementById("inputCidade").value=cidade;
-                                        document.getElementById("filtroCidade").innerHTML=cidade;
+                                        document.getElementById("filtroCidade").innerHTML=cidade+'<span id="closeFiltroCidade" class="close"> x</span>';
+                                        
+                                        document.getElementById("closeFiltroCidade")
+                                                .addEventListener("click", function() 
+                                                {
+                                                    document.getElementById("inputCidade").value='';
+                                                    document.getElementById("filtroCidade").hidden=true;
+                                                    document.getElementById("filtroCidade").innerHTML='';
+                                                });
+                                        
                                     }
                                     function escolherModal(modal){
                                         document.getElementById("filtroModal").hidden=false;
                                         document.getElementById("inputModal").value=modal;
-                                        document.getElementById("filtroModal").innerHTML=modal;
+                                        document.getElementById("filtroModal").innerHTML=modal+'<span id="closeFiltroModal" class="close"> x</span>';
+                                        
+                                        document.getElementById("closeFiltroModal")
+                                                .addEventListener("click", function() 
+                                                {
+                                                    document.getElementById("inputModal").value='';
+                                                    document.getElementById("filtroModal").hidden=true;
+                                                    document.getElementById("filtroModal").innerHTML='';
+                                                });
                                     }
+                                    function close(){
+                                       alert('teste');
+                                    }
+                                    
                                 </script>
                                 <form id="action" action="pesquisar" method="post">
                                     <fieldset class="form-group">
@@ -94,6 +122,7 @@
                                     <fieldset class="form-group">
                                         <ul id="filtros"> 
                                             <li id="filtroEstado" hidden="true">
+                                                
                                             </li>
                                             <li id="filtroCidade" hidden="true">
                                             </li>
