@@ -139,10 +139,7 @@
                     <label>Numero:</label> 
                     <input type="text" value="<c:out value='${transportadora.numero}' />" class="form-control" name="numero" required="required">
                  </fieldset>
-                 <fieldset class="form-group">
-                     <label>Logo:</label>
-                     <input accept="image/*" type="file" id="logo" name="image" value="Escolher logo" onchange="loadFile(event)" />
-                 </fieldset>
+                 
                  <fieldset class="form-group">
                       <img id="output" width="200">
                  </fieldset>
@@ -158,6 +155,14 @@
                     <button type="submit" class="btn btn-success" >Cadastrar-se agora!</button>
                  </c:if> 
                 </form>
+                 
+                 <fieldset class="form-group">
+                     <form action = "UploadServlet" method = "post" enctype = "multipart/form-data" >
+                        <label>Logo:</label>
+                        <input accept="image/*" type="file" id="logo" name="image" value="Escolher logo" onchange="loadFile(event)" />
+                        <input type = "submit" value = "Upload File" />
+                     </form>
+                 </fieldset>
                  <script>
                     var loadFile = function(event) {
                         var image = document.getElementById('output');

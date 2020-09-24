@@ -2,6 +2,7 @@
 /home/vicente/NetBeansProjects/mavenproject1/mavenproject1/portfolioTransportadoras/src/main/java/gw/portfoliotransportadoras/modelo/LocalizacaoMunicipio.java
 /home/vicente/NetBeansProjects/mavenproject1/mavenproject1/portfolioTransportadoras/src/main/java/gw/portfoliotransportadoras/service/ViaCEPException.java
 /home/vicente/NetBeansProjects/mavenproject1/mavenproject1/portfolioTransportadoras/src/main/java/gw/portfoliotransportadoras/manager/TransportadoraManager.java
+/home/vicente/NetBeansProjects/mavenproject1/mavenproject1/portfolioTransportadoras/src/main/java/gw/portfoliotransportadoras/upload/UploadServlet.java
 /home/vicente/NetBeansProjects/mavenproject1/mavenproject1/portfolioTransportadoras/src/main/java/gw/portfoliotransportadoras/Main.java
 /home/vicente/NetBeansProjects/mavenproject1/mavenproject1/portfolioTransportadoras/src/main/java/gw/portfoliotransportadoras/modelo/LocalizacaoUF.java
 /home/vicente/NetBeansProjects/mavenproject1/mavenproject1/portfolioTransportadoras/src/main/java/gw/portfoliotransportadoras/service/ViaCEP.java
@@ -10,7 +11,6 @@
 /home/vicente/NetBeansProjects/mavenproject1/mavenproject1/portfolioTransportadoras/src/main/java/gw/portfoliotransportadoras/modelo/ModalQtd.java
 /home/vicente/NetBeansProjects/mavenproject1/mavenproject1/portfolioTransportadoras/src/main/java/gw/portfoliotransportadoras/service/ViaCEPEvents.java
 /home/vicente/NetBeansProjects/mavenproject1/mavenproject1/portfolioTransportadoras/src/main/java/gw/portfoliotransportadoras/controller/TransportadoraBO.java
-/home/vicente/NetBeansProjects/mavenproject1/mavenproject1/portfolioTransportadoras/src/main/java/gw/portfoliotransportadoras/upload/UploadArquivoServlet.java
 /home/vicente/NetBeansProjects/mavenproject1/mavenproject1/portfolioTransportadoras/src/main/java/gw/portfoliotransportadoras/service/CepServlet.java
 /home/vicente/NetBeansProjects/mavenproject1/mavenproject1/portfolioTransportadoras/src/main/java/gw/portfoliotransportadoras/service/CEP.java
 /home/vicente/NetBeansProjects/mavenproject1/mavenproject1/portfolioTransportadoras/src/main/java/gw/portfoliotransportadoras/controller/TransportadoraServlet.java

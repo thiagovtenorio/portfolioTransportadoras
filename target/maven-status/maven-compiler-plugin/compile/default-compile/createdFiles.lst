@@ -1,3 +1,4 @@
+gw/portfoliotransportadoras/upload/UploadServlet.class
 gw/portfoliotransportadoras/service/CepServlet.class
 gw/portfoliotransportadoras/service/ViaCEPException.class
 gw/portfoliotransportadoras/manager/TransportadoraManager.class
@@ -8,7 +9,6 @@ gw/portfoliotransportadoras/service/ViaCEPBase.class
 gw/portfoliotransportadoras/modelo/Transportadora.class
 gw/portfoliotransportadoras/controller/TransportadoraServlet.class
 gw/portfoliotransportadoras/dao/TransportadoraDAO.class
-gw/portfoliotransportadoras/upload/UploadArquivoServlet.class
 gw/portfoliotransportadoras/modelo/ModalQtd.class
 gw/portfoliotransportadoras/modelo/LocalizacaoMunicipio.class
 gw/portfoliotransportadoras/modelo/LocalizacaoUF.class

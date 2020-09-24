@@ -25,7 +25,8 @@ public class Transportadora {
     private String ruaAvenida;
     private Integer numero;
     private String empresa;
-
+    private byte[] logo;
+    private String caminhoLogo;
     
     public Transportadora(Integer id, String nome, String email, String telefone, String celular, String whatsapp, 
             String modal, String cep, String estado, String cidade, String bairro, String ruaAvenida, 
@@ -44,7 +45,9 @@ public class Transportadora {
         this.ruaAvenida = ruaAvenida;
         this.numero = numero;
         this.empresa = empresa;
+        this.logo=logo;
     }
+
     public Integer getId() {
         return id;
     }
@@ -156,5 +159,20 @@ public class Transportadora {
         this.empresa = empresa;
     }
     
- 
+    public byte[] getLogo() {
+        return logo;
+    }
+
+    public void setLogo(byte[] logo) {
+        this.logo = logo;
+    }
+
+    public String getCaminhoLogo() {
+        return caminhoLogo;
+    }
+
+    public void setCaminhoLogo(String caminhoLogo) {
+        this.caminhoLogo = caminhoLogo;
+    }
+    
 }

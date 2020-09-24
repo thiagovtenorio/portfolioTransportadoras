@@ -105,6 +105,8 @@ public class TransportadoraServlet extends HttpServlet{
         request.setAttribute("listLocalizacaoMunicipio", listLocalizacaoMunicipio);
         request.setAttribute("listModalQtd", listModalQtd);
         request.setAttribute("listTransportadora", listTransportadora);
+        request.setAttribute("homePath", getServletContext().getRealPath("/WEB-INF"));       
+        
         
         dispatcher.forward(request, response);
     }

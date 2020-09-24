@@ -10,6 +10,9 @@ import gw.portfoliotransportadoras.modelo.LocalizacaoMunicipio;
 import gw.portfoliotransportadoras.modelo.LocalizacaoUF;
 import gw.portfoliotransportadoras.modelo.ModalQtd;
 import gw.portfoliotransportadoras.modelo.Transportadora;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -171,7 +174,7 @@ public class TransportadoraDAO {
     }
     
     
-    public List<Transportadora> pesquisarPorFiltro(FiltroTransportadora filtro) throws SQLException{
+    public List<Transportadora> pesquisarPorFiltro(FiltroTransportadora filtro) throws SQLException, FileNotFoundException, IOException{
        List<Transportadora> transportadoraList= new ArrayList<Transportadora>();
        Connection con=null;
         try {
@@ -217,6 +220,10 @@ public class TransportadoraDAO {
             String ruaavenida=null;
             Integer numero=null;
             String empresa=null;
+            byte[] logo=null;
+            
+            FileOutputStream out=null;
+            String caminhoLogo="";
             
             while(rs.next())
             {
@@ -234,9 +241,16 @@ public class TransportadoraDAO {
                 ruaavenida=(String)rs.getString("ruaavenida");
                 numero=rs.getInt("numero");
                 empresa=(String)rs.getString("empresa");
+                logo=rs.getBytes("logo");
                 
                 transportadora=new Transportadora(id, nome, email, telefone, celular, whatsapp, modal, 
                         cep, estado, cidade, bairro, ruaavenida, numero, empresa);
+                
+                transportadora.setLogo(logo);
+                
+                if(transportadora.getLogo()!=null){
+                    transportadora.setCaminhoLogo("img/"+transportadora.getId()+".png");
+                }
                 
                 transportadoraList.add(transportadora);
             }

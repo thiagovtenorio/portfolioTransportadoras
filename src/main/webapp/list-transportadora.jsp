@@ -66,8 +66,7 @@
                     <div class="col-sm">
                         <div class="card-body">
                                 <h3 class="text-left">Transportadoras</h3>
-                                <br>
-                                
+                                <br>        
                                 <script>
                                     
                                     function escolherEstado(estado){
@@ -194,6 +193,7 @@
                                 </form>
                             </div>
                     </div>
+                                
                     <div class="col-sm">
                             <br>
                             <div class="container text-right">
@@ -205,6 +205,7 @@
                                 </thead>
                                 <tbody>
                                     <tr>
+                                      <th>Logo</th>
                                       <th>Nome</th>
                                       <th>Telefone</th>
                                       <th>Whatsapp</th>
@@ -214,6 +215,10 @@
                                     <c:forEach var="transportadora" items="${listTransportadora}">
                                         
                                         <tr>
+                                            <td>
+                                                <img src="<c:out value="${transportadora.caminhoLogo}" />">
+                                                 
+                                            </td>
                                             <td>
                                                 <a href="editar?id=<c:out value='${transportadora.id}' />">
                                                     <c:out value="${transportadora.nome}" />
