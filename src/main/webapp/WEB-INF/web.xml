@@ -35,18 +35,12 @@
         <servlet-name>s1</servlet-name>
         <servlet-class>gw.portfoliotransportadoras.controller.TransportadoraBO</servlet-class>
     </servlet>
-    <servlet>
-        <servlet-name>UploadServlet</servlet-name>
-        <servlet-class>gw.portfoliotransportadoras.upload.UploadServlet</servlet-class>
-     </servlet>
+    
     <servlet-mapping>
         <servlet-name>s1</servlet-name>
         <url-pattern>/TransportadoraBO</url-pattern>
     </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>UploadServlet</servlet-name>
-        <url-pattern>/UploadServlet</url-pattern>
-    </servlet-mapping>
+    
     <context-param> 
       <description>Location to store uploaded file</description> 
       <param-name>file-upload</param-name> 

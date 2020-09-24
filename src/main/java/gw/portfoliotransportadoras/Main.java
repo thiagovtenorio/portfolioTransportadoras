@@ -42,7 +42,7 @@ public class Main {
             
             FileInputStream fis = new FileInputStream(file);
             PreparedStatement ps = conn.prepareStatement("update portfolio.transportadora set logo=? where id=10");
-            
+           
             ps.setBinaryStream(1, fis, file.length());
             ps.executeUpdate();
             ps.close();

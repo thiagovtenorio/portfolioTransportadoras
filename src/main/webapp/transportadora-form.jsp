@@ -154,19 +154,74 @@
                 <c:if test="${transportadora == null}">
                     <button type="submit" class="btn btn-success" >Cadastrar-se agora!</button>
                  </c:if> 
+                    <input id="inputCaminhoLogo" type="hidden" name="caminhoLogo">
                 </form>
                  
                  <fieldset class="form-group">
-                     <form action = "UploadServlet" method = "post" enctype = "multipart/form-data" >
+                     <form id="fileUploadForm" action="UploadServlet" method = "post" enctype = "multipart/form-data" >
                         <label>Logo:</label>
+                        <input type="text" name="logoId" >
                         <input accept="image/*" type="file" id="logo" name="image" value="Escolher logo" onchange="loadFile(event)" />
-                        <input type = "submit" value = "Upload File" />
+                        <input id="btnSubmit" type= "submit" value = "Upload File" />
                      </form>
+                     <span id="result"></span>
                  </fieldset>
                  <script>
+                    
+                    
+                    $(document).ready(function () {
+                        $("#btnSubmit").click(function (event) {
+                             //stop submit the form, we will post it manually.
+                            event.preventDefault();
+                            // Get form
+                            var form = $('#fileUploadForm')[0];
+                            // Create an FormData object
+                            var data = new FormData(form);
+                            // If you want to add an extra field for the FormData
+                            data.append("CustomField", "This is some extra data, testing");
+                            // disabled the submit button
+                            $("#btnSubmit").prop("disabled", true);
+                            
+                            $.ajax({
+                                type: "POST",
+                                enctype: 'multipart/form-data',
+                                url: "UploadServlet",
+                                data: data,
+                                processData: false,
+                                contentType: false,
+                                cache: false,
+                                timeout: 600000,
+                                success: function (responseText) {
+                                   var jsonObj = jQuery.parseJSON(responseText); 
+                                   console.log(responseText);
+                                   $("#result").text(jsonObj.caminho);
+//                                    console.log("SUCCESS : ", data);
+                                    
+                                    $("#btnSubmit").prop("disabled", false);
+                                    
+                                        
+                                },
+                                error: function (e) {
+
+                                    $("#result").text(e.responseText);
+                                    console.log("ERROR : ", e);
+                                    $("#btnSubmit").prop("disabled", false);
+
+                                }
+                            });
+                            
+                        });
+                    });
+                    
+                    
+                    
                     var loadFile = function(event) {
                         var image = document.getElementById('output');
+                        
                         image.src = URL.createObjectURL(event.target.files[0]);
+                        
+                        document.getElementById('inputCaminhoLogo').value=image.src;
+                        
                     };
                     
                     function validarCampos(){
