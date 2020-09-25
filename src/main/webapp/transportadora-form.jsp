@@ -39,7 +39,9 @@
                      <form id="action" action="alterar" method="post" onsubmit="return validarCampos()"> 
                  </c:if>
                  <c:if test="${transportadora == null}">
-                    <form action="inserir" method="post" onsubmit="return validarCampos()">
+                    <form action="inserir" 
+                          method="post" 
+                          onsubmit="return validarCampos()">
                  </c:if>
                  
                  <caption>
@@ -53,7 +55,7 @@
                      </h2>
                  </caption>
                  <c:if test="${transportadora != null}">
-                    <input type="hidden" name="id" value="<c:out value='${transportadora.id}' />" />
+                    <input id="inputId" type="hidden" name="id" value="<c:out value='${transportadora.id}' />" />
                  </c:if>
                  
                  <fieldset class="form-group">
@@ -139,7 +141,9 @@
                     <label>Numero:</label> 
                     <input type="text" value="<c:out value='${transportadora.numero}' />" class="form-control" name="numero" required="required">
                  </fieldset>
-                 
+                 <fieldset class="form-group">
+                    
+                 </fieldset>
                  <fieldset class="form-group">
                       <img id="output" width="200">
                  </fieldset>
@@ -152,20 +156,22 @@
                     <button type="submit" class="btn btn-danger" onclick="changeActionDeletar()">Deletar</button> 
                  </c:if>
                 <c:if test="${transportadora == null}">
-                    <button type="submit" class="btn btn-success" >Cadastrar-se agora!</button>
+                    <button id="btnSubmit" type="submit" class="btn btn-success" >Cadastrar-se agora!</button>
                  </c:if> 
                     <input id="inputCaminhoLogo" type="hidden" name="caminhoLogo">
-                </form>
+                 </form>
                  
                  <fieldset class="form-group">
                      <form id="fileUploadForm" action="UploadServlet" method = "post" enctype = "multipart/form-data" >
                         <label>Logo:</label>
                         <input type="text" name="logoId" >
-                        <input accept="image/*" type="file" id="logo" name="image" value="Escolher logo" onchange="loadFile(event)" />
+                         <input accept="image/*" type="file" id="logo" name="image" value="Escolher logo" onchange="loadFile(event)" />
                         <input id="btnSubmit" type= "submit" value = "Upload File" />
                      </form>
                      <span id="result"></span>
                  </fieldset>
+                 
+                 
                  <script>
                     
                     
@@ -178,7 +184,7 @@
                             // Create an FormData object
                             var data = new FormData(form);
                             // If you want to add an extra field for the FormData
-                            data.append("CustomField", "This is some extra data, testing");
+                            
                             // disabled the submit button
                             $("#btnSubmit").prop("disabled", true);
                             

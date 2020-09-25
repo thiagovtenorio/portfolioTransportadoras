@@ -48,7 +48,7 @@ public class UploadServlet extends HttpServlet{
    public void doPost(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, java.io.IOException {
        
-      String logoId=request.getParameter("CustomField");
+      String logoId=request.getParameter("logoId");
       
       Part filePart = request.getPart("image");
       String fileName1 = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();

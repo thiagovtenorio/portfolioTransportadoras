@@ -12,11 +12,18 @@ import gw.portfoliotransportadoras.modelo.LocalizacaoUF;
 import gw.portfoliotransportadoras.modelo.ModalQtd;
 import gw.portfoliotransportadoras.modelo.Transportadora;
 import gw.portfoliotransportadoras.service.ViaCEP;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.nio.file.Paths;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -27,6 +34,8 @@ import org.json.JSONObject;
 
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
+import javax.servlet.annotation.MultipartConfig;
+import javax.servlet.http.Part;
 
 /**
  *
@@ -49,7 +58,7 @@ public class TransportadoraServlet extends HttpServlet{
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         String action = request.getServletPath();
-        
+        System.err.println(action);
         try {
             switch (action) {
                 case "/pesquisar":
@@ -59,6 +68,7 @@ public class TransportadoraServlet extends HttpServlet{
                     mostrarNovoForm(request, response);
                     break;
                 case "/inserir":
+                    System.err.println("inserir");
                     adicionarTransportadora(request, response);
                     break;    
                 case "/editar":
@@ -132,10 +142,39 @@ public class TransportadoraServlet extends HttpServlet{
         if(request.getParameter("numero")!=null){
             numero = Integer.parseInt((String) request.getParameter("numero"));
         }
+        
         Transportadora novaTransportadora = new Transportadora(id, nome, email, telefone, celular, whatsapp,
                 modal, cep, estado, cidade, bairro, ruaAvenida, numero, empresa);
+        
+        System.err.println(email);
+        
+        carregarLogo(request, response, novaTransportadora);
+        
         return novaTransportadora;
     }
+    public void carregarLogo(HttpServletRequest request, HttpServletResponse response,Transportadora novaTransportadora){
+        try {
+            Part filePart = request.getPart("image");
+            String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
+            InputStream fileContent = filePart.getInputStream();
+            byte[] buffer = new byte[fileContent.available()];
+            fileContent.read(buffer);
+            
+            File arquivoLogo = new File("/home/vicente/Documentos/desenvolvimento/apache-tomcat-8.0.27/webapps/data/"+fileName);
+            OutputStream outStream = new FileOutputStream(arquivoLogo);
+            outStream.write(buffer);
+            
+            novaTransportadora.setArquivoLogo(arquivoLogo);
+            
+            System.err.println("fileName "+fileName);
+            
+        } catch (IOException ex) {
+            Logger.getLogger(TransportadoraServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ServletException ex) {
+            Logger.getLogger(TransportadoraServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     public boolean isCampoEmailValido(String email) throws ServletException, IOException, AddressException{
         
         boolean result = true;
@@ -151,6 +190,7 @@ public class TransportadoraServlet extends HttpServlet{
     }
     
     public void adicionarTransportadora(HttpServletRequest request, HttpServletResponse response)throws SQLException, IOException, ServletException{
+        System.err.println("adicionarTransportadora");
         Transportadora novaTransportadora=carregarTransportadora(request, response);
         
         try{

@@ -10,6 +10,8 @@ import gw.portfoliotransportadoras.modelo.LocalizacaoMunicipio;
 import gw.portfoliotransportadoras.modelo.LocalizacaoUF;
 import gw.portfoliotransportadoras.modelo.ModalQtd;
 import gw.portfoliotransportadoras.modelo.Transportadora;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -79,7 +81,7 @@ public class TransportadoraDAO {
         try{
 		con=getConnection();
 		PreparedStatement ps
-                        =con.prepareStatement("insert into portfolio.transportadora(nome, email, empresa, telefone, celular, whatsapp, modal, cep, estado, cidade, bairro, ruaavenida, numero) values(?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                        =con.prepareStatement("insert into portfolio.transportadora(nome, email, empresa, telefone, celular, whatsapp, modal, cep, estado, cidade, bairro, ruaavenida, numero, logo) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
                 
 		ps.setString(1, transportadora.getNome());
                 ps.setString(2, transportadora.getEmail());
@@ -95,7 +97,14 @@ public class TransportadoraDAO {
                 ps.setString(12, transportadora.getRuaAvenida());
                 ps.setInt(13, transportadora.getNumero());
                 
+                File arquivoLogo=transportadora.getArquivoLogo();
+                FileInputStream fis = new FileInputStream(arquivoLogo);
+                
+                ps.setBinaryStream(14, fis, arquivoLogo.length());
+                
                 ps.executeUpdate();
+                ps.close();
+                fis.close();
                 
         }catch(Exception e)
         {

@@ -5,6 +5,8 @@
  */
 package gw.portfoliotransportadoras.modelo;
 
+import java.io.File;
+
 /**
  *
  * @author vicente
@@ -27,6 +29,7 @@ public class Transportadora {
     private String empresa;
     private byte[] logo;
     private String caminhoLogo;
+    private File arquivoLogo;
     
     public Transportadora(Integer id, String nome, String email, String telefone, String celular, String whatsapp, 
             String modal, String cep, String estado, String cidade, String bairro, String ruaAvenida, 
@@ -173,6 +176,14 @@ public class Transportadora {
 
     public void setCaminhoLogo(String caminhoLogo) {
         this.caminhoLogo = caminhoLogo;
+    }
+
+    public File getArquivoLogo() {
+        return arquivoLogo;
+    }
+
+    public void setArquivoLogo(File arquivoLogo) {
+        this.arquivoLogo = arquivoLogo;
     }
     
 }
