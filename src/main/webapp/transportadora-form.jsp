@@ -151,9 +151,7 @@
                  </fieldset>
                  <fieldset class="form-group">
                     <input id="inputCaminhoLogo" type="hidden" name="caminhoLogo">
-                    <c:if test="${transportadora == null}">
-                        <input accept="image/*" type="file" id="logo" name="image" value="Escolher logo" onchange="loadFile(event)" />
-                    </c:if>
+                    <input accept="image/*" type="file" id="logo" name="image" value="Escolher logo" onchange="loadFile(event)" />
                  </fieldset>
                   <c:if test="${transportadora == null}">
                      <fieldset class="form-group">
