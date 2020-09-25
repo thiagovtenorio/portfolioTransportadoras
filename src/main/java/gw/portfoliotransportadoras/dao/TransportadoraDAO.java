@@ -157,6 +157,10 @@ public class TransportadoraDAO {
             String ruaAvenida=null;
             Integer numero=null;
             String empresa=null;
+            byte[] logo=null;
+            
+            FileOutputStream fos=null;
+            String caminhoLogo="";
             
             while(rs.next()){
                transportadoraId=rs.getInt("id");
@@ -173,9 +177,16 @@ public class TransportadoraDAO {
                ruaAvenida=rs.getString("ruaavenida");
                numero=rs.getInt("numero");
                empresa=rs.getString("empresa");
-               
+               logo=rs.getBytes("logo");
                transportadoraBanco=new Transportadora(transportadoraId, nome, email, telefone, celular, whatsapp, modal, cep, estado, cidade, bairro, ruaAvenida, numero, empresa);
+               transportadoraBanco.setLogo(logo);
                
+               if(transportadoraBanco.getLogo()!=null){
+                    String fileName="/home/vicente/NetBeansProjects/mavenproject1/mavenproject1/portfolioTransportadoras/src/main/webapp/img/"+transportadoraBanco.getId()+".png";
+                    fos=new FileOutputStream(fileName);
+                    fos.write(transportadoraBanco.getLogo());
+                    transportadoraBanco.setCaminhoLogo("img/"+transportadoraBanco.getId()+".png");
+                }
             }
             
         }catch(Exception e){

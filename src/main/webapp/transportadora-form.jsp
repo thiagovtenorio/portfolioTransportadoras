@@ -147,17 +147,21 @@
                     <label>Logo:</label> 
                  </fieldset>
                  <fieldset class="form-group">
-                     <img id="output" width="200">
+                     <img id="output" width="200" src="<c:out value='${transportadora.caminhoLogo}'/>">
                  </fieldset>
                  <fieldset class="form-group">
                     <input id="inputCaminhoLogo" type="hidden" name="caminhoLogo">
-                    <input accept="image/*" type="file" id="logo" name="image" value="Escolher logo" onchange="loadFile(event)" />
+                    <c:if test="${transportadora == null}">
+                        <input accept="image/*" type="file" id="logo" name="image" value="Escolher logo" onchange="loadFile(event)" />
+                    </c:if>
                  </fieldset>
-                 <fieldset class="form-group">
-                    <input type="checkbox" id="aceitacaoTermosServico" name="aceitacaoTermosServico" value="true">
-                    <label for="aceitacaoTermosServico"> Eu aceito os termos de serviço</label><br>
-                 </fieldset>
-                   
+                  <c:if test="${transportadora == null}">
+                     <fieldset class="form-group">
+                       <input type="checkbox" id="aceitacaoTermosServico" name="aceitacaoTermosServico" value="true">
+                       <label for="aceitacaoTermosServico"> Eu aceito os termos de serviço</label><br>
+                    </fieldset>
+                  </c:if>
+                    
                  <c:if test="${transportadora != null}">
                     <button id="btnSubmit" type="submit" class="btn btn-success">Atualizar</button>
                     <button type="submit" class="btn btn-danger" onclick="changeActionDeletar()">Deletar</button> 
