@@ -79,7 +79,7 @@ public class TransportadoraServlet extends HttpServlet{
                 case "editar":
                     mostrarFormEdicao(request, response);
                     break;
-                case "/alterar":
+                case "alterar":
                     alterarTransportadora(request, response);
                     break;
                 case "/deletar": 
@@ -166,11 +166,13 @@ public class TransportadoraServlet extends HttpServlet{
             fileContent.read(buffer);
             
             File arquivoLogo = new File("/home/vicente/Documentos/desenvolvimento/apache-tomcat-8.0.27/webapps/data/"+fileName);
-            OutputStream outStream = new FileOutputStream(arquivoLogo);
-            outStream.write(buffer);
             
-            novaTransportadora.setArquivoLogo(arquivoLogo);
-            
+            if(arquivoLogo!=null)
+            {
+                OutputStream outStream = new FileOutputStream(arquivoLogo);
+                outStream.write(buffer);
+                novaTransportadora.setArquivoLogo(arquivoLogo);
+            }
             System.err.println("fileName "+fileName);
             
         } catch (IOException ex) {

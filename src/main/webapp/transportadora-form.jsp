@@ -30,16 +30,19 @@
          <div class="card">
              <div class="card-body">
                  <c:if test="${transportadora != null}">
-                     <form id="action" action="alterar" method="post" onsubmit="return validarCampos()"> 
+                     <form id="fileUploadForm" 
+                           action="TransportadoraServlet" 
+                           onsubmit="return validarCampos()"
+                           method="post" 
+                           enctype = "multipart/form-data">
+                         <input type="hidden" name="action" value="alterar">
                  </c:if>
                  <c:if test="${transportadora == null}">
-                    
                      <form id="fileUploadForm"
                           action="TransportadoraServlet" 
                           method="post" 
                           onsubmit="return validarCampos()"
                           enctype = "multipart/form-data">
-                         
                           <input type="hidden" name="action" value="inserir">
                  </c:if>
                  
@@ -156,7 +159,7 @@
                  </fieldset>
                    
                  <c:if test="${transportadora != null}">
-                    <button type="submit" class="btn btn-success">Atualizar</button>
+                    <button id="btnSubmit" type="submit" class="btn btn-success">Atualizar</button>
                     <button type="submit" class="btn btn-danger" onclick="changeActionDeletar()">Deletar</button> 
                  </c:if>
                 <c:if test="${transportadora == null}">
