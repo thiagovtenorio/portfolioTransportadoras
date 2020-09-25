@@ -53,7 +53,7 @@ public class TransportadoraDAO {
         Connection con=null;
         try{
 		con=getConnection();
-		PreparedStatement ps=con.prepareStatement("update portfolio.transportadora set nome=?,email=?,telefone=?,celular=?,whatsapp=?,modal=?,cep=?,estado=?,cidade=?,bairro=?,ruaavenida=?, numero=?, empresa=? where id=?");
+		PreparedStatement ps=con.prepareStatement("update portfolio.transportadora set nome=?,email=?,telefone=?,celular=?,whatsapp=?,modal=?,cep=?,estado=?,cidade=?,bairro=?,ruaavenida=?, numero=?, empresa=?, logo=? where id=?");
 		ps.setString(1,transportadora.getNome());
                 ps.setString(2,transportadora.getEmail());
                 ps.setString(3,transportadora.getTelefone());
@@ -67,7 +67,12 @@ public class TransportadoraDAO {
                 ps.setString(11,transportadora.getRuaAvenida());
                 ps.setInt(12,transportadora.getNumero());
                 ps.setString(13,transportadora.getEmpresa());
-                ps.setInt(14,transportadora.getId());
+                
+                File arquivoLogo=transportadora.getArquivoLogo();
+                FileInputStream fis = new FileInputStream(arquivoLogo);
+                ps.setBinaryStream(14, fis, arquivoLogo.length());
+                
+                ps.setInt(15,transportadora.getId());
                 
 		ps.executeUpdate();
 	}catch(Exception e){
