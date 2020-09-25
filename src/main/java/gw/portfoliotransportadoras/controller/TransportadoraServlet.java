@@ -41,7 +41,8 @@ import javax.servlet.http.Part;
  *
  * @author vicente
  */
-@WebServlet("/")
+@WebServlet("/TransportadoraServlet")
+@MultipartConfig
 public class TransportadoraServlet extends HttpServlet{
     private static final long serialVersionUID = 1L;
     private TransportadoraManager transportadoraManager;
@@ -57,17 +58,22 @@ public class TransportadoraServlet extends HttpServlet{
     
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        String action = request.getServletPath();
+        
+        String action="";
+        if(request.getParameter("action")!=null){
+            action= (String)request.getParameter("action");
+        }
+         
         System.err.println(action);
         try {
             switch (action) {
-                case "/pesquisar":
+                case "pesquisar":
                     pesquisarTransportadora(request, response);
                     break;
-                case "/novo":
+                case "novo":
                     mostrarNovoForm(request, response);
                     break;
-                case "/inserir":
+                case "inserir":
                     System.err.println("inserir");
                     adicionarTransportadora(request, response);
                     break;    

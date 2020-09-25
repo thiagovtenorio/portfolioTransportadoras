@@ -39,9 +39,14 @@
                      <form id="action" action="alterar" method="post" onsubmit="return validarCampos()"> 
                  </c:if>
                  <c:if test="${transportadora == null}">
-                    <form action="inserir" 
+                    
+                     <form id="fileUploadForm"
+                          action="TransportadoraServlet" 
                           method="post" 
-                          onsubmit="return validarCampos()">
+                          onsubmit="return validarCampos()"
+                          enctype = "multipart/form-data">
+                         
+                          <input type="hidden" name="action" value="inserir">
                  </c:if>
                  
                  <caption>
@@ -159,19 +164,14 @@
                     <button id="btnSubmit" type="submit" class="btn btn-success" >Cadastrar-se agora!</button>
                  </c:if> 
                     <input id="inputCaminhoLogo" type="hidden" name="caminhoLogo">
+                    <input accept="image/*" type="file" id="logo" name="image" value="Escolher logo" onchange="loadFile(event)" />
                  </form>
                  
-                 <fieldset class="form-group">
-                     <form id="fileUploadForm" action="UploadServlet" method = "post" enctype = "multipart/form-data" >
+                     <form  action="TransportadoraServlet" method = "post"  >
                         <label>Logo:</label>
-                        <input type="text" name="logoId" >
-                         <input accept="image/*" type="file" id="logo" name="image" value="Escolher logo" onchange="loadFile(event)" />
-                        <input id="btnSubmit" type= "submit" value = "Upload File" />
+                        <input  type= "submit" value = "Upload File" />
                      </form>
-                     <span id="result"></span>
-                 </fieldset>
-                 
-                 
+                     
                  <script>
                     
                     
@@ -191,7 +191,7 @@
                             $.ajax({
                                 type: "POST",
                                 enctype: 'multipart/form-data',
-                                url: "UploadServlet",
+                                url: "TransportadoraServlet",
                                 data: data,
                                 processData: false,
                                 contentType: false,
@@ -200,19 +200,11 @@
                                 success: function (responseText) {
                                    var jsonObj = jQuery.parseJSON(responseText); 
                                    console.log(responseText);
-                                   $("#result").text(jsonObj.caminho);
-//                                    console.log("SUCCESS : ", data);
-                                    
                                     $("#btnSubmit").prop("disabled", false);
-                                    
-                                        
                                 },
                                 error: function (e) {
-
-                                    $("#result").text(e.responseText);
                                     console.log("ERROR : ", e);
                                     $("#btnSubmit").prop("disabled", false);
-
                                 }
                             });
                             

@@ -231,7 +231,7 @@ public class TransportadoraDAO {
             String empresa=null;
             byte[] logo=null;
             
-            FileOutputStream out=null;
+            FileOutputStream fos=null;
             String caminhoLogo="";
             
             while(rs.next())
@@ -257,7 +257,12 @@ public class TransportadoraDAO {
                 
                 transportadora.setLogo(logo);
                 
+                
+                
                 if(transportadora.getLogo()!=null){
+                    String fileName="/home/vicente/NetBeansProjects/mavenproject1/mavenproject1/portfolioTransportadoras/src/main/webapp/img/"+transportadora.getId()+".png";
+                    fos=new FileOutputStream(fileName);
+                    fos.write(transportadora.getLogo());
                     transportadora.setCaminhoLogo("img/"+transportadora.getId()+".png");
                 }
                 

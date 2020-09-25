@@ -114,7 +114,9 @@
                                     }
                                     
                                 </script>
-                                <form id="action" action="pesquisar" method="post">
+                                <form id="action" action="TransportadoraServlet" method="post">
+                                    <input type="hidden" name="action" value="pesquisar">
+                                    
                                     <fieldset class="form-group">
                                         <c:out value='${qtdResultados}'/> resultados
                                     </fieldset>
@@ -197,7 +199,12 @@
                     <div class="col-sm">
                             <br>
                             <div class="container text-right">
-                                <a href="<%=request.getContextPath()%>/novo" class="btn btn-success">Cadastre sua transportadora</a>
+                                
+                                <form action="TransportadoraServlet">
+                                    <input type="hidden" name="action" value="novo">
+                                    <button type="submit" class="btn btn-success" value="">Cadastre sua transportadora</button>
+                                </form>
+                                
                             </div>
                             <br><br>
                             <table class="table table-bordered">
