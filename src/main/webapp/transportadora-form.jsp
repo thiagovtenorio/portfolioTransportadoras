@@ -23,12 +23,6 @@
              <div>
                  <a href="https://www.javaguides.net" class="navbar-brand"> Transportadoras App </a>
              </div>
-
-             <ul class="navbar-nav">
-                 <li>
-                     <a href="<%=request.getContextPath()%>/list" class="nav-link">Transportadoras</a>
-                 </li>
-             </ul>
          </nav>
      </header>
      <br>

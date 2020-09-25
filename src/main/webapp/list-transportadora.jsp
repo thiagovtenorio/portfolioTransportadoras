@@ -23,12 +23,6 @@
                 <div>
                     <a href="https://www.javaguides.net" class="navbar-brand"> Transportadoras App</a>
                 </div>
-                <div class="navbar-nav">
-                     <form action="TransportadoraServlet" method="post">
-                        <input type="hidden" name="action" value="pesquisar"/>
-                        <button type="submit" value="Transportadoras" />
-                    </form>
-                </div>
             </nav>
             <style>
                 ul {
@@ -55,6 +49,18 @@
                 }
                 
                 .close:hover {background: #bbb;}
+                
+                .btn-link {
+                    border: none;
+                    outline: none;
+                    background: none;
+                    cursor: pointer;
+                    color: #0000EE;
+                    padding: 0;
+                    text-decoration: underline;
+                    font-family: inherit;
+                    font-size: inherit;
+                }
                 
             </style>
         </header>
@@ -230,9 +236,15 @@
                                                  
                                             </td>
                                             <td>
-                                                <a href="editar?id=<c:out value='${transportadora.id}' />">
-                                                    <c:out value="${transportadora.nome}" />
-                                                </a>
+                                                <form method="post" action="TransportadoraServlet" >
+                                                    <input type="hidden" name="id" value=<c:out value='${transportadora.id}' />> 
+                                                    <input type="hidden" name="action" value="editar"/>
+                                                    
+                                                    <button type="submit" class="btn-link">
+                                                        <c:out value="${transportadora.nome}" />
+                                                    </button>
+                                                </form>
+                                                
                                             </td>
                                             <td>
                                                 <c:out value="${transportadora.telefone}" />

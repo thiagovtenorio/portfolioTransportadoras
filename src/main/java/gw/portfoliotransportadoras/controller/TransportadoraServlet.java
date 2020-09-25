@@ -74,10 +74,9 @@ public class TransportadoraServlet extends HttpServlet{
                     mostrarNovoForm(request, response);
                     break;
                 case "inserir":
-                    System.err.println("inserir");
                     adicionarTransportadora(request, response);
                     break;    
-                case "/editar":
+                case "editar":
                     mostrarFormEdicao(request, response);
                     break;
                 case "/alterar":
