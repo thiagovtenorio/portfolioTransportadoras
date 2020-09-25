@@ -24,7 +24,10 @@
                     <a href="https://www.javaguides.net" class="navbar-brand"> Transportadoras App</a>
                 </div>
                 <div class="navbar-nav">
-                    <a href="<%=request.getContextPath()%>/list" class="nav-link">Transportadoras</a>
+                     <form action="TransportadoraServlet" method="post">
+                        <input type="hidden" name="action" value="pesquisar"/>
+                        <button type="submit" value="Transportadoras" />
+                    </form>
                 </div>
             </nav>
             <style>

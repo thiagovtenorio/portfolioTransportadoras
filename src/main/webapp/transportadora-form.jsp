@@ -147,33 +147,35 @@
                     <input type="text" value="<c:out value='${transportadora.numero}' />" class="form-control" name="numero" required="required">
                  </fieldset>
                  <fieldset class="form-group">
-                    
+                    <label>Logo:</label> 
                  </fieldset>
                  <fieldset class="form-group">
-                      <img id="output" width="200">
+                     <img id="output" width="200">
+                 </fieldset>
+                 <fieldset class="form-group">
+                    <input id="inputCaminhoLogo" type="hidden" name="caminhoLogo">
+                    <input accept="image/*" type="file" id="logo" name="image" value="Escolher logo" onchange="loadFile(event)" />
                  </fieldset>
                  <fieldset class="form-group">
                     <input type="checkbox" id="aceitacaoTermosServico" name="aceitacaoTermosServico" value="true">
                     <label for="aceitacaoTermosServico"> Eu aceito os termos de serviço</label><br>
                  </fieldset>
+                   
                  <c:if test="${transportadora != null}">
                     <button type="submit" class="btn btn-success">Atualizar</button>
                     <button type="submit" class="btn btn-danger" onclick="changeActionDeletar()">Deletar</button> 
                  </c:if>
                 <c:if test="${transportadora == null}">
                     <button id="btnSubmit" type="submit" class="btn btn-success" >Cadastrar-se agora!</button>
-                 </c:if> 
-                    <input id="inputCaminhoLogo" type="hidden" name="caminhoLogo">
-                    <input accept="image/*" type="file" id="logo" name="image" value="Escolher logo" onchange="loadFile(event)" />
+                 </c:if>
                  </form>
-                 
-                     <form  action="TransportadoraServlet" method = "post"  >
-                        <label>Logo:</label>
-                        <input  type= "submit" value = "Upload File" />
-                     </form>
-                     
+                 <fieldset class="form-group">
+                    <form action="TransportadoraServlet" method="post">
+                      <input type="hidden" name="action" value="pesquisar"/>
+                      <button type="submit" class="btn btn-primary"/>Voltar</button>
+                    </form>
+                 </fieldset>
                  <script>
-                    
                     
                     $(document).ready(function () {
                         $("#btnSubmit").click(function (event) {
