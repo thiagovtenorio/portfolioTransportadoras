@@ -49,11 +49,19 @@ public class TransportadoraDAO {
      * @return a*/
     
     public void alterar(Transportadora transportadora) throws SQLException{
+        StringBuilder sb=new StringBuilder();
+        
+        sb.append("update portfolio.transportadora set nome=?,email=?,telefone=?,celular=?,whatsapp=?,modal=?,cep=?,estado=?,cidade=?,bairro=?,ruaavenida=?, numero=?, empresa=? ");
+        if(transportadora.getArquivoLogo()!=null){
+            sb.append(", logo=? ");
+        }
+        sb.append(" where id=?");
+        System.err.println("query update "+sb.toString());
         
         Connection con=null;
         try{
 		con=getConnection();
-		PreparedStatement ps=con.prepareStatement("update portfolio.transportadora set nome=?,email=?,telefone=?,celular=?,whatsapp=?,modal=?,cep=?,estado=?,cidade=?,bairro=?,ruaavenida=?, numero=?, empresa=?, logo=? where id=?");
+		PreparedStatement ps=con.prepareStatement(sb.toString());
 		ps.setString(1,transportadora.getNome());
                 ps.setString(2,transportadora.getEmail());
                 ps.setString(3,transportadora.getTelefone());
@@ -68,11 +76,14 @@ public class TransportadoraDAO {
                 ps.setInt(12,transportadora.getNumero());
                 ps.setString(13,transportadora.getEmpresa());
                 
-                File arquivoLogo=transportadora.getArquivoLogo();
-                FileInputStream fis = new FileInputStream(arquivoLogo);
-                ps.setBinaryStream(14, fis, arquivoLogo.length());
-                
-                ps.setInt(15,transportadora.getId());
+                if(transportadora.getArquivoLogo()!=null){
+                    File arquivoLogo=transportadora.getArquivoLogo();
+                    FileInputStream fis = new FileInputStream(arquivoLogo);
+                    ps.setBinaryStream(14, fis, arquivoLogo.length());
+                    ps.setInt(15,transportadora.getId());
+                }else{
+                    ps.setInt(14,transportadora.getId());
+                }
                 
 		ps.executeUpdate();
 	}catch(Exception e){
@@ -119,13 +130,13 @@ public class TransportadoraDAO {
         }
         
     }
-    public void excluir(Transportadora transportadora) throws SQLException{
+    public void excluir(Integer transportadoraId) throws SQLException{
         int status=0;
         Connection con=null;
 	try{
 		con=getConnection();
 		PreparedStatement ps=con.prepareStatement("delete from portfolio.transportadora where id=?");
-		ps.setInt(1,transportadora.getId());
+		ps.setInt(1, transportadoraId);
 		ps.executeUpdate();
 	}catch(Exception e){
             e.printStackTrace();

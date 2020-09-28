@@ -99,7 +99,7 @@ public class TransportadoraBO extends HttpServlet {
             
             Transportadora transportadoraEscolhida=carregarTransportadora(request, response);
             
-            this.transportadoraManager.excluirTransportadora(transportadoraEscolhida);
+            this.transportadoraManager.excluirTransportadora(transportadoraEscolhida.getId());
             
             voltarTelaPrincipal(request, response);
         }

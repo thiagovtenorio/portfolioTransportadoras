@@ -35,7 +35,7 @@
                            onsubmit="return validarCampos()"
                            method="post" 
                            enctype = "multipart/form-data">
-                         <input type="hidden" name="action" value="alterar">
+                         <input id="action" type="hidden" name="action" value="alterar">
                  </c:if>
                  <c:if test="${transportadora == null}">
                      <form id="fileUploadForm"
@@ -150,8 +150,8 @@
                      <img id="output" width="200" src="<c:out value='${transportadora.caminhoLogo}'/>">
                  </fieldset>
                  <fieldset class="form-group">
-                    <input id="inputCaminhoLogo" type="hidden" name="caminhoLogo">
-                    <input accept="image/*" type="file" id="logo" name="image" value="Escolher logo" onchange="loadFile(event)" />
+                    <input accept="image/*" type="file" id="logo" name="image" value="Escolher logo" onchange="loadFile(event)" 
+                           src="<c:out value='${transportadora.caminhoLogo}'/>"/>
                  </fieldset>
                   <c:if test="${transportadora == null}">
                      <fieldset class="form-group">
@@ -247,7 +247,7 @@
                     }
                      
                     function changeActionDeletar(){
-                        document.getElementById("action").action="deletar";
+                        document.getElementById("action").value="deletar";
                     }
                 </script>
              </div>

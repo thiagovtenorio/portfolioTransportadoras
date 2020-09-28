@@ -82,7 +82,7 @@ public class TransportadoraServlet extends HttpServlet{
                 case "alterar":
                     alterarTransportadora(request, response);
                     break;
-                case "/deletar": 
+                case "deletar": 
                     deletarTransportadora(request, response);
                     break;
                 default:
@@ -165,15 +165,12 @@ public class TransportadoraServlet extends HttpServlet{
             byte[] buffer = new byte[fileContent.available()];
             fileContent.read(buffer);
             
-            File arquivoLogo = new File("/home/vicente/Documentos/desenvolvimento/apache-tomcat-8.0.27/webapps/data/"+fileName);
-            
-            if(arquivoLogo!=null)
-            {
+            if(fileName.length()>0){
+                File arquivoLogo = new File("/home/vicente/Documentos/desenvolvimento/apache-tomcat-8.0.27/webapps/data/"+fileName);               
                 OutputStream outStream = new FileOutputStream(arquivoLogo);
                 outStream.write(buffer);
                 novaTransportadora.setArquivoLogo(arquivoLogo);
             }
-            System.err.println("fileName "+fileName);
             
         } catch (IOException ex) {
             Logger.getLogger(TransportadoraServlet.class.getName()).log(Level.SEVERE, null, ex);
@@ -232,8 +229,15 @@ public class TransportadoraServlet extends HttpServlet{
         }
     }
     public void deletarTransportadora(HttpServletRequest request, HttpServletResponse response)throws SQLException, IOException{
-        Transportadora transportadoraAtual=carregarTransportadora(request, response);
-        this.transportadoraManager.excluirTransportadora(transportadoraAtual);
+        //Transportadora transportadoraAtual=carregarTransportadora(request, response);
+        
+        Integer transportadoraId=0;
+        if(request.getParameter("id")!=null){
+            transportadoraId = Integer.parseInt(request.getParameter("id"));
+        }
+        
+        
+        this.transportadoraManager.excluirTransportadora(transportadoraId);
         response.sendRedirect("list");
     }
     

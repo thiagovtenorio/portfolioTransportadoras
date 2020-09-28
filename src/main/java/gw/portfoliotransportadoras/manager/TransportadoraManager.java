@@ -49,9 +49,9 @@ public class TransportadoraManager {
             e.printStackTrace();
         }
     }
-    public void excluirTransportadora(Transportadora transportadora){
+    public void excluirTransportadora(Integer transportadoraId){
         try{
-            transportadoraDAO.excluir(transportadora);
+            transportadoraDAO.excluir(transportadoraId);
         }catch(Exception e){
             e.printStackTrace();
         }
