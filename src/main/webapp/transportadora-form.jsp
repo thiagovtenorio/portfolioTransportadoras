@@ -159,6 +159,7 @@
                     <input accept="image/*" type="file" id="logo" name="image" value="Escolher logo" onchange="loadFile(event)" 
                            src="<c:out value='${transportadora.caminhoLogo}'/>"/>
                  </fieldset>
+                 
                   <c:if test="${transportadora == null}">
                      <fieldset class="form-group">
                        <input type="checkbox" id="aceitacaoTermosServico" name="aceitacaoTermosServico" value="true">

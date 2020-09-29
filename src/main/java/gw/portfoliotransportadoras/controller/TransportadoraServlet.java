@@ -164,22 +164,21 @@ public class TransportadoraServlet extends HttpServlet{
     public void carregarLogo(HttpServletRequest request, HttpServletResponse response,Transportadora novaTransportadora){
         try {
             Part filePart = request.getPart("image");
-            filePart.getSubmittedFileName();
-            Paths.get(filePart.getSubmittedFileName()).getFileName();
-            String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
-            InputStream fileContent = filePart.getInputStream();
-            byte[] buffer = new byte[fileContent.available()];
-            fileContent.read(buffer);
-            
-            if(fileName.length()>0){
-                File arquivoLogo = new File("/home/vicente/Documentos/desenvolvimento/apache-tomcat-8.0.27/webapps/data/"+fileName);             
-                OutputStream outStream = new FileOutputStream(arquivoLogo);
-                outStream.write(buffer);
-                novaTransportadora.setArquivoLogo(arquivoLogo);
-                
-                System.err.println("arquivo "+arquivoLogo.getName());
+            if(filePart.getSubmittedFileName()!=null){
+                String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
+                InputStream fileContent = filePart.getInputStream();
+                byte[] buffer = new byte[fileContent.available()];
+                fileContent.read(buffer);
+
+                if(fileName.length()>0){
+                    File arquivoLogo = new File("/home/vicente/Documentos/desenvolvimento/apache-tomcat-8.0.27/webapps/data/"+fileName);             
+                    OutputStream outStream = new FileOutputStream(arquivoLogo);
+                    outStream.write(buffer);
+                    novaTransportadora.setArquivoLogo(arquivoLogo);
+
+                    System.err.println("arquivo "+arquivoLogo.getName());
+                }
             }
-            
         } catch (IOException ex) {
             Logger.getLogger(TransportadoraServlet.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ServletException ex) {
