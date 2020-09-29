@@ -22,6 +22,7 @@ import org.json.JSONObject;
 public class CepServlet extends HttpServlet{
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String cep = request.getParameter("inputCep");
+        System.err.println("cep "+cep);
         try{
             ViaCEP viacep=new ViaCEP();
             viacep.buscar(cep);

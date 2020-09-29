@@ -64,7 +64,7 @@ public class TransportadoraServlet extends HttpServlet{
             action= (String)request.getParameter("action");
         }
          
-        System.err.println(action);
+        System.err.println("action "+action);
         try {
             switch (action) {
                 case "pesquisar":
@@ -151,7 +151,11 @@ public class TransportadoraServlet extends HttpServlet{
         Transportadora novaTransportadora = new Transportadora(id, nome, email, telefone, celular, whatsapp,
                 modal, cep, estado, cidade, bairro, ruaAvenida, numero, empresa);
         
-        System.err.println(email);
+        System.err.println("{id "+id+" nome "+nome+" email "+email);
+        System.err.println(" telefone "+telefone+" celular "+celular+" whatsapp"+whatsapp);
+        System.err.println(" "+modal+" "+cep+" "+estado);
+        System.err.println(" "+cidade+" "+bairro+" "+ruaAvenida);
+        System.err.println(" "+numero+" "+empresa+"}");
         
         carregarLogo(request, response, novaTransportadora);
         
@@ -166,10 +170,12 @@ public class TransportadoraServlet extends HttpServlet{
             fileContent.read(buffer);
             
             if(fileName.length()>0){
-                File arquivoLogo = new File("/home/vicente/Documentos/desenvolvimento/apache-tomcat-8.0.27/webapps/data/"+fileName);               
+                File arquivoLogo = new File("/home/vicente/Documentos/desenvolvimento/apache-tomcat-8.0.27/webapps/data/"+fileName);             
                 OutputStream outStream = new FileOutputStream(arquivoLogo);
                 outStream.write(buffer);
                 novaTransportadora.setArquivoLogo(arquivoLogo);
+                
+                System.err.println("arquivo "+arquivoLogo.getName());
             }
             
         } catch (IOException ex) {
@@ -201,7 +207,8 @@ public class TransportadoraServlet extends HttpServlet{
             if(isCampoEmailValido(novaTransportadora.getEmail()))
             {
                 this.transportadoraManager.adicionarTransportadora(novaTransportadora);
-                response.sendRedirect("list");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("list-transportadora.jsp");
+                dispatcher.forward(request, response);
             }else{
                 PrintWriter pw = response.getWriter();
                 pw.println("E-mail inválido!");
@@ -212,33 +219,35 @@ public class TransportadoraServlet extends HttpServlet{
         
         
     }
-    public void alterarTransportadora(HttpServletRequest request, HttpServletResponse response)throws SQLException, IOException{
+    public void alterarTransportadora(HttpServletRequest request, HttpServletResponse response)throws SQLException, IOException, ServletException{
         Transportadora transportadoraAtual=carregarTransportadora(request, response);
         
         try{
             if(isCampoEmailValido(transportadoraAtual.getEmail()))
             {
                 this.transportadoraManager.alterarTransportadora(transportadoraAtual);
-                response.sendRedirect("list");
+                System.err.println("alterarTransportadora");
+                
             }else{
                 PrintWriter pw = response.getWriter();
                 pw.println("E-mail inválido!");
             }
-        }catch(Exception e){
+        }catch(IOException | AddressException | ServletException e){
             e.printStackTrace();
         }
+        RequestDispatcher dispatcher = request.getRequestDispatcher("list-transportadora.jsp");
+        dispatcher.forward(request, response);
     }
-    public void deletarTransportadora(HttpServletRequest request, HttpServletResponse response)throws SQLException, IOException{
-        //Transportadora transportadoraAtual=carregarTransportadora(request, response);
+    public void deletarTransportadora(HttpServletRequest request, HttpServletResponse response)throws SQLException, IOException, ServletException{
         
         Integer transportadoraId=0;
         if(request.getParameter("id")!=null){
             transportadoraId = Integer.parseInt(request.getParameter("id"));
         }
         
-        
         this.transportadoraManager.excluirTransportadora(transportadoraId);
-        response.sendRedirect("list");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("list-transportadora.jsp");
+        dispatcher.forward(request, response);
     }
     
     private void mostrarNovoForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{

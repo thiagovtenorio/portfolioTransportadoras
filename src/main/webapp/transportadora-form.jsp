@@ -66,23 +66,27 @@
                  </fieldset>
                  <fieldset class="form-group">
                     <label>Nome:</label> 
-                    <input type="text" value="<c:out value='${transportadora.nome}' />" class="form-control" name="nome" required="required">
+                    <input id="nome" type="text" value="<c:out value='${transportadora.nome}' />" class="form-control" name="nome" required="required">
                  </fieldset>
                  <fieldset class="form-group">
                     <label>Empresa:</label> 
-                    <input id="inputEmpresa" type="text" value="<c:out value='${transportadora.empresa}' />" class="form-control" name="empresa" required="required">
+                    <input id="empresa" type="text" value="<c:out value='${transportadora.empresa}' />" class="form-control" name="empresa" required="required">
                  </fieldset>
                  <fieldset class="form-group">
                     <label>Telefone:</label> 
-                    <input type="text" value="<c:out value='${transportadora.telefone}' />" class="form-control" name="telefone" required="required">
+                    <input id="telefone" type="text" value="<c:out value='${transportadora.telefone}' />" class="form-control" name="telefone" required="required">
+                 </fieldset>
+                 <fieldset class="form-group">
+                    <label>Celular:</label> 
+                    <input id="celular" type="text" value="<c:out value='${transportadora.celular}' />" class="form-control" name="celular" required="required">
                  </fieldset>
                  <fieldset class="form-group">
                     <label>Whatsapp:</label> 
-                    <input type="text" value="<c:out value='${transportadora.whatsapp}' />" class="form-control" name="whatsapp" >
+                    <input id="whatsapp" type="text" value="<c:out value='${transportadora.whatsapp}' />" class="form-control" name="whatsapp" >
                  </fieldset>
                  <fieldset class="form-group">
                     <label>Modal:</label> 
-                    <select name="modal" value="<c:out value='${transportadora.modal}' />" class="form-control" style="width:155px" required="required">
+                    <select id="modal" name="modal" value="<c:out value='${transportadora.modal}' />" class="form-control" style="width:155px" required="required">
                         <option value="<c:out value='${transportadora.modal}' />" selected><c:out value='${transportadora.modal}' /></option>
                         <option>Rodoviario</option>
                         <option>Aquaviario</option>
@@ -141,7 +145,7 @@
                  </fieldset>
                  <fieldset class="form-group">
                     <label>Numero:</label> 
-                    <input type="text" value="<c:out value='${transportadora.numero}' />" class="form-control" name="numero" required="required">
+                    <input id="numero" type="text" value="<c:out value='${transportadora.numero}' />" class="form-control" name="numero" required="required">
                  </fieldset>
                  <fieldset class="form-group">
                     <label>Logo:</label> 
@@ -179,36 +183,44 @@
                     $(document).ready(function () {
                         $("#btnSubmit").click(function (event) {
                              //stop submit the form, we will post it manually.
-                            event.preventDefault();
-                            // Get form
-                            var form = $('#fileUploadForm')[0];
-                            // Create an FormData object
-                            var data = new FormData(form);
-                            // If you want to add an extra field for the FormData
-                            
-                            // disabled the submit button
-                            $("#btnSubmit").prop("disabled", true);
-                            
-                            $.ajax({
-                                type: "POST",
-                                enctype: 'multipart/form-data',
-                                url: "TransportadoraServlet",
-                                data: data,
-                                processData: false,
-                                contentType: false,
-                                cache: false,
-                                timeout: 600000,
-                                success: function (responseText) {
-                                   var jsonObj = jQuery.parseJSON(responseText); 
-                                   console.log(responseText);
-                                    $("#btnSubmit").prop("disabled", false);
-                                },
-                                error: function (e) {
-                                    console.log("ERROR : ", e);
-                                    $("#btnSubmit").prop("disabled", false);
-                                }
-                            });
-                            
+                           event.preventDefault();
+                           
+                           var formData = new URLSearchParams();
+                           formData.append('action', 'alterar');
+                           
+                           formData.append('id', $('#inputId').val());
+                           formData.append('email', $('#inputEmail').val());
+                           formData.append('nome', $('#nome').val());
+                           formData.append('empresa', $('#empresa').val());
+                           formData.append('telefone', $('#telefone').val());
+                           formData.append('celular', $('#celular').val());
+                           formData.append('whatsapp', $('#whatsapp').val());
+                           formData.append('modal', $('#modal').val());
+                           formData.append('cep', $('#inputCep').val());
+                           formData.append('estado', $('#selectEstado').val());
+                           formData.append('cidade', $('#inputCidade').val());                           
+                           formData.append('bairro', $('#inputBairro').val());
+                           formData.append('ruaavenida', $('#inputRua').val());
+                           formData.append('numero', $('#numero').val());
+                           formData.append('empresa', $('#empresa').val());
+                           formData.append('image', $('#logo').files[0]);
+                           
+                           let options = {
+                                method: 'POST',
+                                body: formData
+                                enctype: 'multipart/form-data'
+                            };
+                           
+                           const URL_TO_FETCH = 'TransportadoraServlet';
+                           fetch(URL_TO_FETCH, options)
+                                   .then(function(res)
+                                { 
+                                    
+                                })
+                          .catch(function(err) { 
+                              console.error(err); 
+                           });
+                           
                         });
                     });
                     
@@ -244,6 +256,7 @@
                                     document.getElementById("inputRua").value=jsonObj.logradouro;
                             }
                         });
+                       
                     }
                      
                     function changeActionDeletar(){
