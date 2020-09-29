@@ -164,6 +164,8 @@ public class TransportadoraServlet extends HttpServlet{
     public void carregarLogo(HttpServletRequest request, HttpServletResponse response,Transportadora novaTransportadora){
         try {
             Part filePart = request.getPart("image");
+            filePart.getSubmittedFileName();
+            Paths.get(filePart.getSubmittedFileName()).getFileName();
             String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
             InputStream fileContent = filePart.getInputStream();
             byte[] buffer = new byte[fileContent.available()];

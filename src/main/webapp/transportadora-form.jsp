@@ -43,7 +43,7 @@
                           method="post" 
                           onsubmit="return validarCampos()"
                           enctype = "multipart/form-data">
-                          <input type="hidden" name="action" value="inserir">
+                          <input id="action" type="hidden" name="action" value="inserir">
                  </c:if>
                  
                  <caption>
@@ -59,7 +59,9 @@
                  <c:if test="${transportadora != null}">
                     <input id="inputId" type="hidden" name="id" value="<c:out value='${transportadora.id}' />" />
                  </c:if>
-                 
+                 <c:if test="${transportadora == null}">
+                    <input id="inputId" type="hidden" name="id" value="0" />
+                 </c:if>
                  <fieldset class="form-group">
                     <label>E-mail:</label> 
                     <input id="inputEmail" type="text" value="<c:out value='${transportadora.email}' />" class="form-control" name="email" required="required">
@@ -180,13 +182,14 @@
                  </fieldset>
                  <script>
                     
+                            
                     $(document).ready(function () {
                         $("#btnSubmit").click(function (event) {
                              //stop submit the form, we will post it manually.
                            event.preventDefault();
                            
-                           var formData = new URLSearchParams();
-                           formData.append('action', 'alterar');
+                           var formData = new FormData();
+                           formData.append('action', $('#action').val());
                            
                            formData.append('id', $('#inputId').val());
                            formData.append('email', $('#inputEmail').val());
@@ -203,12 +206,16 @@
                            formData.append('ruaavenida', $('#inputRua').val());
                            formData.append('numero', $('#numero').val());
                            formData.append('empresa', $('#empresa').val());
-                           formData.append('image', $('#logo').files[0]);
+                           
+                           
+                           const file=document.querySelector('#logo').files;
+                           
+                           formData.append('image', file[0]);
+                           
                            
                            let options = {
                                 method: 'POST',
                                 body: formData
-                                enctype: 'multipart/form-data'
                             };
                            
                            const URL_TO_FETCH = 'TransportadoraServlet';
@@ -225,13 +232,12 @@
                     });
                     
                     
-                    
                     var loadFile = function(event) {
                         var image = document.getElementById('output');
                         
                         image.src = URL.createObjectURL(event.target.files[0]);
                         
-                        document.getElementById('inputCaminhoLogo').value=image.src;
+                        //document.getElementById('inputCaminhoLogo').value=image.src;
                         
                     };
                     
