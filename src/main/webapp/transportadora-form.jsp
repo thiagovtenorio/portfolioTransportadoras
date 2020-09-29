@@ -224,7 +224,16 @@
                                    .then(function(res)
                                 { 
                                     
+                                    window.location.href='TransportadoraServlet?action=pesquisar';
+                                    
                                 })
+ //                                  .then(function(json)){
+                                            
+//                                    if (json.codigo === 200) {
+//                                        alert(json.mensagem);
+//                                        
+//                                    }
+//                                }
                           .catch(function(err) { 
                               console.error(err); 
                            });

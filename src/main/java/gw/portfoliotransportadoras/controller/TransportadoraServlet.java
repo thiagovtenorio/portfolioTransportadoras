@@ -5,6 +5,7 @@
  */
 package gw.portfoliotransportadoras.controller;
 
+import com.google.gson.Gson;
 import gw.portfoliotransportadoras.filtro.FiltroTransportadora;
 import gw.portfoliotransportadoras.manager.TransportadoraManager;
 import gw.portfoliotransportadoras.modelo.LocalizacaoMunicipio;
@@ -68,6 +69,7 @@ public class TransportadoraServlet extends HttpServlet{
         try {
             switch (action) {
                 case "pesquisar":
+                    System.err.println("pesquisarTransportadora");
                     pesquisarTransportadora(request, response);
                     break;
                 case "novo":
@@ -208,8 +210,18 @@ public class TransportadoraServlet extends HttpServlet{
             if(isCampoEmailValido(novaTransportadora.getEmail()))
             {
                 this.transportadoraManager.adicionarTransportadora(novaTransportadora);
-                RequestDispatcher dispatcher = request.getRequestDispatcher("list-transportadora.jsp");
-                dispatcher.forward(request, response);
+                
+//                Gson gson=new Gson();
+//                response.setContentType("application/json; charset=ISO-8859-1");
+                
+//                Retorno retorno = new Retorno();
+//                
+//                retorno.setCodigo("200")
+//                        retrno.m enage= "Cliente saivaldo com sudsd"
+//                
+//                try (PrintWriter writer = response.getWriter()) {
+//                   writer.print(gson.toJson(""));
+//                }
             }else{
                 PrintWriter pw = response.getWriter();
                 pw.println("E-mail inválido!");
