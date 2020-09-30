@@ -224,7 +224,7 @@
                                    .then(function(res)
                                 { 
                                     
-                                    window.location.href='TransportadoraServlet?action=pesquisar';
+                                    
                                      
                                     
                                     var contentType = res.headers.get("content-type");
@@ -234,7 +234,12 @@
                                     }
                                     
                                 }).then(function (json){
-                                    console.log(json.toString());
+                                    
+                                   if(json.codigo==1){ 
+                                        window.location.href='TransportadoraServlet?action=pesquisar';
+                                   }
+                                   
+                                    
                                     alert(json.mensagem);
                                 })
                                             

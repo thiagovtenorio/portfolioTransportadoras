@@ -216,14 +216,23 @@ public class TransportadoraServlet extends HttpServlet{
                 response.setContentType("application/json; charset=ISO-8859-1");
                 
                 Retorno retorno = new Retorno();
+                retorno.setCodigo(1);
                 retorno.setMensagem("Transportadora inserida com sucesso!");
                 
                 try (PrintWriter writer = response.getWriter()) {
                    writer.print(gson.toJson(retorno));
                 }
             }else{
-                PrintWriter pw = response.getWriter();
-                pw.println("E-mail inválido!");
+                Gson gson=new Gson();
+                response.setContentType("application/json; charset=ISO-8859-1");
+                
+                Retorno retorno = new Retorno();
+                retorno.setCodigo(2);
+                retorno.setMensagem("E-mail inválido!");
+                
+                try (PrintWriter writer = response.getWriter()) {
+                   writer.print(gson.toJson(retorno));
+                }
             }
         }catch(Exception e){
             e.printStackTrace();

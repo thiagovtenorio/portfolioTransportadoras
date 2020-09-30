@@ -10,6 +10,7 @@ package gw.portfoliotransportadoras.retorno;
  * @author vicente
  */
 public class Retorno {
+    private int codigo;
     private String mensagem;
 
     public Retorno() {
@@ -21,6 +22,14 @@ public class Retorno {
 
     public void setMensagem(String mensagem) {
         this.mensagem = mensagem;
+    }
+
+    public int getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
     }
     
 }
