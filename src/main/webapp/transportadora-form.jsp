@@ -189,14 +189,64 @@
                              //stop submit the form, we will post it manually.
                            event.preventDefault();
                            
-                            if($('#empresa').val().length < 4){
-                                alert("O nome da empresa deve conter pelo menos 4 caracteres");
-                                return false;
-                            }
+                           if($('#inputEmail').val()==0)
+                           {
+                               alert("O campo e-mail é obrigatório");
+                               return false;
+                           }
+                           if($('#nome').val()==0)
+                           {
+                               alert("O campo nome é obrigatório");
+                               return false;
+                           }
+                           
+                           if($('#empresa').val().length < 4){
+                               alert("O nome da empresa deve conter pelo menos 4 caracteres");
+                               return false;
+                           }
+                           if($('#telefone').val()==0)
+                           {
+                               alert("O campo telefone é obrigatório");
+                               return false;
+                           }
+                           if($('#modal').val()==0)
+                           {
+                               alert("O campo modal é obrigatório");
+                               return false;
+                           }
+                           if($('#inputRua').val()==0)
+                           {
+                               alert("O campo rua é obrigatório");
+                               return false;
+                           }
+                           if($('#numero').val()==0)
+                           {
+                               alert("O campo numero é obrigatório");
+                               return false;
+                           }
+                           if($('#bairro').val()==0)
+                           {
+                               alert("O campo numero é obrigatório");
+                               return false;
+                           }
+                           if($('#inputBairro').val()==0)
+                           {
+                               alert("O campo bairro é obrigatório");
+                               return false;
+                           }
+                           if($('#inputCidade').val()==0)
+                           {
+                               alert("O campo cidade é obrigatório");
+                               return false;
+                           }
+                            if($('#selectEstado').val()==0)
+                           {
+                               alert("O campo UF é obrigatório");
+                               return false;
+                           }
                            
                            var formData = new FormData();
                            formData.append('action', $('#action').val());
-                           
                            formData.append('id', $('#inputId').val());
                            formData.append('email', $('#inputEmail').val());
                            formData.append('nome', $('#nome').val());
@@ -211,12 +261,10 @@
                            formData.append('bairro', $('#inputBairro').val());
                            formData.append('ruaavenida', $('#inputRua').val());
                            formData.append('numero', $('#numero').val());
-                           formData.append('empresa', $('#empresa').val());
                            
                            const file=document.querySelector('#logo').files;
                            
                            formData.append('image', file[0]);
-                           
                            
                            let options = {
                                 method: 'POST',
