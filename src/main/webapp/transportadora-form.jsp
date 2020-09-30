@@ -169,7 +169,7 @@
                     
                  <c:if test="${transportadora != null}">
                     <button id="btnSubmit" type="submit" class="btn btn-success">Atualizar</button>
-                    <button type="submit" class="btn btn-danger" onclick="changeActionDeletar()">Deletar</button> 
+                    <button id="btnDeletar" type="submit" class="btn btn-danger">Deletar</button> 
                  </c:if>
                 <c:if test="${transportadora == null}">
                     <button id="btnSubmit" type="submit" class="btn btn-success" >Cadastrar-se agora!</button>
@@ -185,6 +185,36 @@
                     
                             
                     $(document).ready(function () {
+                         $("#btnDeletar").click(function (event) {
+                             event.preventDefault();
+                             var formData = new FormData();
+                             formData.append('action', 'deletar');
+                             formData.append('id', $("#inputId").val());
+                             
+                             let options = {
+                                method: 'POST',
+                                body: formData
+                              };
+                              const URL_TO_FETCH = 'TransportadoraServlet';
+                              
+                              fetch(URL_TO_FETCH, options)
+                              .then(function(res)
+                                { 
+                                    var contentType = res.headers.get("content-type");
+                                    if(contentType && contentType.indexOf("application/json") !== -1)
+                                    {
+                                        return res.json();
+                                    }
+                                    
+                                }).then(function (json){
+                                    
+                                   if(json.codigo==1 ){ 
+                                        window.location.href='TransportadoraServlet?action=pesquisar';
+                                   }
+                                    alert(json.mensagem);
+                                });
+                         });
+                        
                         $("#btnSubmit").click(function (event) {
                              //stop submit the form, we will post it manually.
                            event.preventDefault();

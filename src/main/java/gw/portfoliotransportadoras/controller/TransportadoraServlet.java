@@ -259,7 +259,7 @@ public class TransportadoraServlet extends HttpServlet{
                 }
                 
             }else{
-               Gson gson=new Gson();
+                Gson gson=new Gson();
                 response.setContentType("application/json; charset=ISO-8859-1");
                 
                 Retorno retorno = new Retorno();
@@ -284,9 +284,18 @@ public class TransportadoraServlet extends HttpServlet{
             transportadoraId = Integer.parseInt(request.getParameter("id"));
         }
         
-        this.transportadoraManager.excluirTransportadora(transportadoraId);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("list-transportadora.jsp");
-        dispatcher.forward(request, response);
+         this.transportadoraManager.excluirTransportadora(transportadoraId);
+    
+         Gson gson=new Gson();
+         response.setContentType("application/json; charset=ISO-8859-1");
+         Retorno retorno = new Retorno();
+         retorno.setCodigo(1);
+         retorno.setMensagem("Transportadora removida com sucesso!");
+
+         try (PrintWriter writer = response.getWriter()) {
+             writer.print(gson.toJson(retorno));
+         }
+        
     }
     
     private void mostrarNovoForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
