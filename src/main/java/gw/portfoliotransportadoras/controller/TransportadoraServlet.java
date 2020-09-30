@@ -238,7 +238,15 @@ public class TransportadoraServlet extends HttpServlet{
             if(isCampoEmailValido(transportadoraAtual.getEmail()))
             {
                 this.transportadoraManager.alterarTransportadora(transportadoraAtual);
-                System.err.println("alterarTransportadora");
+                Gson gson=new Gson();
+                response.setContentType("application/json; charset=ISO-8859-1");
+                
+                Retorno retorno = new Retorno();
+                retorno.setMensagem("Transportadora alterada com sucesso!");
+                
+                try (PrintWriter writer = response.getWriter()) {
+                   writer.print(gson.toJson(retorno));
+                }
                 
             }else{
                 PrintWriter pw = response.getWriter();
