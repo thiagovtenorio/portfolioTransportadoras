@@ -187,6 +187,12 @@
                     $(document).ready(function () {
                          $("#btnDeletar").click(function (event) {
                              event.preventDefault();
+                             
+                             var confirmacao=confirm("Você realmente deseja excluir essa transportadora?");
+                             if(confirmacao==false){
+                                 return false;
+                             }
+                             
                              var formData = new FormData();
                              formData.append('action', 'deletar');
                              formData.append('id', $("#inputId").val());
