@@ -62,29 +62,30 @@
                  <c:if test="${transportadora == null}">
                     <input id="inputId" type="hidden" name="id" value="0" />
                  </c:if>
-                 <fieldset class="form-group">
+                  <br>
+                 <fieldset class="form-group" >
                     <label>E-mail:</label> 
-                    <input id="inputEmail" type="text" value="<c:out value='${transportadora.email}' />" class="form-control" name="email" required="required">
+                    <input id="inputEmail" type="text" value="<c:out value='${transportadora.email}' />" class="form-control" style="width:300px;" name="email" required="required">
                  </fieldset>
                  <fieldset class="form-group">
                     <label>Nome:</label> 
-                    <input id="nome" type="text" value="<c:out value='${transportadora.nome}' />" class="form-control" name="nome" required="required">
+                    <input id="nome" type="text" value="<c:out value='${transportadora.nome}' />" class="form-control" style="width:300px;" name="nome" required="required">
                  </fieldset>
                  <fieldset class="form-group">
                     <label>Empresa:</label> 
-                    <input id="empresa" type="text" value="<c:out value='${transportadora.empresa}' />" class="form-control" name="empresa" required="required">
+                    <input id="empresa" type="text" value="<c:out value='${transportadora.empresa}' />" class="form-control" style="width:300px;" name="empresa" required="required">
                  </fieldset>
                  <fieldset class="form-group">
                     <label>Telefone:</label> 
-                    <input id="telefone" type="text" value="<c:out value='${transportadora.telefone}' />" class="form-control" name="telefone" required="required">
+                    <input id="telefone" type="text" value="<c:out value='${transportadora.telefone}' />" class="form-control"  style="width:300px;" name="telefone" required="required">
                  </fieldset>
                  <fieldset class="form-group">
                     <label>Celular:</label> 
-                    <input id="celular" type="text" value="<c:out value='${transportadora.celular}' />" class="form-control" name="celular" required="required">
+                    <input id="celular" type="text" value="<c:out value='${transportadora.celular}' />" class="form-control" style="width:300px;" name="celular" required="required">
                  </fieldset>
                  <fieldset class="form-group">
                     <label>Whatsapp:</label> 
-                    <input id="whatsapp" type="text" value="<c:out value='${transportadora.whatsapp}' />" class="form-control" name="whatsapp" >
+                    <input id="whatsapp" type="text" value="<c:out value='${transportadora.whatsapp}' />" class="form-control" style="width:300px;" name="whatsapp" >
                  </fieldset>
                  <fieldset class="form-group">
                     <label>Modal:</label> 
@@ -135,19 +136,19 @@
                 </fieldset>
                 <fieldset class="form-group">
                     <label>Cidade:</label> 
-                    <input id="inputCidade" type="text" value="<c:out value='${transportadora.cidade}' />" class="form-control" name="cidade" required="required">
+                    <input id="inputCidade" type="text" value="<c:out value='${transportadora.cidade}' />" class="form-control" style="width:300px;" name="cidade" required="required">
                  </fieldset>
                  <fieldset class="form-group">
                     <label>Bairro:</label> 
-                    <input id="inputBairro" type="text" value="<c:out value='${transportadora.bairro}' />" class="form-control" name="bairro" required="required">
+                    <input id="inputBairro" type="text" value="<c:out value='${transportadora.bairro}' />" class="form-control" style="width:300px;" name="bairro" required="required">
                  </fieldset>
                  <fieldset class="form-group">
                     <label>Rua / Avenida:</label> 
-                    <input id="inputRua" type="text" value="<c:out value='${transportadora.ruaAvenida}' />" class="form-control" name="ruaavenida" required="required">
+                    <input id="inputRua" type="text" value="<c:out value='${transportadora.ruaAvenida}' />" class="form-control" style="width:300px;" name="ruaavenida" required="required">
                  </fieldset>
                  <fieldset class="form-group">
                     <label>Numero:</label> 
-                    <input id="numero" type="text" value="<c:out value='${transportadora.numero}' />" class="form-control" name="numero" required="required">
+                    <input id="numero" type="text" value="<c:out value='${transportadora.numero}' />" class="form-control" style="width:300px;" name="numero" required="required">
                  </fieldset>
                  <fieldset class="form-group">
                     <label>Logo:</label> 
