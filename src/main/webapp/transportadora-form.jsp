@@ -176,12 +176,10 @@
                     <button id="btnSubmit" type="submit" class="btn btn-success" >Cadastrar-se agora!</button>
                  </c:if>
                  </form>
-                 <fieldset class="form-group">
                     <form action="TransportadoraServlet" method="post">
                       <input type="hidden" name="action" value="pesquisar"/>
                       <button type="submit" class="btn btn-primary"/>Voltar</button>
                     </form>
-                 </fieldset>
                  <script>
                     
                             

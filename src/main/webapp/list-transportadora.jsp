@@ -118,6 +118,19 @@
                                                     document.getElementById("filtroModal").innerHTML='';
                                                 });
                                     }
+                                    function escreverNome(nome){
+                                        document.getElementById("filtroNome").hidden=false;
+                                        document.getElementById("inputNome").value=nome;
+                                        document.getElementById("filtroNome").innerHTML=nome+'<span id="closeFiltroNome" class="close"> x</span>';
+                                        document.getElementById("closeFiltroNome").addEventListener("click", function() 
+                                                {
+                                                    document.getElementById("inputNome").value='';
+                                                    document.getElementById("filtroNome").hidden=true;
+                                                    document.getElementById("filtroNome").innerHTML='';
+                                                });
+                                        
+                                    }
+                                    
                                     function close(){
                                        alert('teste');
                                     }
@@ -131,6 +144,8 @@
                                     </fieldset>
                                     <fieldset class="form-group">
                                         <ul id="filtros"> 
+                                             <li id="filtroNome" hidden="true">
+                                            </li>
                                             <li id="filtroEstado" hidden="true">
                                             </li>
                                             <li id="filtroCidade" hidden="true">
@@ -142,7 +157,7 @@
                                         
                                     <label>Nome:</label> 
                                     <fieldset class="form-group">
-                                        <input type="text" value="<c:out value='${transportadora.nome}' />" class="form-control" name="nome">
+                                        <input id="inputNome" type="text" value="<c:out value='${transportadora.nome}' />" onblur="escreverNome(this.value)" class="form-control" style="width:300px;" name="nome">
                                     </fieldset>
                                     <fieldset class="form-group">
                                         <label>Localizacao (UFs)
