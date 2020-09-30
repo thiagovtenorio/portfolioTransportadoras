@@ -251,6 +251,7 @@ public class TransportadoraServlet extends HttpServlet{
                 response.setContentType("application/json; charset=ISO-8859-1");
                 
                 Retorno retorno = new Retorno();
+                retorno.setCodigo(2);
                 retorno.setMensagem("Transportadora alterada com sucesso!");
                 
                 try (PrintWriter writer = response.getWriter()) {

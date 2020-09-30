@@ -235,7 +235,7 @@
                                     
                                 }).then(function (json){
                                     
-                                   if(json.codigo==1){ 
+                                   if(json.codigo==1 || json.codigo==2){ 
                                         window.location.href='TransportadoraServlet?action=pesquisar';
                                    }
                                    
