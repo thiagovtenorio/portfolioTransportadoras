@@ -225,18 +225,27 @@
                                 { 
                                     
                                     window.location.href='TransportadoraServlet?action=pesquisar';
+                                     
                                     
+                                    var contentType = res.headers.get("content-type");
+                                    if(contentType && contentType.indexOf("application/json") !== -1)
+                                    {
+                                        return res.json();
+                                    }
+                                    
+                                }).then(function (json){
+                                    console.log(json.toString());
+                                    alert(json.mensagem);
                                 })
- //                                  .then(function(json)){
                                             
 //                                    if (json.codigo === 200) {
 //                                        alert(json.mensagem);
 //                                        
 //                                    }
 //                                }
-                          .catch(function(err) { 
-                              console.error(err); 
-                           });
+//                          .catch(function(err) { 
+//                              console.error(err); 
+//                           });
                            
                         });
                     });

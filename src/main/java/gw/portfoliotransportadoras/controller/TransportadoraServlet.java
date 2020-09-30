@@ -12,6 +12,7 @@ import gw.portfoliotransportadoras.modelo.LocalizacaoMunicipio;
 import gw.portfoliotransportadoras.modelo.LocalizacaoUF;
 import gw.portfoliotransportadoras.modelo.ModalQtd;
 import gw.portfoliotransportadoras.modelo.Transportadora;
+import gw.portfoliotransportadoras.retorno.Retorno;
 import gw.portfoliotransportadoras.service.ViaCEP;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -211,17 +212,15 @@ public class TransportadoraServlet extends HttpServlet{
             {
                 this.transportadoraManager.adicionarTransportadora(novaTransportadora);
                 
-//                Gson gson=new Gson();
-//                response.setContentType("application/json; charset=ISO-8859-1");
+                Gson gson=new Gson();
+                response.setContentType("application/json; charset=ISO-8859-1");
                 
-//                Retorno retorno = new Retorno();
-//                
-//                retorno.setCodigo("200")
-//                        retrno.m enage= "Cliente saivaldo com sudsd"
-//                
-//                try (PrintWriter writer = response.getWriter()) {
-//                   writer.print(gson.toJson(""));
-//                }
+                Retorno retorno = new Retorno();
+                retorno.setMensagem("Transportadora inserida com sucesso!");
+                
+                try (PrintWriter writer = response.getWriter()) {
+                   writer.print(gson.toJson(retorno));
+                }
             }else{
                 PrintWriter pw = response.getWriter();
                 pw.println("E-mail inválido!");
