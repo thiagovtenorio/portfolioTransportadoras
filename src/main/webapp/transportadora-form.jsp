@@ -189,6 +189,11 @@
                              //stop submit the form, we will post it manually.
                            event.preventDefault();
                            
+                            if($('#empresa').val().length < 4){
+                                alert("O nome da empresa deve conter pelo menos 4 caracteres");
+                                return false;
+                            }
+                           
                            var formData = new FormData();
                            formData.append('action', $('#action').val());
                            
@@ -208,7 +213,6 @@
                            formData.append('numero', $('#numero').val());
                            formData.append('empresa', $('#empresa').val());
                            
-                           
                            const file=document.querySelector('#logo').files;
                            
                            formData.append('image', file[0]);
@@ -223,10 +227,6 @@
                            fetch(URL_TO_FETCH, options)
                                    .then(function(res)
                                 { 
-                                    
-                                    
-                                     
-                                    
                                     var contentType = res.headers.get("content-type");
                                     if(contentType && contentType.indexOf("application/json") !== -1)
                                     {
@@ -235,19 +235,12 @@
                                     
                                 }).then(function (json){
                                     
-                                   if(json.codigo==1 || json.codigo==2){ 
+                                   if(json.codigo==1 ){ 
                                         window.location.href='TransportadoraServlet?action=pesquisar';
                                    }
-                                   
-                                    
                                     alert(json.mensagem);
                                 })
-                                            
-//                                    if (json.codigo === 200) {
-//                                        alert(json.mensagem);
-//                                        
-//                                    }
-//                                }
+                                  
 //                          .catch(function(err) { 
 //                              console.error(err); 
 //                           });
