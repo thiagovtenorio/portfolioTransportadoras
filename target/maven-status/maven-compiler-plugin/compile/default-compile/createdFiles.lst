@@ -3,6 +3,7 @@ gw/portfoliotransportadoras/service/CepServlet.class
 gw/portfoliotransportadoras/service/ViaCEPException.class
 gw/portfoliotransportadoras/manager/TransportadoraManager.class
 gw/portfoliotransportadoras/service/ViaCEPEvents.class
+gw/portfoliotransportadoras/retorno/Retorno.class
 gw/portfoliotransportadoras/service/CEP.class
 gw/portfoliotransportadoras/filtro/FiltroTransportadora.class
 gw/portfoliotransportadoras/service/ViaCEPBase.class

@@ -93,11 +93,21 @@ public class TransportadoraDAO {
         }
     }
     public void inserir(Transportadora transportadora) throws SQLException{
+        StringBuilder sb=new StringBuilder();
+        sb.append("insert into portfolio.transportadora(nome, email, empresa, telefone, celular, whatsapp, modal, cep, estado, cidade, bairro, ruaavenida, numero ");
+        if(transportadora.getArquivoLogo()!=null){
+            sb.append(", logo)");
+            sb.append("values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+        }else{
+            sb.append(") values(?,?,?,?,?,?,?,?,?,?,?,?,?)");
+        }
+        
+        
         Connection con=null;
         try{
 		con=getConnection();
 		PreparedStatement ps
-                        =con.prepareStatement("insert into portfolio.transportadora(nome, email, empresa, telefone, celular, whatsapp, modal, cep, estado, cidade, bairro, ruaavenida, numero, logo) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                        =con.prepareStatement(sb.toString());
                 
 		ps.setString(1, transportadora.getNome());
                 ps.setString(2, transportadora.getEmail());
@@ -113,14 +123,15 @@ public class TransportadoraDAO {
                 ps.setString(12, transportadora.getRuaAvenida());
                 ps.setInt(13, transportadora.getNumero());
                 
-                File arquivoLogo=transportadora.getArquivoLogo();
-                FileInputStream fis = new FileInputStream(arquivoLogo);
-                
-                ps.setBinaryStream(14, fis, arquivoLogo.length());
-                
+                if(transportadora.getArquivoLogo()!=null){
+                    File arquivoLogo=transportadora.getArquivoLogo();
+                    FileInputStream fis = new FileInputStream(arquivoLogo);
+                    ps.setBinaryStream(14, fis, arquivoLogo.length());
+                    //fis.close();
+                }
                 ps.executeUpdate();
                 ps.close();
-                fis.close();
+                
                 
         }catch(Exception e)
         {
