@@ -97,11 +97,11 @@ public class TransportadoraDAO {
         sb.append("insert into portfolio.transportadora(nome, email, empresa, telefone, celular, whatsapp, modal, cep, estado, cidade, bairro, ruaavenida, numero ");
         if(transportadora.getArquivoLogo()!=null){
             sb.append(", logo)");
-            sb.append("values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+            sb.append(" values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
         }else{
             sb.append(") values(?,?,?,?,?,?,?,?,?,?,?,?,?)");
         }
-        
+        System.err.println("query "+sb.toString());
         
         Connection con=null;
         try{
@@ -127,10 +127,15 @@ public class TransportadoraDAO {
                     File arquivoLogo=transportadora.getArquivoLogo();
                     FileInputStream fis = new FileInputStream(arquivoLogo);
                     ps.setBinaryStream(14, fis, arquivoLogo.length());
-                    //fis.close();
+                    
+                    ps.executeUpdate();
+                    ps.close();
+                    fis.close();
+                }else{
+                    ps.executeUpdate();
+                    ps.close();
                 }
-                ps.executeUpdate();
-                ps.close();
+                
                 
                 
         }catch(Exception e)
