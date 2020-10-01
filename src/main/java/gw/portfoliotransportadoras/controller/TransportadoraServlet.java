@@ -13,7 +13,6 @@ import gw.portfoliotransportadoras.modelo.LocalizacaoUF;
 import gw.portfoliotransportadoras.modelo.ModalQtd;
 import gw.portfoliotransportadoras.modelo.Transportadora;
 import gw.portfoliotransportadoras.retorno.Retorno;
-import gw.portfoliotransportadoras.service.ViaCEP;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -22,7 +21,6 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.nio.file.Paths;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -32,7 +30,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.json.JSONObject;
 
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
@@ -65,12 +62,10 @@ public class TransportadoraServlet extends HttpServlet{
         if(request.getParameter("action")!=null){
             action= (String)request.getParameter("action");
         }
-         
-        System.err.println("action "+action);
+        
         try {
             switch (action) {
                 case "pesquisar":
-                    System.err.println("pesquisarTransportadora");
                     pesquisarTransportadora(request, response);
                     break;
                 case "novo":

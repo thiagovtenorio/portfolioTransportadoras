@@ -118,15 +118,17 @@
                                                 });
                                     }
                                     function escreverNome(nome){
-                                        document.getElementById("filtroNome").hidden=false;
-                                        document.getElementById("inputNome").value=nome;
-                                        document.getElementById("filtroNome").innerHTML=nome+'<span id="closeFiltroNome" class="close"> x</span>';
-                                        document.getElementById("closeFiltroNome").addEventListener("click", function() 
-                                                {
-                                                    document.getElementById("inputNome").value='';
-                                                    document.getElementById("filtroNome").hidden=true;
-                                                    document.getElementById("filtroNome").innerHTML='';
-                                                });
+                                        if(document.getElementById("inputNome").value.length>0){
+                                            document.getElementById("filtroNome").hidden=false;
+                                            document.getElementById("inputNome").value=nome;
+                                            document.getElementById("filtroNome").innerHTML=nome+'<span id="closeFiltroNome" class="close"> x</span>';
+                                            document.getElementById("closeFiltroNome").addEventListener("click", function() 
+                                                    {
+                                                        document.getElementById("inputNome").value='';
+                                                        document.getElementById("filtroNome").hidden=true;
+                                                        document.getElementById("filtroNome").innerHTML='';
+                                                    });
+                                       }
                                         
                                     }
                                     
