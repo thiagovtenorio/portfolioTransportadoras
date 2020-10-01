@@ -212,9 +212,9 @@
                                                     <button type="submit" class="btn btn-primary"/>Voltar</button>
                                                 </form> -->
                                             </div>
-                                            <div class="col-sm-4">
+                                            <div class="col-sm-6">
                                                  <c:if test="${transportadora == null}">
-                                                    <button id="btnSubmit" type="submit" class="btn btn-success" >Cadastrar-se agora!</button>
+                                                    <button id="btnSubmit" type="submit" class="btn btn-success" style="width:300px;">Cadastrar-se agora!</button>
                                                  </c:if>
                                             </div>
                                          </div>
