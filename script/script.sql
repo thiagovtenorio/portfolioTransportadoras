@@ -16,11 +16,12 @@ CREATE TABLE portfolio.transportadora
   cidade character varying(30),
   bairro character varying(30),
   ruaavenida character varying(30),
-  numero integer
+  numero integer,
+  id serial NOT NULL,
+  logo bytea
 )
 WITH (
   OIDS=FALSE
 );
 ALTER TABLE portfolio.transportadora
   OWNER TO postgres;
-
