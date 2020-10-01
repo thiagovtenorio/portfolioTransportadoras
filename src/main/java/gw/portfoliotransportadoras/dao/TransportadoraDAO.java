@@ -35,7 +35,7 @@ public class TransportadoraDAO {
 	Connection con=null;
 	try{
 		Class.forName("org.postgresql.Driver");
-		con=DriverManager.getConnection("jdbc:postgresql://192.168.0.71:5432/portfolioTransportadoras", "postgres", "postgres@2018@");
+		con=DriverManager.getConnection("jdbc:postgresql://192.168.0.71:5432/db_portfolio_transportadoras", "postgres", "postgres@2018@");
 	}catch(Exception e){
             System.out.println(e);
         }
