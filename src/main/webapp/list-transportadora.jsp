@@ -25,6 +25,9 @@
                 </div>
             </nav>
             <style>
+/*                ul#filtros li {
+                    display:inline;
+                  }*/
                 ul {
                     list-style-type: none;
                     padding: 0;
