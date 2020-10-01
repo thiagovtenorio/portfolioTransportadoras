@@ -65,15 +65,11 @@
             </style>
         </header>
         <br>
-        
-        <div class="row">
-            
-            <div class="container">
-                
-                
-                <div class="row">
-                    <div class="col-sm">
-                        <div class="card-body">
+        <div class="row" >
+            <div class="col-sm-3">
+                <div class="card"> 
+                    
+                    <div class="card-body">
                                 <h3 class="text-left">Transportadoras</h3>
                                 <br>        
                                 <script>
@@ -219,19 +215,21 @@
                                 </form>
                             </div>
                     </div>
+                </div>
+                    <div class="col-sm-9">
+                        <div class="card">
+                            <div class="card-body">
                                 
-                    <div class="col-sm">
-                            <br>
-                            <div class="container text-right">
-                                
-                                <form action="TransportadoraServlet">
-                                    <input type="hidden" name="action" value="novo">
-                                    <button type="submit" class="btn btn-success" value="">Cadastre sua transportadora</button>
-                                </form>
-                                
-                            </div>
-                            <br><br>
-                            <table class="table table-bordered">
+                                <br>
+                                <div class="container text-right">
+
+                                    <form action="TransportadoraServlet">
+                                        <input type="hidden" name="action" value="novo">
+                                        <button type="submit" class="btn btn-success" value="">Cadastre sua transportadora</button>
+                                    </form>
+
+                                </div>
+                                <table class="table table-bordered">
                                 <thead>
                                 </thead>
                                 <tbody>
@@ -241,7 +239,8 @@
                                       <th>Telefone</th>
                                       <th>Whatsapp</th>
                                       <th>Empresa</th>
-                                      <th>Email</th>
+                                      <th>Email</th> 
+                                    
                                     </tr>
                                     <c:forEach var="transportadora" items="${listTransportadora}">
                                         
@@ -250,37 +249,37 @@
                                                 <img src="<c:out value="${transportadora.caminhoLogo}" />">
                                                  
                                             </td>
-                                            <td>
-                                                <form method="post" action="TransportadoraServlet" >
-                                                    <input type="hidden" name="id" value=<c:out value='${transportadora.id}' />> 
-                                                    <input type="hidden" name="action" value="editar"/>
-                                                    
-                                                    <button type="submit" class="btn-link">
-                                                        <c:out value="${transportadora.nome}" />
-                                                    </button>
-                                                </form>
-                                                
-                                            </td>
-                                            <td>
-                                                <c:out value="${transportadora.telefone}" />
-                                            </td>
-                                            <td>
-                                                <c:out value="${transportadora.whatsapp}" />
-                                            </td>
-                                            <td>
-                                                <c:out value="${transportadora.empresa}" />
-                                            </td>
+                                                <td>
+                                                    <form method="post" action="TransportadoraServlet" >
+                                                        <input type="hidden" name="id" value=<c:out value='${transportadora.id}' />> 
+                                                        <input type="hidden" name="action" value="editar"/>
+
+                                                        <button type="submit" class="btn-link">
+                                                            <c:out value="${transportadora.nome}" />
+                                                        </button>
+                                                    </form>
+                                                </td>
+                                                <td>
+                                                    <c:out value="${transportadora.telefone}" />
+                                                </td>
+                                                <td>
+                                                    <c:out value="${transportadora.whatsapp}" />
+                                                </td>
+                                                <td>
+                                                    <c:out value="${transportadora.empresa}" />
+                                                </td>
+                                          
                                             <td> 
                                                 <c:out value="${transportadora.email}" />
                                             </td>
                                         </tr>
-                                    </c:forEach>
-                                </tbody>
-                        </table>
+                                        </c:forEach>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
     </body>
     
 </html>
