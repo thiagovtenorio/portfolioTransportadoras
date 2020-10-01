@@ -6,11 +6,11 @@ CREATE DATABASE db_portfolio_transportadoras
        LC_CTYPE = 'pt_BR.UTF-8'
        CONNECTION LIMIT = -1;
 
--- Table: portfolio.transportadora
+-- Table: portfolio.tb_transportadora
 
--- DROP TABLE portfolio.transportadora;
+-- DROP TABLE portfolio.tb_transportadora;
 
-CREATE TABLE portfolio.transportadora
+CREATE TABLE portfolio.tb_transportadora
 (
   nome character varying(25),
   email character varying(30),
@@ -25,11 +25,11 @@ CREATE TABLE portfolio.transportadora
   bairro character varying(30),
   ruaavenida character varying(30),
   numero integer,
-  id serial NOT NULL,
+  id integer NOT NULL DEFAULT nextval('portfolio.transportadora_id_seq'::regclass),
   logo bytea
 )
 WITH (
   OIDS=FALSE
 );
-ALTER TABLE portfolio.transportadora
+ALTER TABLE portfolio.tb_transportadora
   OWNER TO postgres;

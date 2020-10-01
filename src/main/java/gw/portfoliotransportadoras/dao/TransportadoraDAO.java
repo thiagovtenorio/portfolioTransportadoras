@@ -51,7 +51,7 @@ public class TransportadoraDAO {
     public void alterar(Transportadora transportadora) throws SQLException{
         StringBuilder sb=new StringBuilder();
         
-        sb.append("update portfolio.transportadora set nome=?,email=?,telefone=?,celular=?,whatsapp=?,modal=?,cep=?,estado=?,cidade=?,bairro=?,ruaavenida=?, numero=?, empresa=? ");
+        sb.append("update portfolio.tb_transportadora set nome=?,email=?,telefone=?,celular=?,whatsapp=?,modal=?,cep=?,estado=?,cidade=?,bairro=?,ruaavenida=?, numero=?, empresa=? ");
         if(transportadora.getArquivoLogo()!=null){
             sb.append(", logo=? ");
         }
@@ -94,7 +94,7 @@ public class TransportadoraDAO {
     }
     public void inserir(Transportadora transportadora) throws SQLException{
         StringBuilder sb=new StringBuilder();
-        sb.append("insert into portfolio.transportadora(nome, email, empresa, telefone, celular, whatsapp, modal, cep, estado, cidade, bairro, ruaavenida, numero ");
+        sb.append("insert into portfolio.tb_transportadora(nome, email, empresa, telefone, celular, whatsapp, modal, cep, estado, cidade, bairro, ruaavenida, numero ");
         if(transportadora.getArquivoLogo()!=null){
             sb.append(", logo)");
             sb.append(" values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
@@ -151,7 +151,7 @@ public class TransportadoraDAO {
         Connection con=null;
 	try{
 		con=getConnection();
-		PreparedStatement ps=con.prepareStatement("delete from portfolio.transportadora where id=?");
+		PreparedStatement ps=con.prepareStatement("delete from portfolio.tb_transportadora where id=?");
 		ps.setInt(1, transportadoraId);
 		ps.executeUpdate();
 	}catch(Exception e){
@@ -166,7 +166,7 @@ public class TransportadoraDAO {
         Connection con=null;
         try{
             con=getConnection();
-            PreparedStatement ps=con.prepareStatement("select * from portfolio.transportadora where id=?");
+            PreparedStatement ps=con.prepareStatement("select * from portfolio.tb_transportadora where id=?");
 	    ps.setInt(1,id);
 	    ResultSet rs=ps.executeQuery();
             
@@ -231,7 +231,7 @@ public class TransportadoraDAO {
        Connection con=null;
         try {
             StringBuilder sb=new StringBuilder();
-            sb.append("SELECT * FROM portfolio.transportadora where nome like '");
+            sb.append("SELECT * FROM portfolio.tb_transportadora where nome like '");
             sb.append(filtro.getNome());
             sb.append("%'");
             
@@ -327,7 +327,7 @@ public class TransportadoraDAO {
         try {
             Connection con=getConnection();
             PreparedStatement ps;
-            ps = con.prepareStatement("SELECT * FROM portfolio.transportadora");
+            ps = con.prepareStatement("SELECT * FROM portfolio.tb_transportadora");
             ResultSet rs=ps.executeQuery();
             
             Transportadora transportadora=null;
@@ -414,7 +414,7 @@ public class TransportadoraDAO {
         try{
             Connection con=getConnection();
             PreparedStatement ps;
-            ps = con.prepareStatement("select estado, count(*) from portfolio.transportadora group by estado;");
+            ps = con.prepareStatement("select estado, count(*) from portfolio.tb_transportadora group by estado;");
             ResultSet rs=ps.executeQuery();
             
             StringBuilder sb=new StringBuilder();
@@ -448,7 +448,7 @@ public class TransportadoraDAO {
         try{
             Connection con=getConnection();
             PreparedStatement ps;
-            ps = con.prepareStatement("select modal, count(*) from portfolio.transportadora group by modal;");
+            ps = con.prepareStatement("select modal, count(*) from portfolio.tb_transportadora group by modal;");
             ResultSet rs=ps.executeQuery();
             
             ModalQtd modalQtd=new ModalQtd();
@@ -471,7 +471,7 @@ public class TransportadoraDAO {
         try{
             Connection con=getConnection();
             PreparedStatement ps;
-            ps = con.prepareStatement("select count(*) from portfolio.transportadora;");
+            ps = con.prepareStatement("select count(*) from portfolio.tb_transportadora;");
             ResultSet rs=ps.executeQuery();
             while(rs.next())
             {
@@ -487,7 +487,7 @@ public class TransportadoraDAO {
         try{
             Connection con=getConnection();
             PreparedStatement ps;
-            ps = con.prepareStatement("select cidade, count(*) from portfolio.transportadora group by cidade;");
+            ps = con.prepareStatement("select cidade, count(*) from portfolio.tb_transportadora group by cidade;");
             ResultSet rs=ps.executeQuery();
             
             LocalizacaoMunicipio localizacaoMunicipio=new LocalizacaoMunicipio();
