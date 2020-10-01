@@ -151,12 +151,16 @@
                                         </ul>
                                     </fieldset>
                                         
-                                    <label>Nome:</label> 
+                                    <label><b>Nome</b></label> 
                                     <fieldset class="form-group">
                                         <input id="inputNome" type="text" value="<c:out value='${transportadora.nome}' />" onblur="escreverNome(this.value)" class="form-control" style="width:300px;" name="nome">
                                     </fieldset>
                                     <fieldset class="form-group">
-                                        <label>Localizacao (UFs)
+                                        <label>
+                                            <b>
+                                                Localizacao (UFs)
+                                            </b>
+                                            
                                         </label>
                                         <table class="table table-bordered">
                                             <tbody>
@@ -176,7 +180,10 @@
                                         </div>
                                     </fieldset>
                                     <fieldset class="form-group">
-                                        <label>Localizacao (Municípios)
+                                        <label>
+                                            <b>
+                                                Localizacao (Municípios)
+                                            </b>
                                         </label>
                                         <table class="table table-bordered">
                                             <tbody>
@@ -194,7 +201,11 @@
                                         <input id="inputCidade" type="hidden" value="<c:out value='${transportadora.cidade}' />" class="form-control" name="cidade">
                                     </fieldset>
                                     <fieldset class="form-group">
-                                        <label>Modal</label>
+                                        <label>
+                                            <b>
+                                                Modal
+                                            </b>
+                                        </label>
                                         <table class="table table-bordered">
                                             <tbody>
                                                 <c:forEach var="modalQtd" items="${listModalQtd}">
