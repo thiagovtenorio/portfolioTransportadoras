@@ -55,7 +55,7 @@ public class TransportadoraDAO {
         if(transportadora.getArquivoLogo()!=null){
             sb.append(", logo=? ");
         }
-        sb.append(" where id=?");
+        sb.append(" where id_transportadora=?");
         System.err.println("query update "+sb.toString());
         
         Connection con=null;
@@ -151,7 +151,7 @@ public class TransportadoraDAO {
         Connection con=null;
 	try{
 		con=getConnection();
-		PreparedStatement ps=con.prepareStatement("delete from portfolio.tb_transportadora where id=?");
+		PreparedStatement ps=con.prepareStatement("delete from portfolio.tb_transportadora where id_transportadora=?");
 		ps.setInt(1, transportadoraId);
 		ps.executeUpdate();
 	}catch(Exception e){
@@ -166,7 +166,7 @@ public class TransportadoraDAO {
         Connection con=null;
         try{
             con=getConnection();
-            PreparedStatement ps=con.prepareStatement("select * from portfolio.tb_transportadora where id=?");
+            PreparedStatement ps=con.prepareStatement("select * from portfolio.tb_transportadora where id_transportadora=?");
 	    ps.setInt(1,id);
 	    ResultSet rs=ps.executeQuery();
             
@@ -190,7 +190,7 @@ public class TransportadoraDAO {
             String caminhoLogo="";
             
             while(rs.next()){
-               transportadoraId=rs.getInt("id");
+               transportadoraId=rs.getInt("id_transportadora");
                nome=rs.getString("nome");
                email=rs.getString("email");
                telefone=rs.getString("telefone");
@@ -279,7 +279,7 @@ public class TransportadoraDAO {
             
             while(rs.next())
             {
-                id=rs.getInt("id");
+                id=rs.getInt("id_transportadora");
                 nome=(String)rs.getString("nome");
                 email=(String)rs.getString("email");
                 telefone=(String)rs.getString("telefone");
@@ -348,7 +348,7 @@ public class TransportadoraDAO {
             
             while(rs.next())
             {
-                id=rs.getInt("id");
+                id=rs.getInt("id_transportadora");
                 nome=(String)rs.getString("nome");
                 email=(String)rs.getString("email");
                 telefone=(String)rs.getString("telefone");

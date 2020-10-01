@@ -25,7 +25,7 @@ CREATE TABLE portfolio.tb_transportadora
   bairro character varying(30),
   ruaavenida character varying(30),
   numero integer,
-  id integer NOT NULL DEFAULT nextval('portfolio.transportadora_id_seq'::regclass),
+  id_transportadora integer NOT NULL DEFAULT nextval('portfolio.transportadora_id_seq'::regclass),
   logo bytea
 )
 WITH (
