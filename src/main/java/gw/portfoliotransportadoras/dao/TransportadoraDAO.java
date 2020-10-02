@@ -56,8 +56,7 @@ public class TransportadoraDAO {
             sb.append(", logo=? ");
         }
         sb.append(" where id_transportadora=?");
-        System.err.println("query update "+sb.toString());
-        
+       
         Connection con=null;
         try{
 		con=getConnection();
@@ -101,7 +100,6 @@ public class TransportadoraDAO {
         }else{
             sb.append(") values(?,?,?,?,?,?,?,?,?,?,?,?,?)");
         }
-        System.err.println("query "+sb.toString());
         
         Connection con=null;
         try{
@@ -136,8 +134,6 @@ public class TransportadoraDAO {
                     ps.close();
                 }
                 
-                
-                
         }catch(Exception e)
         {
             e.printStackTrace();
@@ -170,43 +166,26 @@ public class TransportadoraDAO {
 	    ps.setInt(1,id);
 	    ResultSet rs=ps.executeQuery();
             
-            Integer transportadoraId=null;
-            String nome=null;
-            String email=null;
-            String telefone=null;
-            String celular=null; 
-            String whatsapp=null; 
-            String modal=null;
-            String cep=null;
-            String estado=null;
-            String cidade=null;
-            String bairro=null;
-            String ruaAvenida=null;
-            Integer numero=null;
-            String empresa=null;
-            byte[] logo=null;
-            
             FileOutputStream fos=null;
             String caminhoLogo="";
             
             while(rs.next()){
-               transportadoraId=rs.getInt("id_transportadora");
-               nome=rs.getString("nome");
-               email=rs.getString("email");
-               telefone=rs.getString("telefone");
-               celular=rs.getString("celular");
-               whatsapp=rs.getString("whatsapp");
-               modal=rs.getString("modal");
-               cep=rs.getString("cep");
-               estado=rs.getString("estado");
-               cidade=rs.getString("cidade");
-               bairro=rs.getString("bairro");
-               ruaAvenida=rs.getString("ruaavenida");
-               numero=rs.getInt("numero");
-               empresa=rs.getString("empresa");
-               logo=rs.getBytes("logo");
-               transportadoraBanco=new Transportadora(transportadoraId, nome, email, telefone, celular, whatsapp, modal, cep, estado, cidade, bairro, ruaAvenida, numero, empresa);
-               transportadoraBanco.setLogo(logo);
+               transportadoraBanco=new Transportadora();
+               transportadoraBanco.setId(rs.getInt("id_transportadora"));
+               transportadoraBanco.setNome(rs.getString("nome"));
+               transportadoraBanco.setEmail(rs.getString("email"));
+               transportadoraBanco.setTelefone(rs.getString("telefone"));
+               transportadoraBanco.setCelular(rs.getString("celular"));
+               transportadoraBanco.setWhatsapp(rs.getString("whatsapp"));
+               transportadoraBanco.setModal(rs.getString("modal"));
+               transportadoraBanco.setCep(rs.getString("cep"));
+               transportadoraBanco.setEstado(rs.getString("estado"));
+               transportadoraBanco.setCidade(rs.getString("cidade"));
+               transportadoraBanco.setBairro(rs.getString("bairro"));
+               transportadoraBanco.setRuaAvenida(rs.getString("ruaavenida"));
+               transportadoraBanco.setNumero(rs.getInt("numero"));
+               transportadoraBanco.setEmpresa(rs.getString("empresa"));
+               transportadoraBanco.setLogo(rs.getBytes("logo"));
                
                if(transportadoraBanco.getLogo()!=null){
                     String fileName="/home/vicente/NetBeansProjects/mavenproject1/mavenproject1/portfolioTransportadoras/src/main/webapp/img/"+transportadoraBanco.getId()+".png";
@@ -258,54 +237,34 @@ public class TransportadoraDAO {
             ResultSet rs=ps.executeQuery();
             
             Transportadora transportadora=null;
-            Integer id=null;
-            String nome=null;
-            String email=null;
-            String telefone=null;
-            String celular=null;
-            String whatsapp=null;
-            String modal=null;
-            String cep=null;
-            String estado=null;
-            String cidade=null;
-            String bairro=null;
-            String ruaavenida=null;
-            Integer numero=null;
-            String empresa=null;
-            byte[] logo=null;
             
             FileOutputStream fos=null;
             String caminhoLogo="";
             
             while(rs.next())
             {
-                id=rs.getInt("id_transportadora");
-                nome=(String)rs.getString("nome");
-                email=(String)rs.getString("email");
-                telefone=(String)rs.getString("telefone");
-                celular=(String)rs.getString("celular");
-                whatsapp=(String)rs.getString("whatsapp");
-                modal=(String)rs.getString("modal");
-                cep=(String)rs.getString("cep");
-                estado=(String)rs.getString("estado");
-                cidade=(String)rs.getString("cidade");
-                bairro=(String)rs.getString("bairro");
-                ruaavenida=(String)rs.getString("ruaavenida");
-                numero=rs.getInt("numero");
-                empresa=(String)rs.getString("empresa");
-                logo=rs.getBytes("logo");
-                
-                transportadora=new Transportadora(id, nome, email, telefone, celular, whatsapp, modal, 
-                        cep, estado, cidade, bairro, ruaavenida, numero, empresa);
-                
-                transportadora.setLogo(logo);
-                
-                
+                transportadora=new Transportadora();
+                transportadora.setId(rs.getInt("id_transportadora"));
+                transportadora.setNome(rs.getString("nome"));
+                transportadora.setEmail(rs.getString("email"));
+                transportadora.setTelefone(rs.getString("telefone"));
+                transportadora.setCelular(rs.getString("celular"));
+                transportadora.setWhatsapp(rs.getString("whatsapp"));
+                transportadora.setModal(rs.getString("modal"));
+                transportadora.setCep(rs.getString("cep"));
+                transportadora.setEstado(rs.getString("estado"));
+                transportadora.setCidade(rs.getString("cidade"));
+                transportadora.setBairro(rs.getString("bairro"));
+                transportadora.setRuaAvenida(rs.getString("ruaavenida"));
+                transportadora.setNumero(rs.getInt("numero"));
+                transportadora.setEmpresa(rs.getString("empresa"));
+                transportadora.setLogo(rs.getBytes("logo"));
                 
                 if(transportadora.getLogo()!=null){
                     String fileName="/home/vicente/NetBeansProjects/mavenproject1/mavenproject1/portfolioTransportadoras/src/main/webapp/img/"+transportadora.getId()+".png";
                     fos=new FileOutputStream(fileName);
                     fos.write(transportadora.getLogo());
+                    
                     transportadora.setCaminhoLogo("img/"+transportadora.getId()+".png");
                 }
                 
@@ -313,71 +272,14 @@ public class TransportadoraDAO {
             }
             
         } catch (SQLException ex) {
-            Logger.getLogger(TransportadoraDAO.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
         }finally {
             con.close();
         }
         return transportadoraList;
     }
     
-    public static List<Transportadora> getList(){
-
-        List<Transportadora> transportadoraList= new ArrayList<Transportadora>();
-        
-        try {
-            Connection con=getConnection();
-            PreparedStatement ps;
-            ps = con.prepareStatement("SELECT * FROM portfolio.tb_transportadora");
-            ResultSet rs=ps.executeQuery();
-            
-            Transportadora transportadora=null;
-            Integer id=null;
-            String nome=null;
-            String email=null;
-            String telefone=null;
-            String celular=null;
-            String whatsapp=null;
-            String modal=null;
-            String cep=null;
-            String estado=null;
-            String cidade=null;
-            String bairro=null;
-            String ruaavenida=null;
-            Integer numero=null;
-            String empresa=null;
-            
-            while(rs.next())
-            {
-                id=rs.getInt("id_transportadora");
-                nome=(String)rs.getString("nome");
-                email=(String)rs.getString("email");
-                telefone=(String)rs.getString("telefone");
-                celular=(String)rs.getString("celular");
-                whatsapp=(String)rs.getString("whatsapp");
-                modal=(String)rs.getString("modal");
-                cep=(String)rs.getString("cep");
-                estado=(String)rs.getString("estado");
-                cidade=(String)rs.getString("cidade");
-                bairro=(String)rs.getString("bairro");
-                ruaavenida=(String)rs.getString("ruaavenida");
-                numero=rs.getInt("numero");
-                empresa=(String)rs.getString("empresa");
-                
-                transportadora=new Transportadora(id, nome, email, telefone, celular, whatsapp, modal, 
-                        cep, estado, cidade, bairro, ruaavenida, numero, empresa);
-                
-                transportadoraList.add(transportadora);
-            }
-            con.close();
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(TransportadoraDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
-	
-        return transportadoraList;
-    }
-    
-    public List<LocalizacaoUF> listLocalizacaoUFs(){
+    public List<LocalizacaoUF> listLocalizacaoUFs() throws SQLException{
         
         List<LocalizacaoUF> listLocalizacaoUFs=new ArrayList<LocalizacaoUF>();
         
@@ -410,9 +312,9 @@ public class TransportadoraDAO {
         siglaNomeCompleto.put("SP", "São Paulo");
         siglaNomeCompleto.put("SE", "Sergipe");
         siglaNomeCompleto.put("TO", "Tocantins");
-        
-        try{
-            Connection con=getConnection();
+    
+        try(Connection con=getConnection();){
+            
             PreparedStatement ps;
             ps = con.prepareStatement("select estado, count(*) from portfolio.tb_transportadora group by estado;");
             ResultSet rs=ps.executeQuery();
@@ -429,24 +331,21 @@ public class TransportadoraDAO {
                sigla=rs.getString("estado"); 
                nomeCompleto=siglaNomeCompleto.get(sigla);
                localizacaoUF=new LocalizacaoUF();
-               
                localizacaoUF.setSigla(sigla);
                localizacaoUF.setNomeCompleto(nomeCompleto);
                localizacaoUF.setQtdCadastros(rs.getInt("count"));
-               
-               
                listLocalizacaoUFs.add(localizacaoUF);
             }
         }catch(Exception e){
-            
+            e.printStackTrace();
         }
         return listLocalizacaoUFs;
     }
     public List<ModalQtd> listModalQtd(){
         List<ModalQtd> listModalQtd=new ArrayList<ModalQtd>();
         
-        try{
-            Connection con=getConnection();
+        try(Connection con=getConnection();){
+            
             PreparedStatement ps;
             ps = con.prepareStatement("select modal, count(*) from portfolio.tb_transportadora group by modal;");
             ResultSet rs=ps.executeQuery();
@@ -461,15 +360,15 @@ public class TransportadoraDAO {
                 modalQtd=new ModalQtd();
             }
         }catch(Exception e){
-            
+            e.printStackTrace();
         }
         return listModalQtd;
     }
     
     public Integer getQtdResultados(){
         Integer qtdResultados=0;
-        try{
-            Connection con=getConnection();
+        try(Connection con=getConnection();){
+            
             PreparedStatement ps;
             ps = con.prepareStatement("select count(*) from portfolio.tb_transportadora;");
             ResultSet rs=ps.executeQuery();
@@ -478,14 +377,15 @@ public class TransportadoraDAO {
                 qtdResultados=rs.getInt("count");
             }
         }catch(Exception e){
+            e.printStackTrace();
         }
         return qtdResultados;
     }
     
     public List<LocalizacaoMunicipio> listLocalizacaoMunicipio(){
         List<LocalizacaoMunicipio> listLocalizacaoMunicipio=new ArrayList<LocalizacaoMunicipio>();
-        try{
-            Connection con=getConnection();
+        try(Connection con=getConnection();){
+            
             PreparedStatement ps;
             ps = con.prepareStatement("select cidade, count(*) from portfolio.tb_transportadora group by cidade;");
             ResultSet rs=ps.executeQuery();

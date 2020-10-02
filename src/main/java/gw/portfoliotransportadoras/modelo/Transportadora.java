@@ -31,24 +31,8 @@ public class Transportadora {
     private String caminhoLogo;
     private File arquivoLogo;
     
-    public Transportadora(Integer id, String nome, String email, String telefone, String celular, String whatsapp, 
-            String modal, String cep, String estado, String cidade, String bairro, String ruaAvenida, 
-            Integer numero, String empresa) {
-        this.id=id;
-        this.nome = nome;
-        this.email = email;
-        this.telefone = telefone;
-        this.celular = celular;
-        this.whatsapp = whatsapp;
-        this.modal = modal;
-        this.cep = cep;
-        this.estado = estado;
-        this.cidade = cidade;
-        this.bairro = bairro;
-        this.ruaAvenida = ruaAvenida;
-        this.numero = numero;
-        this.empresa = empresa;
-        this.logo=logo;
+    public Transportadora() {
+        
     }
 
     public Integer getId() {

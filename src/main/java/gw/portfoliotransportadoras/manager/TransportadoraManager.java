@@ -11,8 +11,11 @@ import gw.portfoliotransportadoras.modelo.LocalizacaoMunicipio;
 import gw.portfoliotransportadoras.modelo.LocalizacaoUF;
 import gw.portfoliotransportadoras.modelo.ModalQtd;
 import gw.portfoliotransportadoras.modelo.Transportadora;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -66,7 +69,12 @@ public class TransportadoraManager {
         return transportadora;
     }
     public List<LocalizacaoUF> listLocalizacaoUFs(){
-        return transportadoraDAO.listLocalizacaoUFs();
+        try {
+            return transportadoraDAO.listLocalizacaoUFs();
+        } catch (SQLException ex) {
+           ex.printStackTrace();
+        }
+        return null;
     }
     public List<LocalizacaoMunicipio> listLocalizacaoMunicipio(){
         return transportadoraDAO.listLocalizacaoMunicipio();

@@ -5,47 +5,32 @@
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
-
     <!-- Enable these types of content(files) to be viewed from webpage  -->
     <servlet-mapping>
         <servlet-name>default</servlet-name>
         <url-pattern>*.css</url-pattern>
     </servlet-mapping>
-
     <servlet-mapping>
         <servlet-name>default</servlet-name>
         <url-pattern>*.js</url-pattern>
     </servlet-mapping>
-
     <servlet-mapping>
         <servlet-name>default</servlet-name>
         <url-pattern>*.gif</url-pattern>
     </servlet-mapping>
-
     <servlet-mapping>
         <servlet-name>dispatcher</servlet-name>
         <url-pattern>*.jpg</url-pattern>
     </servlet-mapping>
-
     <servlet-mapping>
         <servlet-name>default</servlet-name>
         <url-pattern>*.png</url-pattern>
     </servlet-mapping>
-    <servlet>
-        <servlet-name>s1</servlet-name>
-        <servlet-class>gw.portfoliotransportadoras.controller.TransportadoraBO</servlet-class>
-    </servlet>
-    
-    <servlet-mapping>
-        <servlet-name>s1</servlet-name>
-        <url-pattern>/TransportadoraBO</url-pattern>
-    </servlet-mapping>
-    
-    <context-param> 
-      <description>Location to store uploaded file</description> 
-      <param-name>file-upload</param-name> 
-      <param-value>
+    <context-param>
+        <description>Location to store uploaded file</description>
+        <param-name>file-upload</param-name>
+        <param-value>
          /home/vicente/Documentos/desenvolvimento/apache-tomcat-8.0.27/webapps/data
-      </param-value> 
-   </context-param>
+      </param-value>
+    </context-param>
 </web-app>

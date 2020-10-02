@@ -146,14 +146,18 @@ public class TransportadoraServlet extends HttpServlet{
             numero = Integer.parseInt((String) request.getParameter("numero"));
         }
         
-        Transportadora novaTransportadora = new Transportadora(id, nome, email, telefone, celular, whatsapp,
-                modal, cep, estado, cidade, bairro, ruaAvenida, numero, empresa);
-        
-        System.err.println("{id "+id+" nome "+nome+" email "+email);
-        System.err.println(" telefone "+telefone+" celular "+celular+" whatsapp"+whatsapp);
-        System.err.println(" "+modal+" "+cep+" "+estado);
-        System.err.println(" "+cidade+" "+bairro+" "+ruaAvenida);
-        System.err.println(" "+numero+" "+empresa+"}");
+        Transportadora novaTransportadora = new Transportadora();
+        novaTransportadora.setEmail(email);
+        novaTransportadora.setNome(nome);
+        novaTransportadora.setEmpresa(empresa);
+        novaTransportadora.setTelefone(telefone);
+        novaTransportadora.setCelular(celular);
+        novaTransportadora.setWhatsapp(whatsapp);
+        novaTransportadora.setModal(modal);
+        novaTransportadora.setCep(cep);
+        novaTransportadora.setEstado(estado);
+        novaTransportadora.setBairro(bairro);
+        novaTransportadora.setRuaAvenida(ruaAvenida);
         
         carregarLogo(request, response, novaTransportadora);
         
@@ -173,8 +177,6 @@ public class TransportadoraServlet extends HttpServlet{
                     OutputStream outStream = new FileOutputStream(arquivoLogo);
                     outStream.write(buffer);
                     novaTransportadora.setArquivoLogo(arquivoLogo);
-
-                    System.err.println("arquivo "+arquivoLogo.getName());
                 }
             }
         } catch (IOException ex) {
