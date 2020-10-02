@@ -211,6 +211,10 @@
                                                     <input type="hidden" name="action" value="pesquisar"/>
                                                     <button type="submit" class="btn btn-primary"/>Voltar</button>
                                                 </form> -->
+                                               <c:if test="${transportadora == null}">
+                                                   <button type="button" id="btnVoltar" onclick="voltar()" class="btn btn-primary"/>Voltar</button>
+                                               </c:if>
+                                                
                                             </div>
                                             <div class="col-sm-6">
                                                  <c:if test="${transportadora == null}">
@@ -220,7 +224,9 @@
                                          </div>
                                          <c:if test="${transportadora != null}">
                                             <div class="form-group row">
-                                                <div class="col-sm-2"></div>
+                                                <div class="col-sm-2">
+                                                     <button type="button" id="btnVoltar" onclick="voltar()" class="btn btn-primary"/>Voltar</button>
+                                                </div>
                                                 <div class="col-sm-3">
                                                     <button id="btnSubmit" type="submit" class="btn btn-success" style="width:150px;">Atualizar</button>
                                                 </div>
@@ -236,6 +242,7 @@
                     
                             
                     $(document).ready(function () {
+                        
                          $("#btnDeletar").click(function (event) {
                              event.preventDefault();
                              
@@ -382,7 +389,9 @@
                            
                         });
                     });
-                    
+                    function voltar(){
+                        window.location.href='TransportadoraServlet?action=pesquisar';
+                    }
                     
                     var loadFile = function(event) {
                         var image = document.getElementById('output');
